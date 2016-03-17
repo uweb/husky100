@@ -23,7 +23,7 @@
                     <div class="entry-content">
                         <?php $main_pic = $meta['main_pic'][0];
                         if (!empty($main_pic)) { ?>
-                            <img class='people-image' src=<?php echo $main_pic ?> />
+                            <img class='husky-image' src=<?php echo $main_pic ?> />
                         <?php }
                         $office_location = $meta['office_location'][0];
                         $office_hours = $meta['office_hours'][0]; 
@@ -35,7 +35,7 @@
                         if (!empty($office_location)){
                             $location_present = true;
                         } ?>
-                            <div class='people-contact<?php if ($location_present || $hours_present) { ?> big-people-contact<?php } if (empty($main_pic)) { ?> wide-people-contact<?php } ?>'>
+                            <div class='husky-contact<?php if ($location_present || $hours_present) { ?> big-husky-contact<?php } if (empty($main_pic)) { ?> wide-husky-contact<?php } ?>'>
                             
                             <?php $title = get_the_title();
                         if (!empty($title)): ?>
@@ -72,7 +72,7 @@
                                 } ?>
                             </div>
                         </div>
-                        <div class="people-info">
+                        <div class="husky-info">
                             <?php the_content(); ?>
                         </div>
                         <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'uw' ) . '</span>', 'after' => '</div>' ) ); ?>

@@ -32,10 +32,10 @@ div.profile-list img {
     display: none;
 }
 
-.site-marketing .entry-content img.people-image {
+.site-marketing .entry-content img.husky-image {
 	display: none;
 }
-.site-marketing.single-people div.people-contact {
+.site-marketing.single-husky div.husky-contact {
 	margin-top: 10px;
 }
 
@@ -75,7 +75,7 @@ div.profile-list div.info {
     clear: right;
 }
 
-div.profile-list .title, div.people-contact .title {
+div.profile-list .title, div.husky-contact .title {
 	font-family: 'Droid Serif', serif;
 	font-style: italic;
 	color: #6B6B6B;
@@ -84,38 +84,38 @@ div.profile-list .title, div.people-contact .title {
 	position: relative;
 }
 
-div.people-contact .title {
+div.husky-contact .title {
 	font-size: 18px;
 	margin-bottom: 1em;
 }
 
-div.people-contact .contact {
+div.husky-contact .contact {
 	padding-top: 20px;
 }
 
-div.people-contact div.big-contact {
+div.husky-contact div.big-contact {
     padding-top: 10px;
 }
 
-div.people-contact {
+div.husky-contact {
 	margin-top: 30px;
 	display:inline-block;
     max-width: 300px;
 	margin-left: 0px;
 }
 
-div.big-people-contact {
+div.big-husky-contact {
 	margin-top: 20px;
 }
 
-div.wide-people-contact {
+div.wide-husky-contact {
     display: block;
     margin-top: 40px;
     margin-left: 20px;
     max-width: 100%;
 }
 
-img.people-image {
+img.husky-image {
 	display:inline-block;
 	width: 240px;
     margin-right: 70px;
@@ -123,7 +123,7 @@ img.people-image {
 	float:left;
 }
 
-div.people-info {
+div.husky-info {
 	padding-top: 30px;
 	clear: both;
 }
@@ -132,33 +132,33 @@ div.people-info {
 /* Single page */
 
 
-.single-people .contact p {
+.single-husky .contact p {
 	margin-bottom: 5px;
 }
-.single-people p.team {
+.single-husky p.team {
 	margin-bottom: 0;
 }
-.single-people div.people-contact {
+.single-husky div.husky-contact {
 	margin-top: 50px;
 }
-.single-people div.people-info {
+.single-husky div.husky-info {
 	padding-top: 40px;
 }
 
 @media (max-width: 979px) {
-    div.people-contact {
+    div.husky-contact {
         max-width: 100%;
     }
-    img.people-image {
+    img.husky-image {
         float: none;
         display: block;
         margin-right: auto;
         margin-left: auto;
     }
-	.single-people div.people-contact {
+	.single-husky div.husky-contact {
 		margin-left: 0;
 	}
-	.single-people h1 {
+	.single-husky h1 {
 		margin-left: -25px;
 	}
 }

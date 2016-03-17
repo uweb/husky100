@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: People Directory
+Template Name: Husky 100 Directory
 */
 
 //helper functions
@@ -37,30 +37,30 @@ include 'template_functions.php';
                 </div>
                 
                 <?php
-                $args = array('post_type' => 'people', 'posts_per_page' => -1);
+                $args = array('post_type' => 'husky', 'posts_per_page' => -1);
                 $query = new WP_Query($args);
-                $people = $query->get_posts();
-                usort($people, 'last_name_sort');
-                $people[0]->post_title;
+                $husky = $query->get_posts();
+                usort($husky, 'last_name_sort');
+                $husky[0]->post_title;
                 ?>
 
             <div>
             <?php
-            if (get_option('people_visible_setting')) {
+            if (get_option('husky_visible_setting')) {
                 $name_link = true;
             }
             else {
                 $name_link = false;
             }
-            $teams = group_by_team($people);
-            foreach($teams as $team => $people):
-                if (count($people) != 0): 	//just in case there are zero people in a manually specified team (or Team No-Team) 
+            $teams = group_by_team($husky);
+            foreach($teams as $team => $husky):
+                if (count($husky) != 0): 	//just in case there are zero people in a manually specified team (or Team No-Team) 
                     if ($team === 0) {
-                        $team = get_option('people_priority_team');
+                        $team = get_option('husky_priority_team');
                     }
                     ?>
                     <div id='<?php echo $team; ?>' class='searchable-container'><h3><?php echo $team; ?></h3>
-                    <?php foreach ($people as $person):
+                    <?php foreach ($husky as $person):
                         $personID = $person->ID;
                         $name = $person->post_title;
                         $main_pic = get_post_meta($personID, 'main_pic', true);

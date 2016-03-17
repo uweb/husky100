@@ -1,31 +1,31 @@
 <?php
 
     /*
-	Plugin Name: People Directory
+	Plugin Name: Husky 100
 	Plugin URI: http://www.washington.edu
-	Description: Makes a people content type and directory template
-	Version: 1.1
+	Description: Makes a people content type and directory template for the Husky 100
+	Version: 0.1
 	Author: UW Web Team
 	*/
 
-if (!defined('PEOPLE_DIRECTORY')){
-	define('PEOPLE_DIRECTORY', '1.0');
+if (!defined('HUSKY_DIRECTORY')){
+	define('HUSKY_DIRECTORY', '1.0');
 }
 
-register_activation_hook( __FILE__, 'create_people_directory_page');
-register_deactivation_hook( __FILE__, 'delete_people_directory_page');
+register_activation_hook( __FILE__, 'create_husky_directory_page');
+register_deactivation_hook( __FILE__, 'delete_husky_directory_page');
 
-function create_people_directory_page() {
-	$people_directory_post = array( 
-		'post_title' => 'People Directory',
-		'post_name' => 'people_directory',
+function create_husky_directory_page() {
+	$husky_directory_post = array( 
+		'post_title' => 'Husky 100 Directory',
+		'post_name' => 'husky100',
 		'post_type' => 'page'
 	);
-	wp_insert_post($people_directory_post);
+	wp_insert_post($husky_directory_post);
 }
 
-function delete_people_directory_page() {
-	$query = new WP_Query(array('name'=>'people_directory','post_type'=>'page'));
+function delete_husky_directory_page() {
+	$query = new WP_Query(array('name'=>'husky100','post_type'=>'page'));
 	$query->the_post();
 	$page_ID = get_the_ID();
 	if ($page_ID) {
@@ -33,15 +33,15 @@ function delete_people_directory_page() {
 	}
 }
 
-if ( ! post_type_exists( 'people' ) ):
+if ( ! post_type_exists( 'husky100' ) ):
 
-	add_action('init', 'people_post_type');
+	add_action('init', 'husky_post_type');
 	add_filter('single_template', 'add_single_person_template');
-	add_action('template_include', 'add_people_directory_template');
+	add_action('template_include', 'add_husky_directory_template');
 
-	function people_post_type() {
+	function husky_post_type() {
 		$labels = array(
-			'name' => 'People',
+			'name' => 'Husky 100',
 			'singular_name' => 'Person',
 			'add_new' => 'Add New',
 			'add_new_item' => 'Add New Person',
@@ -49,46 +49,46 @@ if ( ! post_type_exists( 'people' ) ):
 			'new_item' => 'New Person',
 			'all_items' => 'All People',
 			'view_item' => 'View Person',
-			'search_item' => 'Search People',
+			'search_item' => 'Search Husky 100',
 			'not_found' => 'No people found',
 			'not_found_in_trash' => 'No people found in trash',
 			'parent_item_colon' => '',
-			'menu_name' => 'People'
+			'menu_name' => 'Husky 100'
 		);
 
 		$args = array(
 			'labels' => $labels,
-			'public' => get_option('people_visible_setting'),
-			'publicly_queryable' => get_option('people_visible_setting'),
+			'public' => get_option('husky_visible_setting'),
+			'publicly_queryable' => get_option('husky_visible_setting'),
 			'show_ui' => true,
 			'show_in_menu' => true,
-			'rewrite' => array('slug' => 'people', 'with_front' => false)
+			'rewrite' => array('slug' => 'husky100', 'with_front' => false)
 		);
 
-		register_post_type('people', $args);
+		register_post_type('husky100', $args);
 	}
 
-    add_action('admin_menu', 'people_settings_page');
-    add_action('admin_init', 'people_post_options');
+    add_action('admin_menu', 'husky_settings_page');
+    add_action('admin_init', 'husky_post_options');
 
-    function people_settings_page() {
-        add_settings_section('people', 'The following settings affect the People Directory plugin only', 'people_settings_callback', 'people_settings');
-        add_options_page('People Directory Settings', 'People Directory', 'manage_options', 'people_settings', 'people_settings_page_callback');
+    function husky_settings_page() {
+        add_settings_section('husky100', 'The following settings affect the Husky 100 Directory plugin only', 'husky_settings_callback', 'husky_settings');
+        add_options_page('Husky 100 Settings', 'Husky 100', 'manage_options', 'husky_settings', 'husky_settings_page_callback');
     }
 
-    function people_settings_callback() {
+    function husky_settings_callback() {
         //nothing doing
         return;
     }
 
-    function people_settings_page_callback() {
+    function husky_settings_page_callback() {
         ?>
         <div class='wrap'>
-            <h2>People Directory Settings</h2>
+            <h2>Husky 100 Settings</h2>
             <form method='post' action='options.php'>
                 <?php 
-                settings_fields('people');
-                do_settings_sections('people_settings');
+                settings_fields('husky100');
+                do_settings_sections('husky_settings');
                 submit_button();
                 ?>
             </form>
@@ -96,45 +96,45 @@ if ( ! post_type_exists( 'people' ) ):
         <?php
     }
 
-	function people_post_options() {
-		register_setting('people', 'people_visible_setting');
+	function husky_post_options() {
+		register_setting('husky100', 'husky_visible_setting');
 
-		add_settings_field('people_visible_setting', 'Make Single People Pages?', 'people_visible_setting_callback', 'people_settings', 'people');
+		add_settings_field('husky_visible_setting', 'Make Single Student Pages?', 'husky_visible_setting_callback', 'husky_settings', 'husky100');
 
-		register_setting('people', 'people_directory_page_setting');
+		// register_setting('husky100', 'husky_directory_page_setting');
 
-		add_settings_field('people_directory_page_setting', 'Enter the slug of your people directory:', 'people_directory_page_setting_callback', 'people_settings', 'people');
+		// add_settings_field('husky_directory_page_setting', 'Enter the slug of your Husky 100 directory:', 'husky_directory_page_setting_callback', 'husky_settings', 'husky100');
 
-		register_setting('people', 'people_priority_people');
+		register_setting('husky100', 'husky_priority_husky');
 
-		add_settings_field('people_priority_people', 'Choose up to 5 people to float to the top of lists:', 'people_priority_people_callback', 'people_settings', 'people');
+		add_settings_field('husky_priority_husky', 'Choose up to 5 students to float to the top of lists:', 'husky_priority_husky_callback', 'husky_settings', 'husky100');
 
-		register_setting('people', 'people_priority_team');
+		register_setting('husky100', 'husky_priority_team');
 
-		add_settings_field('people_priority_team', 'Choose a team to display first in directory:', 'people_priority_team_callback', 'people_settings', 'people');
+		add_settings_field('husky_priority_team', 'Choose a team to display first in directory:', 'husky_priority_team_callback', 'husky_settings', 'husky100');
 	}
 
-    function people_visible_setting_callback() {
-        echo "<input name='people_visible_setting' type='checkbox' value='1'" . checked( 1, get_option('people_visible_setting'), false) . "/> (yes if checked)";
+    function husky_visible_setting_callback() {
+        echo "<input name='husky_visible_setting' type='checkbox' value='1'" . checked( 1, get_option('husky_visible_setting'), false) . "/> (yes if checked)";
     }
 
-    function people_directory_page_setting_callback() {
-        $slug = get_option('people_directory_page_setting');
+    function husky_directory_page_setting_callback() {
+        $slug = get_option('husky_directory_page_setting');
         ?>
-        <input name='people_directory_page_setting' type='text' value='<?php echo $slug ?>'/> (default slugs: people-directory and faculty-directory)
+        <input name='husky_directory_page_setting' type='text' value='<?php echo $slug ?>'/> (default slug: husky_directory)
         <?php
     }
 
-    function people_priority_people_callback() {
-        $people = get_posts(array('posts_per_page' => -1, 'post_type' => 'people'));
-        $option = get_option('people_priority_people');
+    function husky_priority_husky_callback() {
+        $husky = get_posts(array('posts_per_page' => -1, 'post_type' => 'husky100'));
+        $option = get_option('husky_priority_husky');
         for ($i = 1; $i <= 5; $i++){
                 ?>
                 <p><?php echo $i ?>) 
-                    <select name='people_priority_people[<?php echo $i ?>]' value='<?php echo $option[$i] ?>'/>
+                    <select name='husky_priority_husky[<?php echo $i ?>]' value='<?php echo $option[$i] ?>'/>
                     <option value='false'>----</option>
                     <?php
-                    foreach ($people as $person) {
+                    foreach ($husky as $person) {
                         $selected = false;
                         $personName = $person->post_title;
                         if ($option[$i] == $personName){
@@ -151,11 +151,11 @@ if ( ! post_type_exists( 'people' ) ):
         }
     }
 
-    function people_priority_team_callback() {
+    function husky_priority_team_callback() {
         $teams = get_terms('teams');
-        $option = get_option('people_priority_team');
+        $option = get_option('husky_priority_team');
         ?>
-        <select name='people_priority_team'/>
+        <select name='husky_priority_team'/>
         <option value='false'>----</option>
         <?php
         foreach ($teams as $team) {
@@ -173,15 +173,15 @@ if ( ! post_type_exists( 'people' ) ):
         <?php
     }
 
-	add_action('admin_init', 'people_admin_init');
+	add_action('admin_init', 'husky_admin_init');
 
-	function people_admin_init(){
-		add_meta_box('order', 'Order', 'order_callback', 'people', 'side', 'low');
-		add_meta_box('position', 'Position/Title', 'position_callback', 'people', 'side', 'low');
-		add_meta_box('phone', 'Work Phone Number', 'phone_callback', 'people', 'side', 'low');
-		add_meta_box('email', 'Work Email', 'email_callback', 'people', 'side', 'low');
-		add_meta_box('office_details', 'Office Details', 'office_details_callback', 'people', 'side', 'low');
-		add_meta_box('main_pic', 'Main Picture', 'main_pic_callback', 'people', 'normal', 'low');
+	function husky_admin_init(){
+		add_meta_box('order', 'Order', 'order_callback', 'husky100', 'side', 'low');
+		add_meta_box('position', 'Position/Title', 'position_callback', 'husky100', 'side', 'low');
+		add_meta_box('phone', 'Work Phone Number', 'phone_callback', 'husky100', 'side', 'low');
+		add_meta_box('email', 'Work Email', 'email_callback', 'husky100', 'side', 'low');
+		add_meta_box('office_details', 'Office Details', 'office_details_callback', 'husky100', 'side', 'low');
+		add_meta_box('main_pic', 'Main Picture', 'main_pic_callback', 'husky100', 'normal', 'low');
 	}
 
 	function order_callback() {
@@ -255,7 +255,7 @@ if ( ! post_type_exists( 'people' ) ):
 
 	function save_person_details() {
 		global $post;
-		if (get_post_type($post) == 'people') {
+		if (get_post_type($post) == 'husky100') {
 			update_post_meta($post->ID, 'team', $_POST['team']);
 			update_post_meta($post->ID, 'order', $_POST['order']);
 			update_post_meta($post->ID, 'position', $_POST['position']);
@@ -269,52 +269,28 @@ if ( ! post_type_exists( 'people' ) ):
 
 	function add_single_person_template($template) {
 		global $post;
-		$single_person_template = 'single-people.php';
+		$single_person_template = 'single-husky-template.php';
 		$this_dir = dirname(__FILE__);
-		if ($post->post_type == 'people') {
-			if (file_exists(get_stylesheet_directory() . '/' . $single_person_template)) {
-				return get_stylesheet_directory() . '/' . $single_person_template;
-			}
-			else if (file_exists(get_template_directory() . '/' . $single_person_template)) {
-				return get_template_directory() . '/' . $single_person_template;
-			}
-            if (wp_get_theme() == 'UW 2013') {
-				return $this_dir . '/' . $single_person_template;
-			}
-            else {
-                return $this_dir . '/' . 'single-people-2014.php';
-            }
+		if (file_exists(get_stylesheet_directory() . '/' . $single_person_template)) {
+			return get_stylesheet_directory() . '/' . $single_person_template;
 		}
-        return $template;
+		else if (file_exists(get_template_directory() . '/' . $single_person_template)) {
+			return get_template_directory() . '/' . $single_person_template;
+		}
+        return dirname(__FILE__) . '/' . 'single-husky-template.php'; 
 	}
 
-	function add_people_directory_template($template) {
+	function add_husky_directory_template($template) {
 		$this_dir = dirname(__FILE__);
-        $custom_page = get_option('people_directory_page_setting');
-        $is_directory = is_page('people_directory') || is_page('faculty-directory') || is_page('people-directory');
-        if ($custom_page != "") {
-            $is_directory = ($is_directory || is_page(get_option('people_directory_page_setting')));
-        }
-        if (wp_get_theme() != 'UW 2013') {
-            $people_directory_template = 'people-directory-template-2014.php';
-        }
-        else {
-		    $people_directory_template = 'people-directory-template.php';
-        }
-		if ($is_directory) {
-			if (file_exists(get_stylesheet_directory() . '/' . $people_directory_template)) {
-				return get_stylesheet_directory() . '/' . $people_directory_template;
-			}
-			else if (file_exists(get_template_directory() . '/' . $people_directory_template)) {
-				return get_template_directory() . '/' . $people_directory_template;
-			}
-			else { 
-				return $this_dir . '/' . $people_directory_template;
-			}
+        $custom_page = get_option('husky_directory_page_setting');
+        $husky_directory_template = 'husky-directory-template.php';
+		if (file_exists(get_stylesheet_directory() . '/' . $husky_directory_template)) {
+			return get_stylesheet_directory() . '/' . $husky_directory_template;
 		}
-		else {
-			return $template;
+		else if (file_exists(get_template_directory() . '/' . $husky_directory_template)) {
+			return get_template_directory() . '/' . $husky_directory_template;
 		}
+		return $this_dir . '/' . $husky_directory_template;
 	}
 
 
@@ -325,7 +301,7 @@ if (!taxonomy_exists('teams')):
 	add_action('init', 'teams_taxonomy');
 
 	function teams_taxonomy() {
-		register_taxonomy('teams', 'people', array(
+		register_taxonomy('teams', 'husky100', array(
 			'labels' => array(
 				'name' => 'Teams/Departments',
 				'singular_name' => 'team',
@@ -343,7 +319,7 @@ if (!taxonomy_exists('teams')):
 			),
 			'hierarchical' => true
 		));
-		register_taxonomy_for_object_type('teams', 'people');
+		register_taxonomy_for_object_type('teams', 'husky100');
 	}
 
 endif;
@@ -354,7 +330,7 @@ function load_other_resources() {
 	wp_enqueue_script('jquery');
 	wp_register_script('live-search', plugins_url('js/live-search.js', __FILE__), 'jquery');
 	wp_enqueue_script('live-search');
-	wp_register_style('directory-style', plugins_url('css/people-directory.css', __FILE__));
+	wp_register_style('directory-style', plugins_url('css/husky-directory.css', __FILE__));
 	wp_enqueue_style('directory-style');
 	add_shortcode( 'directory', 'shortcode' );
 }
@@ -368,12 +344,12 @@ function shortcode( $atts )
 	    'team' => null,
 	 ), $atts);
 
-	 $args = array('post_type' => 'people', 'posts_per_page' => -1);
+	 $args = array('post_type' => 'husky100', 'posts_per_page' => -1);
 	    $query = new WP_Query($args);
-	    $people = $query->get_posts();
+	    $husky = $query->get_posts();
 
 	    $array = array();
-	    foreach($people as $person){
+	    foreach($husky as $person){
 	    	$name = $person->post_title;
 	    	$name = explode(" ", $name);
 	    	if (substr($name[1], 1, 1) == "."){
@@ -408,11 +384,11 @@ function shortcode( $atts )
 					            }  
 					            $return .= "src='" . $main_pic ."' alt='" . $name . "' />" .
 	                            	"<div class='info'>";
-	                                if (get_option('people_visible_setting')){
+	                                if (get_option('husky_visible_setting')){
 	                                    $return .= "<a href='" . get_permalink($personID) . "'>";
 	                               	} 
 	                                $return .= "<h3 class='name search-this'>" . $name . "</h3>";
-	                                if (get_option('people_visible_setting')){
+	                                if (get_option('husky_visible_setting')){
 	                                    $return .= "</a>";
 	                                }
 	                                $return .= "<p class='title search-this'>" . $position . "</p>" .

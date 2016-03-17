@@ -5,7 +5,7 @@
 
 //this function sorts two people by last name, except for some manually ordered people
 function last_name_sort($a, $b) {
-	$name_priority = get_option('people_priority_people', array()); //put names you want at the top of the teams here
+	$name_priority = get_option('husky_priority_husky', array()); //put names you want at the top of the teams here
 	$first = $a->post_title;
 	$second = $b->post_title;
 	// Sort by name priority setting
@@ -43,12 +43,12 @@ function last_name_sort($a, $b) {
 }
 
 //this function groups people by team.  The teams are in the order they come up except for when manually ordered
-function group_by_team($people) {
-	$priority_team = get_option('people_priority_team');	//this is the name of a team you want to float to the top
+function group_by_team($husky) {
+	$priority_team = get_option('husky_priority_team');	//this is the name of a team you want to float to the top
 	$team_priority = array($priority_team => array());
 	$team_groups = array();
 	$team_no_team = array();
-	foreach ($people as $person) {
+	foreach ($husky as $person) {
 		$team = get_the_terms($person->ID, 'teams');
 		$assigned_team = null;
 		if (!$team) {
