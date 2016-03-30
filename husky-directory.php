@@ -36,7 +36,6 @@ function delete_husky_directory_page() {
 if ( ! post_type_exists( 'husky100' ) ):
 
 	add_action('init', 'husky_post_type');
-	add_filter('single_template', 'add_single_person_template');
 	add_action('template_include', 'add_husky_directory_template');
 
 	function husky_post_type() {
@@ -97,9 +96,9 @@ if ( ! post_type_exists( 'husky100' ) ):
     }
 
 	function husky_post_options() {
-		register_setting('husky100', 'husky_visible_setting');
+		//register_setting('husky100', 'husky_visible_setting');
 
-		add_settings_field('husky_visible_setting', 'Make Single Student Pages?', 'husky_visible_setting_callback', 'husky_settings', 'husky100');
+		//add_settings_field('husky_visible_setting', 'Make Single Student Pages?', 'husky_visible_setting_callback', 'husky_settings', 'husky100');
 
 		// register_setting('husky100', 'husky_directory_page_setting');
 
@@ -176,65 +175,39 @@ if ( ! post_type_exists( 'husky100' ) ):
 	add_action('admin_init', 'husky_admin_init');
 
 	function husky_admin_init(){
-		add_meta_box('order', 'Order', 'order_callback', 'husky100', 'side', 'low');
-		add_meta_box('position', 'Position/Title', 'position_callback', 'husky100', 'side', 'low');
-		add_meta_box('phone', 'Work Phone Number', 'phone_callback', 'husky100', 'side', 'low');
-		add_meta_box('email', 'Work Email', 'email_callback', 'husky100', 'side', 'low');
-		add_meta_box('office_details', 'Office Details', 'office_details_callback', 'husky100', 'side', 'low');
+		add_meta_box('hometown', 'Hometown', 'hometown_callback', 'husky100', 'side', 'low');
+		add_meta_box('major', 'Major', 'major_callback', 'husky100', 'side', 'low');
+		add_meta_box('minor', 'Minor', 'minor_callback', 'husky100', 'side', 'low');
+		add_meta_box('graduation', 'Anticipated graduation date', 'graduation_callback', 'husky100', 'side', 'low');
 		add_meta_box('main_pic', 'Main Picture', 'main_pic_callback', 'husky100', 'normal', 'low');
 	}
 
-	function order_callback() {
+	function hometown_callback() {
 		global $post;
 		$custom = get_post_custom($post->ID);
-		$order = $custom['order'][0] ? $custom['order'][0] : -1;
-		?><input type="number" name="order" value="<?php echo $order ?>" /><?php
+		$hometown = $custom['hometown'][0];
+		?><input name="hometown" value="<?php echo $hometown ?>" /><?php
 	}
 
-	function position_callback() {
+	function major_callback() {
 		global $post;
 		$custom = get_post_custom($post->ID);
-		$position = $custom['position'][0];
-		?><input name="position" value="<?php echo $position ?>" /><?php
+		$major = $custom['major'][0];
+		?><input name="major" value="<?php echo $major ?>" /><?php
 	}
 
-	function phone_callback() {
+	function minor_callback() {
 		global $post;
 		$custom = get_post_custom($post->ID);
-		$phone = $custom['phone'][0];
-		?><input name="phone" value="<?php echo $phone ?>" /><?php
+		$minor = $custom['minor'][0];
+		?><input name="minor" value="<?php echo $minor ?>" /><?php
 	}
 
-	function email_callback() {
+	function graduation_callback() {
 		global $post;
 		$custom = get_post_custom($post->ID);
-		$email = $custom['email'][0];
-		?><input name="email" value="<?php echo $email ?>" /><?php
-	}
-
-	function office_details_callback() {
-        ?><p>These are optional. If office hours location is more than just one place or not in your office, use the office hours line for all office hours info.<p><?php
-		global $post;
-		$custom = get_post_custom($post->ID);
-        $office_location = $custom['office_location'];
-        if (!empty($office_location)) {
-            $office_location = $office_location[0];
-        }
-		?><label style='display:block'>Office Location:</label>
-		<input name='office_location' style='width:98%' <?php
-		if (!empty($office_location)) {
-			?>value='<?php echo $office_location ?>' <?php
-		}
-        $office_hours = $custom['office_hours'];
-        if (!empty($office_hours)) {
-            $office_hours = $office_hours[0];
-        }
-		?><label style='display:block'>Office Hours:</label>
-		<input name='office_hours' style='width:98%' <?php
-		if (!empty($office_hours)) {
-			?>value='<?php echo $office_hours ?>' <?php
-		}
-		?>/><?php
+		$graduation = $custom['graduation'][0];
+		?><input name="graduation" value="<?php echo $graduation ?>" /><?php
 	}
 
 	function main_pic_callback() {
@@ -257,27 +230,12 @@ if ( ! post_type_exists( 'husky100' ) ):
 		global $post;
 		if (get_post_type($post) == 'husky100') {
 			update_post_meta($post->ID, 'team', $_POST['team']);
-			update_post_meta($post->ID, 'order', $_POST['order']);
-			update_post_meta($post->ID, 'position', $_POST['position']);
-			update_post_meta($post->ID, 'phone', $_POST['phone']);
-			update_post_meta($post->ID, 'email', $_POST['email']);
+			update_post_meta($post->ID, 'hometown', $_POST['hometown']);
+			update_post_meta($post->ID, 'major', $_POST['major']);
+			update_post_meta($post->ID, 'minor', $_POST['minor']);
+			update_post_meta($post->ID, 'graduation', $_POST['graduation']);
 			update_post_meta($post->ID, 'main_pic', $_POST['main_pic']);
-			update_post_meta($post->ID, 'office_location', $_POST['office_location']);
-			update_post_meta($post->ID, 'office_hours', $_POST['office_hours']);
 		}
-	}
-
-	function add_single_person_template($template) {
-		global $post;
-		$single_person_template = 'single-husky-template.php';
-		$this_dir = dirname(__FILE__);
-		if (file_exists(get_stylesheet_directory() . '/' . $single_person_template)) {
-			return get_stylesheet_directory() . '/' . $single_person_template;
-		}
-		else if (file_exists(get_template_directory() . '/' . $single_person_template)) {
-			return get_template_directory() . '/' . $single_person_template;
-		}
-        return dirname(__FILE__) . '/' . 'single-husky-template.php'; 
 	}
 
 	function add_husky_directory_template($template) {
@@ -371,10 +329,10 @@ function shortcode( $atts )
 	    		$personID = $person->ID;
                 $name = $person->post_title;
                 $main_pic = get_post_meta($personID, 'main_pic', true);
-                $order = get_post_meta($personID, 'order', true);
-                $position = get_post_meta($personID, 'position', true);
-                $phone = get_post_meta($personID, 'phone', true);
-                $email = get_post_meta($personID, 'email', true);
+                $hometown = get_post_meta($personID, 'hometown', true);
+                $major = get_post_meta($personID, 'major', true);
+                $minor = get_post_meta($personID, 'minor', true);
+                $graduation = get_post_meta($personID, 'graduation', true);
                 $person_teams = implode(' ', $teams);
 
 	    		$return .= "<div class='profile-list searchable'>" . 
