@@ -18,8 +18,8 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
 
       <!-- Tiles specific JS and CSS -->
-      <script src="<?php plugins_url('js/tiles.js', __FILE__), 'jquery') ?>"></script>
-      <link rel='stylesheet' href='<?php plugins_url('css/tiles.css'), 'jquery') ?>' type='text/css' media='all' />
+      <script src="<?php plugins_url('js/tiles.js', __FILE__) ?>"></script>
+      <link rel='stylesheet' href='<?php plugins_url('css/tiles.css') ?>' type='text/css' media='all' />
 
 
     </head>

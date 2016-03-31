@@ -143,7 +143,6 @@ if ( ! post_type_exists( 'husky100' ) ):
 	function save_person_details() {
 		global $post;
 		if (get_post_type($post) == 'husky100') {
-			update_post_meta($post->ID, 'team', $_POST['team']);
 			update_post_meta($post->ID, 'hometown', $_POST['hometown']);
 			update_post_meta($post->ID, 'major', $_POST['major']);
 			update_post_meta($post->ID, 'minor', $_POST['minor']);
@@ -227,10 +226,10 @@ add_action('init', 'load_other_resources');
 
 function load_other_resources() {
 	wp_enqueue_script('jquery');
-	wp_register_script('live-search', plugins_url('js/live-search.js', __FILE__), 'jquery');
-	wp_enqueue_script('live-search');
-	wp_register_style('directory-style', plugins_url('css/husky-directory.css', __FILE__));
-	wp_enqueue_style('directory-style');
+	wp_register_script('tiles-js', plugins_url('js/tiles.js', __FILE__), 'jquery');
+	wp_enqueue_script('tiles-js');
+	wp_register_style('tiles-style', plugins_url('css/tiles	.css', __FILE__));
+	wp_enqueue_style('tiles-style');
 }
 
 
