@@ -125,9 +125,9 @@
          </div>
 
         <!-- STUDENT -->
-          <div data-name="lara-ignacio" data-img="<?php echo plugins_url( 'template-hierarchy/assets/husky100/4-high.jpg' )?>" class="flip-container grid-item senior">
+          <div data-name="lara-ignacio" data-img="<?php echo plugins_url( 'husky-100/assets/default.jpg' )?>" class="flip-container grid-item senior">
             <div class="flipper">
-              <div class="front" style="<?php echo 'background-image:url(' . plugins_url( 'template-hierarchy/assets/husky100/4.jpg' ) . ')'?> ">
+              <div class="front" style="<?php echo 'background-image:url(' . plugins_url( 'husky-100/assets/default.jpg' ) . ')'?> ">
               </div>
               <div class="back">
                 <h3>Bill Stein</h3>
@@ -173,15 +173,18 @@
         $factcount = 0;
         foreach ( $people as $person ) {
            //gather assets
-           $personimageurl = wp_get_attachment_url( get_post_thumbnail_id($person->ID) );
+           $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'thumbnail' )[0];
+           $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' )[0];
            if ( !$personimageurl ) {
             //FEATURE: set to default image here!!
             $personimageurl = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
+            $personimageurlhigh = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
            }
            $hometown = get_post_meta($person->ID, 'hometown', true);
            $major = get_post_meta($person->ID, 'major', true);
            $minor = get_post_meta($person->ID, 'minor', true);
            $graduation = get_post_meta($person->ID, 'graduation', true);
+           $linkedin = get_post_meta($person->ID, 'linkedin', true);
            $filters = wp_get_post_terms( $person->ID, 'filters' );
            $tags = wp_get_post_terms( $person->ID, 'tags' );
            //FEATURE: do tags also need to be classes? 
@@ -201,7 +204,7 @@
            //spit out html
            //FEATURE: set high res image for one how? 
            ?>
-            <div data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurl; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
+            <div data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
             <div class="flipper">
               <div class="front" style="<?php echo 'background-image:url(' . $personimageurl . ');'; ?> ">
               </div>
@@ -211,6 +214,7 @@
               </div>
               <div class="full-bio">
                 <h2><?php echo $person->post_title; ?></h2>
+                <a href="<?php echo $linkedin; ?>">LinkedIn</a>
                 <div class="bio-info">
                   <p><?php echo $hometown; ?></p>
                   <p><?php echo $major; ?></p>

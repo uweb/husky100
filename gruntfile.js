@@ -47,19 +47,19 @@ module.exports = function(grunt) {
     },
     less: {
         production: {
-	        options: {
-		        cleancss: true
-			},
-			files: {
-				'css/tiles.css': 'less/tiles.less'
-			}
-		},
-		development: {
-			files: {
-				'css/tiles.dev.css': 'less/tiles.less'
-			}
-		}
-	},
+          options: {
+            cleancss: true
+      },
+      files: {
+        'css/tiles.css': 'less/tiles.less'
+      }
+    },
+    development: {
+      files: {
+        'css/tiles.dev.css': 'less/tiles.less'
+      }
+    }
+  },
     watch: {
       config : {
         files : ['gruntfile.js'],
@@ -91,3 +91,4 @@ module.exports = function(grunt) {
   grunt.registerTask( 'css', ['less', 'notify'] );
 
 };
+ 

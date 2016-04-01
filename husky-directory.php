@@ -103,6 +103,7 @@ if ( ! post_type_exists( 'husky100' ) ):
 		add_meta_box( 'major', 'Major', 'major_callback', 'husky100', 'side', 'low' );
 		add_meta_box( 'minor', 'Minor', 'minor_callback', 'husky100', 'side', 'low' );
 		add_meta_box( 'graduation', 'Anticipated graduation date', 'graduation_callback', 'husky100', 'side', 'low' );
+		add_meta_box( 'linkedin', 'LinkedIn link', 'linkedin_callback', 'husky100', 'side', 'low' );
 		
 		remove_meta_box( 'filtersdiv', 'husky100', 'side' );
 		remove_meta_box( 'tagsdiv', 'husky100', 'side' );
@@ -138,6 +139,13 @@ if ( ! post_type_exists( 'husky100' ) ):
 		?><input name="graduation" value="<?php echo $graduation ?>" /><?php
 	}
 
+	function linkedin_callback() {
+		global $post;
+		$custom = get_post_custom($post->ID);
+		$linkedin = $custom['linkedin'][0];
+		?><input name="linkedin" value="<?php echo $linkedin ?>" /><?php
+	}
+
 	add_action('save_post', 'save_person_details');
 
 	function save_person_details() {
@@ -147,6 +155,7 @@ if ( ! post_type_exists( 'husky100' ) ):
 			update_post_meta($post->ID, 'major', $_POST['major']);
 			update_post_meta($post->ID, 'minor', $_POST['minor']);
 			update_post_meta($post->ID, 'graduation', $_POST['graduation']);
+			update_post_meta($post->ID, 'linkedin', $_POST['linkedin']);
 		}
 	}
 
@@ -228,7 +237,7 @@ function load_other_resources() {
 	wp_enqueue_script('jquery');
 	wp_register_script('tiles-js', plugins_url('js/tiles.js', __FILE__), 'jquery');
 	wp_enqueue_script('tiles-js');
-	wp_register_style('tiles-style', plugins_url('css/tiles	.css', __FILE__));
+	wp_register_style('tiles-style', plugins_url('css/tiles.css', __FILE__));
 	wp_enqueue_style('tiles-style');
 }
 
