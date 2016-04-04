@@ -86,8 +86,9 @@
     $query = new WP_Query($args);
     $people = $query->get_posts();
     shuffle($people);
-    $people[0]->featured = true;
-    //FEATURE: continue for X number of people
+    for ($i=0; $i < 10; $i++) {  //Set # of Featured People (FEATURE: add to settings menu?)
+        $people[$i]->featured = true;
+    }
     shuffle($people);
 
     $fastfacts = array(
@@ -96,6 +97,16 @@
         <img src="../template-hierarchy/assets/husky100/ribbon.png">
         <p></p>
       </div>' ,
+      '<div class="grid-item special infographic">
+        <h2>Did you know?</h2>
+        <img src="../template-hierarchy/assets/husky100/ribbon.png">
+        <p></p>
+      </div>' ,
+      '<div class="grid-item special infographic">
+        <h2>Did you know?</h2>
+        <img src="../template-hierarchy/assets/husky100/ribbon.png">
+        <p></p>
+      </div>' , 
       '<div class="grid-item special infographic">
         <h2>Did you know?</h2>
         <img src="../template-hierarchy/assets/husky100/ribbon.png">
@@ -123,49 +134,6 @@
            <div class="udub-slant"><span></span></div>
            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pellentesque lacus a nisl imperdiet, vel convallis erat elementum. </p>
          </div>
-
-        <!-- STUDENT -->
-          <div data-name="lara-ignacio" data-img="<?php echo plugins_url( 'husky-100/assets/default.jpg' )?>" class="flip-container grid-item senior">
-            <div class="flipper">
-              <div class="front" style="<?php echo 'background-image:url(' . plugins_url( 'husky-100/assets/default.jpg' ) . ')'?> ">
-              </div>
-              <div class="back">
-                <h3>Bill Stein</h3>
-                <p>Maecenas faucibus mollis interdum. Aenean eu leo quam.</p>
-              </div>
-              <div class="full-bio">
-                <h2>Amber Swayze</h2>
-                <div class="bio-info">
-                  <p>Burlington, WA</p>
-                  <p>Communication</p>
-                  <p>Spring, '16</p>
-                </div>
-                <div class="bio-text">
-                  <p>Dubs I, was named the University of Washington's 13th live mascot in February of 2009. He is an Alaskan Malamute from a kennel in Burlington, Washington. He was born in November of 2008 and is living with his family in Seattle.</p>
-
-                  <p>In late September 2008, the school announced an initiative to search for an appropriate name for its live mascot that would remain an ongoing UW tradition. A contest was launched on GoHuskies.com and fans were asked to submit their favorite name for the live Husky dog.</p>
-
-                  <p>More than 1,400 different nominations were received and a committee that consisted of campus and community representatives narrowed the field to a reasonable list of finalists, including: Admiral, Dubs, King, Koda, Legend, Reign, Spirit and Sundodger. More than 20,000 votes were received in two rounds of online voting via GoHuskies.com, with Dubs emerging victorious.</p>
-                </div>
-                <div class="tags">
-                  <a href="#">Community Organizing/Outreach</a>
-                  <a href="#">Media</a>
-                  <a href="#">Education - Higher Education</a>
-                  <a href="#">Journalism</a>
-                  <a href="#">News</a>
-                  <a href="#">Public Relations</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <!-- FAST FACT -->
-          <div class="grid-item special infographic">
-            <h2>Did you know?</h2>
-            <img src="<?php echo plugins_url( 'template-hierarchy/assets/husky100/ribbon.png' )?>">
-            <p></p>
-          </div>
-  
 
         <!-- THE FUN PHP STUFF -->
         <?php
@@ -196,7 +164,7 @@
                 $personclasses .= "featured ";
            }
 
-           if($peoplecount == 5 || $peoplecount == 21 || $peoplecount == 37 ) {
+           if($peoplecount == 5 || $peoplecount == 21 || $peoplecount == 37 || $peoplecount == 62 || $peoplecount == 84 ) { //determines where fast facts are
             echo $fastfacts[$factcount];
             $factcount++;
            }
