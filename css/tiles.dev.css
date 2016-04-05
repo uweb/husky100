@@ -278,7 +278,7 @@ div#thin-strip ul li a.slash:after {
   line-height: 1.5;
 }
 #husky100 .grid {
-  background: url(assets/husky100/stripes.svg) #e8e8e8;
+  background: url(../assets/stripes.svg) #e8e8e8;
 }
 #husky100 .full-bio {
   display: none;
@@ -326,7 +326,7 @@ div#thin-strip ul li a.slash:after {
 }
 #husky100 .full-bio h2:after {
   content: "";
-  background: url(assets/husky100/bar.svg) no-repeat top right;
+  background: url(../assets/bar.svg) no-repeat top right;
   margin-top: 10px;
   display: block;
   width: 75px;
@@ -335,7 +335,7 @@ div#thin-strip ul li a.slash:after {
   letter-spacing: .05em;
 }
 #husky100 .grid-item.open {
-  cursor: url(assets/husky100/x.svg), auto;
+  cursor: url(../assets/x.svg), auto;
 }
 #husky100 .open .full-bio {
   display: block;
@@ -545,7 +545,7 @@ div#thin-strip ul li a.slash:after {
   width: 19px;
   top: 2px;
   content: "";
-  background: url(assets/husky100/slash.svg) no-repeat 0 0;
+  background: url(../assets/slash.svg) no-repeat 0 0;
 }
 #husky100 #searcher {
   cursor: pointer;
@@ -649,7 +649,7 @@ div#thin-strip ul li a.slash:after {
   height: 22px;
   margin-top: 10px;
   display: block;
-  background: url(assets/husky100/plus.svg) 0 0 no-repeat;
+  background: url(../assets/plus.svg) 0 0 no-repeat;
 }
 #husky100 .grid-item.featured {
   background-color: white;
