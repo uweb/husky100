@@ -139,6 +139,14 @@
                        <p>' . $term->description . '</p>
                      </div>';
         }
+        $tag_terms = get_terms('tags');
+        foreach ($tag_terms as $tag_term) {
+            echo    '<div class="grid-item special title-card ' . $tag_term->slug . '">
+                       <h2 class="tags">' . $tag_term->name . '</h2>
+                       <div class="udub-slant"><span></span></div>
+                       <p>' . $tag_term->description . '</p>
+                     </div>';
+        }
          ?>
 
         <!-- THE FUN PHP STUFF -->
