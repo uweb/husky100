@@ -13,7 +13,9 @@ $(window).load(function(){
         percentPosition: true,
         masonry: {
           columnWidth: '.grid-sizer'
-        }
+        },
+        filter: ':not(.title-card)'
+
       });
     
       // use value of search field to filter
@@ -21,7 +23,9 @@ $(window).load(function(){
         qsRegex = new RegExp( $quicksearch.val(), 'gi' );
         $grid.isotope({
           filter: function() {
-            return qsRegex ? $(this).text().match( qsRegex ) : true;
+            var search = qsRegex ? $(this).text().match( qsRegex ) : true;
+            var notTitleCard = $(this).is( ':not(.title-card)' );
+            return search && notTitleCard;
           }
         });
       }, 200 ) );
