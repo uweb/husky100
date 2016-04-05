@@ -48,25 +48,28 @@
         </div>
       </div>
     </div>
-    <!-- FEATURE: dynamically load there filters -->
+    <!-- FEATURE: dynamically load there filters --> 
     <ul id="filter">
-      <li>
-        <button autofocus>Show all <div class="udub-slant"><span></span></div></button>        
-      </li>
-      <li>
-        <button data-filter=".junior">Juniors <div class="udub-slant"><span></span></div></button>        
-      </li>
-      <li>
-        <button data-filter=".senior">Seniors <div class="udub-slant"><span></span></div></button>     
-      </li>
-      <li>
-        <button data-filter=".graduate">Graduate <div class="udub-slant"><span></span></div></button>        
-      </li>
-      <li>
-        <button>Location <div class="udub-slant"><span></span></div></button>       
-      </li>
-      <li class="search_slash">
-        <button>Major <div class="udub-slant"><span></span></div></button>        
+    <li>
+        <button data-filter=":not(.title-card)">Show All <div class="udub-slant"><span></span></div></button>        
+    </li>
+    <?php
+        //get filters
+        //foreach filter print button
+        //set current filter
+        //reflect that in filter box
+        //
+        $terms = get_terms('filters' , array(
+                    'orderby'    => 'id'
+                ));
+        foreach ($terms as $term) {
+            echo '<li>
+                    <button data-filter=".' . $term->slug . '">' . $term->name . ' <div class="udub-slant"><span></span></div></button>        
+                  </li>';
+            //print_r($term);
+        }
+    ?>
+      <li class="search_slash">        
       </li>
       <li>
         <a title="Search button" id="searcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="26.396" height="55.35" viewBox="0 0 26.396 55.35" aria-hidden="true"><path fill="#4B2E83" d="M2.146 20.753l5.372-5.365c1.378.973 3.054 1.55 4.866 1.55h.002c4.672 0 8.473-3.8 8.473-8.47C20.857 3.798 17.057 0 12.385 0c-4.67 0-8.47 3.8-8.47 8.468 0 1.763.543 3.4 1.468 4.758L0 18.603l2.146 2.15zm10.24-17.917c3.11 0 5.64 2.526 5.64 5.632 0 3.107-2.53 5.635-5.64 5.635-3.106 0-5.634-2.528-5.634-5.635 0-3.104 2.527-5.63 5.634-5.632zm6.22 32.162c0-.414-.162-.804-.455-1.095-.585-.59-1.605-.59-2.193 0l-5.588 5.583-5.585-5.584c-.588-.588-1.612-.587-2.195 0-.294.292-.456.682-.456 1.096s.162.804.455 1.098l5.585 5.586-5.587 5.586c-.294.295-.456.687-.455 1.102 0 .413.163.8.45 1.087.58.593 1.614.597 2.2.004l5.585-5.584 5.584 5.582c.29.297.683.46 1.1.46s.81-.163 1.097-.455c.292-.292.454-.68.455-1.093.002-.415-.16-.807-.455-1.102l-5.586-5.586 5.587-5.586c.294-.294.455-.684.455-1.098z"/></svg></a>        
@@ -129,11 +132,14 @@
          <div class="grid-sizer"></div>
 
         <!-- FILTER BOX -->
-         <div class="grid-item special title-card">
-           <h2>Seniors</h2>
-           <div class="udub-slant"><span></span></div>
-           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pellentesque lacus a nisl imperdiet, vel convallis erat elementum. </p>
-         </div>
+        <?php foreach ($terms as $term) {
+            echo    '<div class="grid-item special title-card ' . $term->slug . '">
+                       <h2>' . $term->name . '</h2>
+                       <div class="udub-slant"><span></span></div>
+                       <p>' . $term->description . '</p>
+                     </div>';
+        }
+         ?>
 
         <!-- THE FUN PHP STUFF -->
         <?php

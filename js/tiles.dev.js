@@ -13,7 +13,9 @@ $(window).load(function(){
         percentPosition: true,
         masonry: {
           columnWidth: '.grid-sizer'
-        }
+        },
+        filter: ':not(.title-card)'
+
       });
     
       // use value of search field to filter
