@@ -1,3 +1,9 @@
+<?php
+/*
+Template Name: Husky 100
+*/
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
