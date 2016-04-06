@@ -68,34 +68,6 @@ if ( ! post_type_exists( 'husky100' ) ):
 		register_post_type('husky100', $args);
 	}
 
-    add_action('admin_menu', 'husky_settings_page');
-    //add_action('admin_init', 'husky_post_options');
-
-    function husky_settings_page() {
-        add_settings_section('husky100', 'The following settings affect the Husky 100 Directory plugin only', 'husky_settings_callback', 'husky_settings');
-        add_options_page('Husky 100 Settings', 'Husky 100', 'manage_options', 'husky_settings', 'husky_settings_page_callback');
-    }
-
-    function husky_settings_callback() {
-        //nothing doing
-        return;
-    }
-
-    function husky_settings_page_callback() {
-        ?>
-        <div class='wrap'>
-            <h2>Husky 100 Settings</h2>
-            <form method='post' action='options.php'>
-                <?php 
-                settings_fields('husky100');
-                do_settings_sections('husky_settings');
-                submit_button();
-                ?>
-            </form>
-        </div>
-        <?php
-    }
-
 	add_action('admin_init', 'husky_admin_init');
 
 	function husky_admin_init(){
