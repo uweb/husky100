@@ -19,16 +19,15 @@ $(window).load(function(){
       });
     
       // use value of search field to filter
-      var $quicksearch = $('.quicksearch').keyup( debounce( function() {
-        qsRegex = new RegExp( $quicksearch.val(), 'gi' );
-        $grid.isotope({
-          filter: function() {
-            var search = qsRegex ? $(this).text().match( qsRegex ) : true;
-            var notTitleCard = $(this).is( ':not(.title-card)' );
-            return search && notTitleCard;
-          }
-        });
-      }, 200 ) );
+     var $quicksearch = $('.quicksearch').keyup( debounce( function() {
+       qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+       $grid.isotope({
+         filter: function() {
+           var search = qsRegex ? $(this).text().match( qsRegex ) : true;
+           return search && $this.is( ':not(.title-card)' );
+         }
+       });
+     }, 200 ) );
 
       // Function to replace the image with the high-rest one
       function imageSwitch(el){

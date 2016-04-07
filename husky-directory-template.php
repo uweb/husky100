@@ -97,27 +97,22 @@
     $fastfacts = array(
       '<div class="grid-item special infographic">
         <h2>Did you know?</h2>
-        <img src="../template-hierarchy/assets/husky100/ribbon.png">
         <p></p>
       </div>' ,
       '<div class="grid-item special infographic">
         <h2>Did you know?</h2>
-        <img src="../template-hierarchy/assets/husky100/ribbon.png">
         <p></p>
       </div>' ,
       '<div class="grid-item special infographic">
         <h2>Did you know?</h2>
-        <img src="../template-hierarchy/assets/husky100/ribbon.png">
         <p></p>
       </div>' , 
       '<div class="grid-item special infographic">
         <h2>Did you know?</h2>
-        <img src="../template-hierarchy/assets/husky100/ribbon.png">
         <p></p>
       </div>' ,
       '<div class="grid-item special infographic">
         <h2>Did you know?</h2>
-        <img src="../template-hierarchy/assets/husky100/ribbon.png">
         <p></p>
       </div>' 
     );

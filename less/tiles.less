@@ -142,6 +142,10 @@
       }
     }
   }
+  .grid-sizer {
+    border-color: transparent;
+    outline: 1px solid transparent;
+  }
   .special {
     .the-width ( 3, 10 );
   }
@@ -659,9 +663,8 @@
   .perspective(1000);
 }
 
-.flip-container:not(.open) .flipper:hover,  
-.flip-container:not(.open) .flipper:focus,  
-.flip-container:not(.open) .flipper:active,  
+.flip-container:not(.open):hover .flipper,  
+.flip-container:not(.open):focus .flipper,  
 .flip-container.hover:not(.open) .flipper {
   .rotateY(180deg);
   z-index: 10;
@@ -700,4 +703,5 @@
   .rotateY(180deg);
   background: #f8f8f8;
 }
+
 

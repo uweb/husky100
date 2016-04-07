@@ -364,6 +364,10 @@ div#thin-strip ul li a.slash:after {
   width: 49.8%;
   right: auto;
 }
+#husky100 .grid-sizer {
+  border-color: transparent;
+  outline: 1px solid transparent;
+}
 #husky100 .special {
   width: calc(30%);
 }
@@ -811,9 +815,8 @@ div#thin-strip ul li a.slash:after {
   -moz-perspective: 1000;
   perspective: 1000;
 }
-.flip-container:not(.open) .flipper:hover,
-.flip-container:not(.open) .flipper:focus,
-.flip-container:not(.open) .flipper:active,
+.flip-container:not(.open):hover .flipper,
+.flip-container:not(.open):focus .flipper,
 .flip-container.hover:not(.open) .flipper {
   -webkit-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
