@@ -17,15 +17,15 @@ register_deactivation_hook( __FILE__, 'delete_husky_directory_page');
 
 function create_husky_directory_page() {
 	$husky_directory_post = array( 
-		'post_title' => 'Husky 100 Directory',
-		'post_name' => 'husky100',
+		'post_title' => 'Husky 100',
+		'post_name' => 'husky_100',
 		'post_type' => 'page'
 	);
 	wp_insert_post($husky_directory_post);
 }
 
 function delete_husky_directory_page() {
-	$query = new WP_Query(array('name'=>'husky100','post_type'=>'page'));
+	$query = new WP_Query(array('name'=>'husky_100','post_type'=>'page'));
 	$query->the_post();
 	$page_ID = get_the_ID();
 	if ($page_ID) {
@@ -67,34 +67,6 @@ if ( ! post_type_exists( 'husky100' ) ):
 
 		register_post_type('husky100', $args);
 	}
-
-    add_action('admin_menu', 'husky_settings_page');
-    //add_action('admin_init', 'husky_post_options');
-
-    function husky_settings_page() {
-        add_settings_section('husky100', 'The following settings affect the Husky 100 Directory plugin only', 'husky_settings_callback', 'husky_settings');
-        add_options_page('Husky 100 Settings', 'Husky 100', 'manage_options', 'husky_settings', 'husky_settings_page_callback');
-    }
-
-    function husky_settings_callback() {
-        //nothing doing
-        return;
-    }
-
-    function husky_settings_page_callback() {
-        ?>
-        <div class='wrap'>
-            <h2>Husky 100 Settings</h2>
-            <form method='post' action='options.php'>
-                <?php 
-                settings_fields('husky100');
-                do_settings_sections('husky_settings');
-                submit_button();
-                ?>
-            </form>
-        </div>
-        <?php
-    }
 
 	add_action('admin_init', 'husky_admin_init');
 
@@ -161,15 +133,19 @@ if ( ! post_type_exists( 'husky100' ) ):
 
 	function add_husky_directory_template($template) {
 		$this_dir = dirname(__FILE__);
-        $custom_page = get_option('husky_directory_page_setting');
+        //$custom_page = get_option('husky_directory_page_setting');
         $husky_directory_template = 'husky-directory-template.php';
-		if (file_exists(get_stylesheet_directory() . '/' . $husky_directory_template)) {
-			return get_stylesheet_directory() . '/' . $husky_directory_template;
+        $is_directory = is_page('husky_100');
+		if ($is_directory) {
+			if (file_exists(get_stylesheet_directory() . '/' . $husky_directory_template)) {
+				return get_stylesheet_directory() . '/' . $husky_directory_template;
+			}
+			else if (file_exists(get_template_directory() . '/' . $husky_directory_template)) {
+				return get_template_directory() . '/' . $husky_directory_template;
+			}
+			return $this_dir . '/' . $husky_directory_template;
 		}
-		else if (file_exists(get_template_directory() . '/' . $husky_directory_template)) {
-			return get_template_directory() . '/' . $husky_directory_template;
-		}
-		return $this_dir . '/' . $husky_directory_template;
+		return $template;
 	}
 
 

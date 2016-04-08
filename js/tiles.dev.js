@@ -23,7 +23,8 @@ $(window).load(function(){
        qsRegex = new RegExp( $quicksearch.val(), 'gi' );
        $grid.isotope({
          filter: function() {
-           var search = qsRegex ? $(this).text().match( qsRegex ) : true;
+           var $this = $(this);
+           var search = qsRegex ? $this.text().match( qsRegex ) : true;
            return search && $this.is( ':not(.title-card)' );
          }
        });
@@ -39,7 +40,18 @@ $(window).load(function(){
       $('.featured').each( function(i, els){
         var el = $(els);
         imageSwitch(el);
-      })          
+      }) 
+
+      // Reusable scroll to position
+
+      function scrollIt(el){
+        var $offset = ( $window - el.height() ) / 2  
+        $grid.one( 'arrangeComplete', function() {
+          $('html, body').animate({
+            scrollTop: ( el.offset().top - $offset )
+          }, 900); 
+        });
+      }         
 
       // Main portion that opens and closes the 
       $grid.on( 'click', '.grid-item', function() {
@@ -51,16 +63,10 @@ $(window).load(function(){
           $('.grid-item').removeClass('open')
           $this.addClass('open');
           // Switch image
-          imageSwitch($this);
+          imageSwitch($this);                           
 
-          var $offset = ( $window - $this.height() ) / 2                    
-
-          // bind event
-          $grid.one( 'arrangeComplete', function() {
-            $('html, body').animate({
-              scrollTop: ( $this.offset().top - $offset )
-            }, 900); 
-          });
+          // Scroll-to portion
+          scrollIt($this)
 
           // Add data attribute 'name' to URL has
           window.location.hash = dataName;          
@@ -107,17 +113,23 @@ $(window).load(function(){
           }
       });
 
+
       // Open by URL hash
       if(location.hash.match(/^#name/)) {
-        var hashName = location.hash.substring(6),
-            $dataName = $('*[data-name="' + hashName + '"]');
 
-        $dataName.toggleClass('open');
-        $grid.isotope('layout');
+          var hashName = location.hash.substring(6),
+              $dataName = $('*[data-name="' + hashName + '"]');
 
-        // Replace with high quality image
-        imageSwitch($dataName);
-      } 
+          $dataName.toggleClass('open');
+          $grid.isotope();
+
+          // Replace with high quality image
+          imageSwitch($dataName);
+
+          // Scroll-to portion
+          scrollIt($dataName)          
+
+      }               
 
 
       // Search through category tags

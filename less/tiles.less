@@ -82,6 +82,16 @@
       max-height: 250px;
       overflow-y: scroll;
     }
+    .linkedin {
+      background: url(../assets/linkedin.png) no-repeat 0 0;
+      text-indent: -99999px;
+      background-color: transparent;
+      padding: 7px 20px;
+      &:hover,
+      &:active {
+        background-color: #ddd;
+      }
+    }
     h2 {
       text-transform: uppercase;
       font-weight: 900;
@@ -344,10 +354,10 @@
     position: relative;
     &:before {
       position: absolute;
-      right: -38px;
+      right: 58px;
       height: 45px;
       width: 19px;
-      top: 2px;
+      top: -8px;
       content: "";
       background: url(../assets/slash.svg) no-repeat 0 0;
     }
