@@ -54,7 +54,7 @@ Template Name: Husky 100
         </div>
       </div>
     </div>
-    <!-- FEATURE: dynamically load there filters --> 
+    <!-- FEATURE: dynamically load the filters - Now a dropdown structure --> 
     <ul id="filter">
     <li>
         <button data-filter=":not(.title-card)">Show All <div class="udub-slant"><span></span></div></button>        
@@ -162,7 +162,7 @@ Template Name: Husky 100
            $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'thumbnail' )[0];
            $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' )[0];
            if ( !$personimageurl ) {
-            //FEATURE: set to default image here!!
+            //set to default image here
             $personimageurl = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
             $personimageurlhigh = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
            }
@@ -187,8 +187,7 @@ Template Name: Husky 100
             $factcount++;
            }
 
-           //spit out html
-           //FEATURE: set high res image for one how? 
+           //spit out html 
            ?>
             <div data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
             <div class="flipper">
