@@ -150,11 +150,11 @@ Template Name: Husky 100
            foreach ($filters as $filter ) {
                $personclasses .= $filter->slug . " ";
            }
-           if ( $peoplecount % $featureOffset == 0 ) {
+           if ( $peoplecount % $featureOffset == 3 ) {
                 $personclasses .= "featured ";
            }
 
-           if( $peoplecount % $featureOffset == 5 ) { //determines where fast facts are
+           if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
             $fact = $fastfacts[$peoplecount / $featureOffset];
             $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = ['200','300'] )[0];
             $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' )[0];
