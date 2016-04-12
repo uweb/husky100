@@ -91,41 +91,12 @@ Template Name: Husky 100
         
     $args = array('post_type' => 'husky100', 'posts_per_page' => -1);
     $query = new WP_Query($args);
-    $people = $query->get_posts();
-    shuffle($people);
-    for ($i=0; $i < 10; $i++) {  //Set # of Featured People (FEATURE: add to settings menu?)
-        $people[$i]->featured = true;
-    }
+    $people = $query->get_posts(); 
     shuffle($people);
 
-    $fastfacts = array(
-      '<div class="grid-item special infographic">
-        <h2>Did you know?</h2>
-        <img src="../template-hierarchy/assets/husky100/ribbon.png">
-        <p></p>
-      </div>' ,
-      '<div class="grid-item special infographic">
-        <h2>Did you know?</h2>
-        <img src="../template-hierarchy/assets/husky100/ribbon.png">
-        <p></p>
-      </div>' ,
-      '<div class="grid-item special infographic">
-        <h2>Did you know?</h2>
-        <img src="../template-hierarchy/assets/husky100/ribbon.png">
-        <p></p>
-      </div>' , 
-      '<div class="grid-item special infographic">
-        <h2>Did you know?</h2>
-        <img src="../template-hierarchy/assets/husky100/ribbon.png">
-        <p></p>
-      </div>' ,
-      '<div class="grid-item special infographic">
-        <h2>Did you know?</h2>
-        <img src="../template-hierarchy/assets/husky100/ribbon.png">
-        <p></p>
-      </div>' 
-    );
-
+    $fastfactsargs = array('post_type' => 'fastfacts', 'posts_per_page' => -1);
+    $fastfactsquery = new WP_Query($fastfactsargs);
+    $fastfacts = $fastfactsquery->get_posts();
 
     ?>
 
@@ -155,8 +126,9 @@ Template Name: Husky 100
 
         <!-- THE FUN PHP STUFF -->
         <?php
-        $peoplecount = 0;
+        $peoplecount = 1;
         $factcount = 0;
+        $featureOffset = 12;
         foreach ( $people as $person ) {
            //gather assets
            $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = ['200','300'] )[0];
@@ -178,13 +150,32 @@ Template Name: Husky 100
            foreach ($filters as $filter ) {
                $personclasses .= $filter->slug . " ";
            }
-           if ($person->featured) {
+           if ( $peoplecount % $featureOffset == 0 ) {
                 $personclasses .= "featured ";
            }
 
-           if($peoplecount == 5 || $peoplecount == 21 || $peoplecount == 37 || $peoplecount == 62 || $peoplecount == 84 ) { //determines where fast facts are
-            echo $fastfacts[$factcount];
-            $factcount++;
+           if( $peoplecount % $featureOffset == 5 ) { //determines where fast facts are
+            $fact = $fastfacts[$peoplecount / $featureOffset];
+            $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = ['200','300'] )[0];
+            $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' )[0];
+            ?>
+                <div data-name="<?php echo $fact->post_name; ?>" data-img="<?php echo $factimageurlhigh; ?>" class="flip-container grid-item special infographic">
+                    <div class="flipper">
+                      <div class="front" style="background-color: #4b2e83;">
+                          <h2>Did you know?</h2>
+                            <img src="../template-hierarchy/assets/husky100/ribbon.png">
+                            <p></p>
+                      </div>
+                      <div class="back">
+                        <h3><?php echo $fact->post_title; ?></h3>
+                      </div>
+                      <div class="full-bio">
+                        <h2><?php echo $fact->post_title; ?></h2>
+                        <img src="<?php echo $factimageurlhigh; ?>" />
+                      </div>
+                    </div>
+                  </div>
+            <?php
            }
 
            //spit out html 
