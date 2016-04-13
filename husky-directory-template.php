@@ -216,7 +216,7 @@ Template Name: Husky 100
               </div>
               <div class="full-bio">
                 <h2><?php echo $person->post_title; ?></h2>
-                <a href="<?php echo $linkedin; ?>">LinkedIn</a>
+                <a class='linkedin' href="<?php echo $linkedin; ?>">LinkedIn</a>
                 <div class="bio-info">
                   <p><?php echo $hometown; ?></p>
                   <p><?php echo $major; ?></p>

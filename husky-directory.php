@@ -469,7 +469,7 @@ function load_other_resources() {
 	wp_enqueue_style('tiles-style');
 }
 
-require('functions.php');
+require( plugin_dir_path( __FILE__ ) . 'functions.php');
 
 if ( ! post_type_exists( 'fastfacts' ) ):
 
