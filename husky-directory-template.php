@@ -71,7 +71,7 @@ Template Name: Husky 100
         ));
         foreach ($filter_parent_terms as $parent) {
              echo '<li>
-                     ' . $parent->name . '<select>';
+                     <select>' . '<option>' . $parent->name . '</option>';
 
              foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                 if ($child->slug == 'arts-sci-all-divisions') {
