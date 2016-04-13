@@ -319,14 +319,15 @@ div#thin-strip ul li a.slash:after {
   overflow-y: scroll;
 }
 #husky100 .full-bio .linkedin {
-  background: url(../assets/linkedin.png) no-repeat 0 0;
+  background: url(../assets/linkedin.png) no-repeat center center;
   text-indent: -99999px;
-  background-color: transparent;
-  padding: 7px 20px;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 17px 36px;
+  margin: -10px 0 0 -20px;
 }
 #husky100 .full-bio .linkedin:hover,
 #husky100 .full-bio .linkedin:active {
-  background-color: #ddd;
+  background: url(../assets/linkedin-active.png) no-repeat center center transparent;
 }
 #husky100 .full-bio h2 {
   text-transform: uppercase;
