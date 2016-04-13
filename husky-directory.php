@@ -172,9 +172,261 @@ if (!taxonomy_exists('filters')):
 				'choose_from_most_used' => 'Choose from the most used filters',
 				'not_found' => 'No filters found.'
 			),
-			'hierarchical' => true
+			'hierarchical'  => true,
+			//'show_ui'	  	=> false
 		));
 		register_taxonomy_for_object_type('filters', 'husky100');
+
+		//defualts
+		if(!get_term('Discipline', 'filters')){
+			wp_insert_term('Discipline', 'filters');
+		}
+		if(!get_term('Campus', 'filters')){
+			wp_insert_term('Campus', 'filters');
+		}
+		if(!get_term('Year', 'filters')){
+			wp_insert_term('Year', 'filters');
+		}
+		//Discipline
+		$parent_term = term_exists( 'Discipline', 'filters' ); // array is returned if taxonomy is given
+		$parent_term_id = $parent_term['term_id']; // get numeric term id
+		if(!get_term('Arts & Sci: All divisions', 'filters')){
+			wp_insert_term(
+			  'Arts & Sci: All divisions', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}	//Arts & Sci kids
+			$parent_term_arts = term_exists( 'Arts & Sci: All divisions', 'filters' ); // array is returned if taxonomy is given
+			$parent_term_id_arts = $parent_term_arts['term_id']; // get numeric term id
+			if(!get_term('Arts & Sci: Arts', 'filters')){
+				wp_insert_term(
+				  'Arts & Sci: Arts', // the term 
+				  'filters', // the taxonomy
+				  array(
+				    'parent'=> $parent_term_id_arts
+				  )
+				);
+			}
+			if(!get_term('Arts & Sci: Humanities', 'filters')){
+				wp_insert_term(
+				  'Arts & Sci: Humanities', // the term 
+				  'filters', // the taxonomy
+				  array(
+				    'parent'=> $parent_term_id_arts
+				  )
+				);
+			}
+			if(!get_term('Arts & Sci: Natural Sci', 'filters')){
+				wp_insert_term(
+				  'Arts & Sci: Natural Sci', // the term 
+				  'filters', // the taxonomy
+				  array(
+				    'parent'=> $parent_term_id_arts
+				  )
+				);
+			}
+			if(!get_term('Arts & Sci: Social Sci', 'filters')){
+				wp_insert_term(
+				  'Arts & Sci: Social Sci', // the term 
+				  'filters', // the taxonomy
+				  array(
+				    'parent'=> $parent_term_id_arts
+				  )
+				);
+			}
+
+		if(!get_term('Built Environments', 'filters')){
+			wp_insert_term(
+			  'Built Environments', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Business', 'filters')){
+			wp_insert_term(
+			  'Business', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Dentistry', 'filters')){
+			wp_insert_term(
+			  'Dentistry', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Education', 'filters')){
+			wp_insert_term(
+			  'Education', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Engineering', 'filters')){
+			wp_insert_term(
+			  'Engineering', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Environment', 'filters')){
+			wp_insert_term(
+			  'Environment', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Computer Sci / Info / Tech', 'filters')){
+			wp_insert_term(
+			  'Computer Sci / Info / Tech', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Law', 'filters')){
+			wp_insert_term(
+			  'Law', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Medicine', 'filters')){
+			wp_insert_term(
+			  'Medicine', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Healthcare and Nursing', 'filters')){
+			wp_insert_term(
+			  'Healthcare and Nursing', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Pharmacy', 'filters')){
+			wp_insert_term(
+			  'Pharmacy', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Public Policy and Governance', 'filters')){
+			wp_insert_term(
+			  'Public Policy and Governance', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Public Health', 'filters')){
+			wp_insert_term(
+			  'Public Health', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Social Work and Criminal Justice', 'filters')){
+			wp_insert_term(
+			  'Social Work and Criminal Justice', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+		if(!get_term('Urban Studies', 'filters')){
+			wp_insert_term(
+			  'Urban Studies', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_id
+			  )
+			);
+		}
+
+		//campus
+		$parent_term_campus = term_exists( 'Campus', 'filters' ); // array is returned if taxonomy is given
+		$parent_term_campus_id = $parent_term_campus['term_id']; // get numeric term id
+		if(!get_term('Bothell', 'filters')){
+			wp_insert_term(
+			  'Bothell', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_campus_id
+			  )
+			);
+		}
+		if(!get_term('Seattle', 'filters')){
+			wp_insert_term(
+			  'Seattle', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_campus_id
+			  )
+			);
+		}
+		if(!get_term('Tacoma', 'filters')){
+			wp_insert_term(
+			  'Tacoma', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_campus_id
+			  )
+			);
+		}
+
+		//Year	
+		$parent_term_year = term_exists( 'Year', 'filters' ); // array is returned if taxonomy is given
+		$parent_term_year_id = $parent_term_year['term_id']; // get numeric term id
+		if(!get_term('Grad', 'filters')){
+			wp_insert_term(
+			  'Grad', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_year_id
+			  )
+			);
+		}
+		if(!get_term('Undergrad', 'filters')){
+			wp_insert_term(
+			  'Undergrad', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_year_id
+			  )
+			);
+		}
+
 	}
 
 endif;
@@ -217,6 +469,43 @@ function load_other_resources() {
 	wp_enqueue_style('tiles-style');
 }
 
+require('functions.php');
 
+if ( ! post_type_exists( 'fastfacts' ) ):
+
+	add_action('init', 'fast_facts_post_type');
+	//add_action('template_include', 'add_husky_directory_template');
+
+	function fast_facts_post_type() {
+		$labels = array(
+			'name' => 'Fast Facts',
+			'singular_name' => 'Fast Facts',
+			'add_new' => 'Add New',
+			'add_new_item' => 'Add New Fast Facts',
+			'edit_item' => 'Edit Fast Facts',
+			'new_item' => 'New Fast Facts',
+			'all_items' => 'All Fast Facts',
+			'view_item' => 'View Fast Facts',
+			'search_item' => 'Search Fast Facts',
+			'not_found' => 'No fast facts found',
+			'not_found_in_trash' => 'No fast facts found in trash',
+			'parent_item_colon' => '',
+			'menu_name' => 'Fast Facts'
+		);
+
+		$args = array(
+			'labels' => $labels,
+			'public' => false,
+			'publicly_queryable' => false,
+			'show_ui' => true,
+			'show_in_menu' => true,
+			'rewrite' => array('slug' => 'fastfacts', 'with_front' => false),
+			'supports' => array( 'title' , 'thumbnail' )
+		);
+
+		register_post_type('fastfacts', $args);
+	}
+
+endif;
 
 ?>
