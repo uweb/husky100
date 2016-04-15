@@ -5,7 +5,8 @@ $(window).load(function(){
       var qsRegex,
           $searcher_wrap = $( "#searcher_wrap" ),
           $searcher = $( "#searcher" ),
-          $window = $( window ).height();
+          $window = $( window ).height(),
+          $filter = $('#filter');
 
       // init Isotope
       var $grid = $('.grid').isotope({
@@ -14,8 +15,7 @@ $(window).load(function(){
         masonry: {
           columnWidth: '.grid-sizer'
         },
-        filter: ':not(.title-card)'
-
+        filter: ':not(.title-card)',
       });
     
       // use value of search field to filter
@@ -53,6 +53,8 @@ $(window).load(function(){
         });
       }         
 
+
+
       // Main portion that opens and closes the 
       $grid.on( 'click', '.grid-item', function() {
         var $this = $(this),
@@ -77,13 +79,35 @@ $(window).load(function(){
       });              
 
       // bind filter button click
-      $('#filter').on( 'click', 'button', function() {
+      $filter.on( 'click', 'button', function() {
         var filterValue = $( this ).attr('data-filter');
+        $grid.isotope({ filter: filterValue });
+      }); 
+
+      // Clear select menus and re-isotope
+      $('#clear').on('click', function(el){
+        el.preventDefault();
+        // Clear selects, open class, and hash
+        $('select').prop('selectedIndex',0);
+        $('.grid-item').removeClass('open');
+        $filter.removeClass('select_active')
+        window.location.hash = '';          
+        $grid.isotope({ filter: ':not(.title-card)' });
+      })
+
+      // bind filter on select change
+      $filter.on( 'change', 'select', function() {
+        // get filter value from option value
+        var filterValue = this.value;
+        $filter.addClass('select_active')
+
+        // use filterFn if matches value
+        filterValue = filterValue;
         $grid.isotope({ filter: filterValue });
       });
 
       // change is-checked class on buttons
-      $('#filter').each( function( i, buttonGroup ) {
+      $filter.each( function( i, buttonGroup ) {
         var $buttonGroup = $( buttonGroup );
         $buttonGroup.on( 'click', 'button', function() {
           $buttonGroup.find('.is-checked').removeClass('is-checked');
@@ -92,8 +116,9 @@ $(window).load(function(){
       }); 
 
       // Search field
-      $('#searcher').on('click', function(){  
+      $('#searcher').on('click', function(el){  
 
+        el.preventDefault();  
         $searcher_wrap.find('input').focus();
         $searcher_wrap.toggleClass('active_search'); 
 

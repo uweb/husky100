@@ -56,8 +56,16 @@ Template Name: Husky 100
     </div>
     <!-- FEATURE: dynamically load the filters - Now a dropdown structure --> 
     <ul id="filter">
-    <li>
+   <!--  <li>
         <button data-filter=":not(.title-card)">Show All <div class="udub-slant"><span></span></div></button>        
+    </li> -->
+    <li class="sort_by">
+      Sort by:
+    </li>
+    <li>
+      <a id="clear" href="#" title="Clear filter">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35.848" height="35.794" viewBox="0 0 35.848 35.794"><circle fill="#DEDEDD" cx="17.999" cy="17.999" r="16.998"/><g fill="none" stroke="#FFF" stroke-width="3" stroke-miterlimit="10"><path d="M11.485 24.513l13.027-13.028M24.512 24.513L11.485 11.485"/></g></svg>Clear      
+      </a>
     </li>
     <?php
         //get filters
@@ -70,18 +78,18 @@ Template Name: Husky 100
             'parent' => 0
         ));
         foreach ($filter_parent_terms as $parent) {
-             echo '<li>
+             echo '<li class="select">
                      <select>' . '<option>' . $parent->name . '</option>';
 
              foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                 if ($child->slug == 'arts-sci-all-divisions') {
-                    echo '<option data-filter=".arts-sci-arts, .arts-sci-humanities, .arts-sci-natural-sci, .arts-sci-social-sci, .arts-sci-all-divisions">' . $child->name . '</option>';
+                    echo '<option value=".arts-sci-arts, .arts-sci-humanities, .arts-sci-natural-sci, .arts-sci-social-sci, .arts-sci-all-divisions">' . $child->name . '</option>';
                     $childrens = get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $child->term_id ) );
                     foreach ( $childrens as $children ) {
-                        echo '<option data-filter=".' . $children->slug . '">&emsp;' . $children->name . '</option>';
+                        echo '<option value=".' . $children->slug . '">&emsp;' . $children->name . '</option>';
                     }
                 } else {
-                    echo '<option data-filter=".' . $child->slug . '">' . $child->name . '</option>';
+                    echo '<option value=".' . $child->slug . '">' . $child->name . '</option>';
                 }
              }
 
@@ -128,27 +136,28 @@ Template Name: Husky 100
 
          <div class="grid-sizer"></div>
 
-        <!-- FILTER BOX -->
-        <?php 
-        $filter_terms = get_terms('filters', array(
-            'hide_empty' => false,
-        ));
-        foreach ($filter_terms as $term) {
-            echo    '<div class="grid-item special title-card ' . $term->slug . '">
-                       <h2>' . $term->name . '</h2>
-                       <div class="udub-slant"><span></span></div>
-                       <p>' . $term->description . '</p>
-                     </div>';
-        }
-        $tag_terms = get_terms('tags');
-        foreach ($tag_terms as $tag_term) {
-            echo    '<div class="grid-item special title-card ' . $tag_term->slug . '">
-                       <h2 class="tags">' . $tag_term->name . '</h2>
-                       <div class="udub-slant"><span></span></div>
-                       <p>' . $tag_term->description . '</p>
-                     </div>';
-        }
-         ?>
+         <!-- FILTER BOX -->
+         <?php 
+         $filter_terms = get_terms('filters', array(
+             'hide_empty' => false,
+         ));
+         foreach ($filter_terms as $term) {
+             echo    '<div class="grid-item special title-card stamp ' . $term->slug . '">
+                        <h2>' . $term->name . '</h2>
+                        <div class="udub-slant"><span></span></div>
+                        <p>' . $term->description . '</p>
+                      </div>';
+         }
+         $tag_terms = get_terms('tags');
+         foreach ($tag_terms as $tag_term) {
+             echo    '<div class="grid-item special title-card ' . $tag_term->slug . '">
+                        <h2 class="tags">' . $tag_term->name . '</h2>
+                        <div class="udub-slant"><span></span></div>
+                        <p>' . $tag_term->description . '</p>
+                      </div>';
+         }
+          ?>
+
 
         <!-- THE FUN PHP STUFF -->
         <?php
@@ -186,18 +195,9 @@ Template Name: Husky 100
             $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' )[0];
             ?>
                 <div data-name="<?php echo $fact->post_name; ?>" data-img="<?php echo $factimageurlhigh; ?>" class="flip-container grid-item special infographic">
-                    <div class="flipper">
-                      <div class="front" style="background-color: #4b2e83;">
-                          <h2>Did you know?</h2>
-                            <img src="../template-hierarchy/assets/husky100/ribbon.png">
-                            <p></p>
-                      </div>
-                      <div class="back">
-                        <h3><?php echo $fact->post_title; ?></h3>
-                      </div>
-                      <div class="full-bio">
-                        <h2><?php echo $fact->post_title; ?></h2>
-                        <img src="<?php echo $factimageurlhigh; ?>" />
+                    <div >
+                      <div class="front" style="background-image: url(<?php echo $factimageurlhigh; ?>)">
+                        <p><?php echo $fact->post_title; ?></p>
                       </div>
                     </div>
                   </div>
@@ -212,15 +212,17 @@ Template Name: Husky 100
               </div>
               <div class="back">
                 <h3><?php echo $person->post_title; ?></h3>
-                <p>Maecenas faucibus mollis interdum. Aenean eu leo quam.</p>
+                <p><?php echo $hometown; ?></p>
+                <p><?php echo $major; ?></p>
+                <p><?php echo $graduation; ?></p>    
               </div>
               <div class="full-bio">
                 <h2><?php echo $person->post_title; ?></h2>
-                <a class='linkedin' href="<?php echo $linkedin; ?>">LinkedIn</a>
                 <div class="bio-info">
                   <p><?php echo $hometown; ?></p>
                   <p><?php echo $major; ?></p>
-                  <p><?php echo $graduation; ?></p>
+                  <p><?php echo $graduation; ?></p>                  
+                  <a class='linkedin' href="<?php echo $linkedin; ?>">LinkedIn</a>
                 </div>
                 <div class="bio-text">
                   <p><?php echo $person->post_content; ?></p>
@@ -242,6 +244,7 @@ Template Name: Husky 100
         }
 
         ?>
+
 
          </div>   
 
