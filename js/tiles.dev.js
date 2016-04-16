@@ -138,6 +138,13 @@ $(window).load(function(){
           }
       });
 
+      // Triggers open upon return key
+      $(document).keypress(function(e) {
+          if(e.which == 13) {
+              $(e.target).trigger('click')
+          }
+      });
+
 
       // Open by URL hash
       if(location.hash.match(/^#name/)) {

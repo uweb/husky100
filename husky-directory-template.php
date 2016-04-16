@@ -194,10 +194,10 @@ Template Name: Husky 100
             $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = ['200','300'] )[0];
             $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' )[0];
             ?>
-                <div data-name="<?php echo $fact->post_name; ?>" data-img="<?php echo $factimageurlhigh; ?>" class="flip-container grid-item special infographic">
+                <div data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
                     <div >
-                      <div class="front" style="background-image: url(<?php echo $factimageurlhigh; ?>)">
-                        <p><?php echo $fact->post_title; ?></p>
+                      <div class="front">
+                        <img src="<?php echo $factimageurlhigh; ?>" alt="<?php echo $fact->post_title; ?>">
                       </div>
                     </div>
                   </div>
@@ -206,14 +206,14 @@ Template Name: Husky 100
 
            //spit out html 
            ?>
-            <div data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
+            <div tabindex="0" data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
             <div class="flipper">
               <div class="front" style="<?php echo 'background-image:url(' . $personimageurl . ');'; ?> ">
               </div>
               <div class="back">
                 <h3><?php echo $person->post_title; ?></h3>
-                <p><?php echo $hometown; ?></p>
-                <p><?php echo $major; ?></p>
+                <!-- <p><?php echo $hometown; ?></p> -->
+                <p class="major"><?php echo $major; ?></p>
                 <p><?php echo $graduation; ?></p>    
               </div>
               <div class="full-bio">

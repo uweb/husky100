@@ -305,8 +305,15 @@
     text-align: center;
     padding: 18px 20px 20px 20px;
     overflow: hidden;
+    background-color: @purple;
+    .front {
+      background-color: @purple;
+    }
     img {
       width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
     }    
     p {
       opacity: 0;
@@ -330,7 +337,7 @@
       font-family: @font-family-headline;        
       font-weight: 900;
       color: @purple; 
-      text-transform: uppercase;
+      color: @purple; 
       border: 2px solid #ddd;
       width: 160px;
       margin: 0 10px;
@@ -546,9 +553,12 @@
       }
       p {
         color: white;
-        font-size: 12px;
+        font-size: 13px;
         line-height: 1.3;
         margin-bottom: 0;
+        font-family: @uni;
+        text-transform: uppercase;
+        font-weight: bold;
         &:last-child {
           position: relative;
           &:after {
@@ -769,12 +779,38 @@
 }
 
 /*  UPDATED! flip the pane when hovered */
-.flip-container:not(.open):hover .back {
-  .rotateY(0deg);
+.flip-container:not(.open) {
+  &:hover .back,
+  &:focus .back,
+  &:active .back {
+    .rotateY(0deg);
+  }
 }
-.flip-container:not(.open):hover .front {
-   .rotateY(180deg);
+.flip-container:not(.open) {
+  &:hover .front,
+  &:focus .front,
+  &:active .front {
+    .rotateY(180deg);
+  }
 }
+// Prevent flip on infographics
+.flip-container {
+  &.infographic:not(.open) {
+    &:hover .back,
+    &:focus .back,
+    &:active .back {
+      .rotateY(180deg);
+    }
+  }
+  &.infographic:not(.open) {
+    &:hover .front,
+    &:focus .front,
+    &:active .front {
+      .rotateY(0deg);
+    }
+  }
+}
+
 
 
 /* flip speed goes here */
