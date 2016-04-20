@@ -36,7 +36,7 @@ function delete_husky_directory_page() {
 if ( ! post_type_exists( 'husky100' ) ):
 
 	add_action('init', 'husky_post_type');
-	add_action('template_include', 'add_husky_directory_template');
+	add_action('template_include', 'add_husky_directory_template', 99);
 
 	function husky_post_type() {
 		$labels = array(
