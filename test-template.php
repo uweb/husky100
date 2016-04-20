@@ -158,10 +158,9 @@
         $peoplecount = 1;
         $factcount = 0;
         $featureOffset = 12;
-        $imagesize = array(200,300);
         foreach ( $people as $person ) {
            //gather assets
-           $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $imagesize );
+           $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = [200,300] );
            $personimageurl = $personimageurl[0];
            $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' );
            $personimageurlhigh = $personimageurlhigh[0];
