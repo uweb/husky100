@@ -152,6 +152,7 @@ if ( ! post_type_exists( 'husky100' ) ):
 				if( strpos( $current_url , "washington.edu" ) !== false ){
 					//print_r($this_dir);
 					$web_path = explode( $this_dir , "/cms/" );
+					print_r($web_path);
 					$this_dir = "http://www.washington.edu/cms/" . $web_path[1];
 				}
 				print_r("Dir: " . $this_dir . '/' . $husky_directory_template . "</br>");
