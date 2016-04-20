@@ -134,13 +134,13 @@ if ( ! post_type_exists( 'husky100' ) ):
 	// THIS IS BREAKING!!! 
 	function add_husky_directory_template($template) {
 		$this_dir = dirname(__FILE__);
-		print_r($this_dir);
+		print_r($this_dir . "</br>");
         //$custom_page = get_option('husky_directory_page_setting');
         $husky_directory_template = 'husky-directory-template.php';
         $is_directory = is_page('husky_100');
-        print_r($is_directory);
+        print_r($is_directory . "</br>");
 		if ($is_directory) {
-			print_r(get_stylesheet_directory());
+			print_r(get_stylesheet_directory() . "</br>");
 			print_r(get_template_directory());
 			if (file_exists(get_stylesheet_directory() . '/' . $husky_directory_template)) {
 				return get_stylesheet_directory() . '/' . $husky_directory_template;
