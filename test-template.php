@@ -160,6 +160,8 @@
         $featureOffset = 12;
         foreach ( $people as $person ) {
            //gather assets
+           $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = ['200','300'] );
+//           $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' )[0];
            if ( !$personimageurl ) {
             //set to default image here
             $personimageurl = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
@@ -183,6 +185,8 @@
 
            if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
             $fact = $fastfacts[$peoplecount / $featureOffset];
+//            $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = ['200','300'] )[0];
+//            $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' )[0];
             ?>
                 <div data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
                     <div >
