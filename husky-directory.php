@@ -134,20 +134,27 @@ if ( ! post_type_exists( 'husky100' ) ):
 	// THIS IS BREAKING!!! 
 	function add_husky_directory_template($template) {
 		$this_dir = dirname(__FILE__);
+		$current_url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+		//print_r($current_url . "</br>");
         //$custom_page = get_option('husky_directory_page_setting');
         $husky_directory_template = 'husky-directory-template.php';
         $is_directory = is_page('husky_100');
 		if ($is_directory) {
 			if (file_exists(get_stylesheet_directory() . '/' . $husky_directory_template)) {
-				print_r("stylesheet: " . get_stylesheet_directory() . "</br>");
+				//print_r("stylesheet: " . get_stylesheet_directory() . "</br>");
 				return get_stylesheet_directory() . '/' . $husky_directory_template;
 			}
 			else if (file_exists(get_template_directory() . '/' . $husky_directory_template)) {
-				print_r("template directory: " . get_template_directory());
+				//print_r("template directory: " . get_template_directory());
 				return get_template_directory() . '/' . $husky_directory_template;
 			} 
 			else if (file_exists($this_dir . '/' . $husky_directory_template)) {
-				print_r("Dir: " . $this_dir . '/' . $husky_directory_template . "</br>");
+				if( strpos( $current_url , "washington.edu" ) !== false ){
+					print_r($this_dir);
+					list( $server_path , $web_path ) = explode( $this_dir , "/cms/" );
+					$this_dir = "http://www.washington.edu/cms/" . $web_path;
+				}
+				//print_r("Dir: " . $this_dir . '/' . $husky_directory_template . "</br>");
 				return $this_dir . '/' . $husky_directory_template;
 			}
 		}
