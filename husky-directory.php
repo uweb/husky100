@@ -147,7 +147,7 @@ if ( ! post_type_exists( 'husky100' ) ):
 				return get_template_directory() . '/' . $husky_directory_template;
 			} 
 			else if (file_exists($this_dir . '/' . $husky_directory_template)) {
-				print_r("Dir: " . $this_dir . "</br>");
+				print_r("Dir: " . $this_dir . '/' . $husky_directory_template . "</br>");
 				return $this_dir . '/' . $husky_directory_template;
 			}
 		}
