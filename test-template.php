@@ -159,7 +159,29 @@
         $factcount = 0;
         $featureOffset = 12;
         foreach ( $people as $person ) {
+           //gather assets
            
+           foreach ($filters as $filter ) {
+               $personclasses .= $filter->slug . " ";
+           }
+           if ( $peoplecount % $featureOffset == 3 ) {
+                $personclasses .= "featured ";
+           }
+
+           if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
+            $fact = $fastfacts[$peoplecount / $featureOffset];
+            $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = ['200','300'] )[0];
+            $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' )[0];
+            ?>
+                <div data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
+                    <div >
+                      <div class="front">
+                        <img src="<?php echo $factimageurlhigh; ?>" alt="<?php echo $fact->post_title; ?>">
+                      </div>
+                    </div>
+                  </div>
+            <?php
+           }
 
            //spit out html 
            ?>
