@@ -161,7 +161,7 @@
         foreach ( $people as $person ) {
            //gather assets
            $thumbID = get_post_thumbnail_id($person->ID);
-           $personimageurl = wp_get_attachment_image_src( $thumbID )[0];
+           $personimageurl = wp_get_attachment_image_src( $thumbID );
            print_r($personimageurl);
 //           $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' )[0];
            if ( !$personimageurl ) {
