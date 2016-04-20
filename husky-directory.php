@@ -138,6 +138,7 @@ if ( ! post_type_exists( 'husky100' ) ):
         $husky_directory_template = 'husky-directory-template.php';
         $is_directory = is_page('husky_100');
 		if ($is_directory) {
+			print_r($this_dir . $husky_directory_template);
 			return $this_dir . $husky_directory_template;
 		}
 		return $template;
