@@ -162,6 +162,7 @@
            //gather assets
            $thumbID = get_post_thumbnail_id($person->ID);
            $personimageurl = wp_get_attachment_image_src( $thumbID , $size = 'large' );
+           $personimageurl = $personimageurl[0];
 //           $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' )[0];
            if ( !$personimageurl ) {
             //set to default image here
