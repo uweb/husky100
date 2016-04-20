@@ -167,16 +167,7 @@
             $personimageurl = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
             $personimageurlhigh = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
            }
-           $hometown = get_post_meta($person->ID, 'hometown', true);
-           $major = get_post_meta($person->ID, 'major', true);
-           $minor = get_post_meta($person->ID, 'minor', true);
-           $graduation = get_post_meta($person->ID, 'graduation', true);
-           $linkedin = get_post_meta($person->ID, 'linkedin', true);
-           $filters = wp_get_post_terms( $person->ID, 'filters' );
-           $tags = wp_get_post_terms( $person->ID, 'tags' );
-           //FEATURE: do tags also need to be classes? 
-           $personclasses = "";
-           
+          
 
            //spit out html 
            ?>
