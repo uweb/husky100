@@ -150,11 +150,11 @@ if ( ! post_type_exists( 'husky100' ) ):
 			} 
 			else if (file_exists($this_dir . '/' . $husky_directory_template)) {
 				if( strpos( $current_url , "washington.edu" ) !== false ){
-					print_r($this_dir);
+					//print_r($this_dir);
 					list( $server_path , $web_path ) = explode( $this_dir , "/cms/" );
 					$this_dir = "http://www.washington.edu/cms/" . $web_path;
 				}
-				//print_r("Dir: " . $this_dir . '/' . $husky_directory_template . "</br>");
+				print_r("Dir: " . $this_dir . '/' . $husky_directory_template . "</br>");
 				return $this_dir . '/' . $husky_directory_template;
 			}
 		}
