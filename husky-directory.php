@@ -149,11 +149,11 @@ if ( ! post_type_exists( 'husky100' ) ):
 				return get_template_directory() . '/' . $husky_directory_template;
 			} 
 			else if (file_exists($this_dir . '/' . $husky_directory_template)) {
-				if( strpos( $current_url , "washington.edu" ) !== false ){
-					//print_r($this_dir);
-					list( $server_path , $web_path ) = explode( "/cms/" , $this_dir );
-					$this_dir = "http://www.washington.edu/cms/" . $web_path;
-				}
+				// if( strpos( $current_url , "washington.edu" ) !== false ){
+				// 	//print_r($this_dir);
+				// 	list( $server_path , $web_path ) = explode( "/cms/" , $this_dir );
+				// 	$this_dir = "http://www.washington.edu/cms/" . $web_path;
+				// }
 				print_r("Dir: " . $this_dir . '/' . $husky_directory_template . "</br>");
 				return $this_dir . '/' . $husky_directory_template;
 			}
