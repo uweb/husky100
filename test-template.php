@@ -161,7 +161,7 @@
         $imagesize = array(200,300);
         foreach ( $people as $person ) {
            //gather assets
-           $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = '200,300' );
+           $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $imagesize );
            $personimageurl = $personimageurl[0];
            $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' );
            $personimageurlhigh = $personimageurlhigh[0];
