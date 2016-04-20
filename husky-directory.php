@@ -137,7 +137,7 @@ if ( ! post_type_exists( 'husky100' ) ):
 		$current_url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
 		//print_r($current_url . "</br>");
         //$custom_page = get_option('husky_directory_page_setting');
-        $husky_directory_template = 'husky-directory-template.php';
+        $husky_directory_template = 'test-template.php';
         $is_directory = is_page('husky_100');
 		if ($is_directory) {
 			if (file_exists(get_stylesheet_directory() . '/' . $husky_directory_template)) {
@@ -150,9 +150,7 @@ if ( ! post_type_exists( 'husky100' ) ):
 			} 
 			else if (file_exists($this_dir . '/' . $husky_directory_template)) {
 				//print_r("Dir: " . $this_dir . '/' . $husky_directory_template . "</br>");
-				//return $this_dir . '/' . $husky_directory_template;
-				$new_template = locate_template( array( 'husky-directory-template.php' ) );
-				return $new_template;
+				return $this_dir . '/' . $husky_directory_template;
 			}
 		}
 		return $template;
