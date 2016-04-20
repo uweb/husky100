@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -49,7 +48,7 @@
         </div>
       </div>
     </div>
-	<!-- FEATURE: dynamically load the filters - Now a dropdown structure --> 
+    <!-- FEATURE: dynamically load the filters - Now a dropdown structure --> 
     <ul id="filter">
    <!--  <li>
         <button data-filter=":not(.title-card)">Show All <div class="udub-slant"><span></span></div></button>        
@@ -108,6 +107,149 @@
     <div id="searcher_wrap">
       <input type="text" class="quicksearch" placeholder="Start typing" />
     </div>
+  
+
+    <!-- Add this to  ontouchstart="this.classList.toggle('hover');" -->
+    <?php
+    //sort of students will all occur here
+        
+    $args = array('post_type' => 'husky100', 'posts_per_page' => -1);
+    $query = new WP_Query($args);
+    $people = $query->get_posts(); 
+    shuffle($people);
+
+    $fastfactsargs = array('post_type' => 'fastfacts', 'posts_per_page' => -1);
+    $fastfactsquery = new WP_Query($fastfactsargs);
+    $fastfacts = $fastfactsquery->get_posts();
+
+    ?>
+
+    <div id="main-content">
+         
+         <div class="grid">
+
+         <div class="grid-sizer"></div>
+
+         <!-- FILTER BOX -->
+         <?php 
+         $filter_terms = get_terms('filters', array(
+             'hide_empty' => false,
+         ));
+         foreach ($filter_terms as $term) {
+             echo    '<div class="grid-item special title-card stamp ' . $term->slug . '">
+                        <h2>' . $term->name . '</h2>
+                        <div class="udub-slant"><span></span></div>
+                        <p>' . $term->description . '</p>
+                      </div>';
+         }
+         $tag_terms = get_terms('tags');
+         foreach ($tag_terms as $tag_term) {
+             echo    '<div class="grid-item special title-card ' . $tag_term->slug . '">
+                        <h2 class="tags">' . $tag_term->name . '</h2>
+                        <div class="udub-slant"><span></span></div>
+                        <p>' . $tag_term->description . '</p>
+                      </div>';
+         }
+          ?>
+
+
+        <!-- THE FUN PHP STUFF -->
+        <?php
+        $peoplecount = 1;
+        $factcount = 0;
+        $featureOffset = 12;
+        foreach ( $people as $person ) {
+           //gather assets
+           $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = ['200','300'] )[0];
+           $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' )[0];
+           if ( !$personimageurl ) {
+            //set to default image here
+            $personimageurl = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
+            $personimageurlhigh = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
+           }
+           $hometown = get_post_meta($person->ID, 'hometown', true);
+           $major = get_post_meta($person->ID, 'major', true);
+           $minor = get_post_meta($person->ID, 'minor', true);
+           $graduation = get_post_meta($person->ID, 'graduation', true);
+           $linkedin = get_post_meta($person->ID, 'linkedin', true);
+           $filters = wp_get_post_terms( $person->ID, 'filters' );
+           $tags = wp_get_post_terms( $person->ID, 'tags' );
+           //FEATURE: do tags also need to be classes? 
+           $personclasses = "";
+           foreach ($filters as $filter ) {
+               $personclasses .= $filter->slug . " ";
+           }
+           if ( $peoplecount % $featureOffset == 3 ) {
+                $personclasses .= "featured ";
+           }
+
+           if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
+            $fact = $fastfacts[$peoplecount / $featureOffset];
+            $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = ['200','300'] )[0];
+            $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' )[0];
+            ?>
+                <div data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
+                    <div >
+                      <div class="front">
+                        <img src="<?php echo $factimageurlhigh; ?>" alt="<?php echo $fact->post_title; ?>">
+                      </div>
+                    </div>
+                  </div>
+            <?php
+           }
+
+           //spit out html 
+           ?>
+            <div tabindex="0" data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
+            <div class="flipper">
+              <div class="front" style="<?php echo 'background-image:url(' . $personimageurl . ');'; ?> ">
+              </div>
+              <div class="back">
+                <h3><?php echo $person->post_title; ?></h3>
+                <!-- <p><?php echo $hometown; ?></p> -->
+                <p class="major"><?php echo $major; ?></p>
+                <p><?php echo $graduation; ?></p>    
+              </div>
+              <div class="full-bio">
+                <h2><?php echo $person->post_title; ?></h2>
+                <div class="bio-info">
+                  <p><?php echo $hometown; ?></p>
+                  <p><?php echo $major; ?></p>
+                  <p><?php echo $graduation; ?></p>                  
+                  <a class='linkedin' href="<?php echo $linkedin; ?>">LinkedIn</a>
+                </div>
+                <div class="bio-text">
+                  <p><?php echo $person->post_content; ?></p>
+                </div>
+                <div class="tags">
+                <?php foreach ($tags as $tag ) {
+                    echo '<a href="#">' . $tag->name . '</a>';
+                } ?>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        <?php
+            $peoplecount++;
+        }
+
+        ?>
+
+
+         </div>   
+
+    </div>
+    
+
+
+
+
+
+
 
 
 
