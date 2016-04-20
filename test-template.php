@@ -153,7 +153,14 @@
           ?>
 
 
+        <!-- THE FUN PHP STUFF -->
+        <?php
+        $peoplecount = 1;
+        $factcount = 0;
+        $featureOffset = 12;
         
+
+        ?>
 
 
          </div>   
