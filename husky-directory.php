@@ -132,7 +132,7 @@ if ( ! post_type_exists( 'husky100' ) ):
 	}
 
 	function add_husky_directory_template($template) {
-		$this_dir = plugin_dir_url(__FILE__);
+		$this_dir = plugin_dir_path(__FILE__);
         //$custom_page = get_option('husky_directory_page_setting');
         $husky_directory_template = 'husky-directory-template.php';
         $is_directory = is_page('husky_100');
