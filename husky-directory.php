@@ -12,8 +12,8 @@ if (!defined('HUSKY_DIRECTORY')){
 	define('HUSKY_DIRECTORY', '1.0');
 }
 
-//register_activation_hook( __FILE__, 'create_husky_directory_page');
-//register_deactivation_hook( __FILE__, 'delete_husky_directory_page');
+register_activation_hook( __FILE__, 'create_husky_directory_page');
+register_deactivation_hook( __FILE__, 'delete_husky_directory_page');
 
 function create_husky_directory_page() {
 	$husky_directory_post = array( 
