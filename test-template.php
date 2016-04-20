@@ -160,7 +160,14 @@
         $featureOffset = 12;
         foreach ( $people as $person ) {
            //gather assets
-           $personimageurl = $person->ID;
+           $pID = $person->ID;
+           $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($pID) , $size = ['200','300'] )[0];
+           $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($pID) , $size = 'large' )[0];
+           if ( !$personimageurl ) {
+            //set to default image here
+            $personimageurl = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
+            $personimageurlhigh = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
+           }
            
 
            //spit out html 
