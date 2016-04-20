@@ -160,7 +160,18 @@
         $featureOffset = 12;
         foreach ( $people as $person ) {
            //gather assets
-           
+           if ( !$personimageurl ) {
+            //set to default image here
+            $personimageurl = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
+            $personimageurlhigh = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
+           }
+           $hometown = get_post_meta($person->ID, 'hometown', true);
+           $major = get_post_meta($person->ID, 'major', true);
+           $minor = get_post_meta($person->ID, 'minor', true);
+           $graduation = get_post_meta($person->ID, 'graduation', true);
+           $linkedin = get_post_meta($person->ID, 'linkedin', true);
+           $filters = wp_get_post_terms( $person->ID, 'filters' );
+           $tags = wp_get_post_terms( $person->ID, 'tags' );
            //FEATURE: do tags also need to be classes? 
            $personclasses = "";
            foreach ($filters as $filter ) {
@@ -172,8 +183,6 @@
 
            if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
             $fact = $fastfacts[$peoplecount / $featureOffset];
-            $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = ['200','300'] )[0];
-            $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' )[0];
             ?>
                 <div data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
                     <div >
