@@ -131,15 +131,23 @@ if ( ! post_type_exists( 'husky100' ) ):
 		}
 	}
 
+	// THIS IS BREAKING!!! 
 	function add_husky_directory_template($template) {
-		$this_dir = plugin_dir_path(__FILE__);
-		print_r($this_dir . "</br>");
+		$this_dir = dirname(__FILE__);
         //$custom_page = get_option('husky_directory_page_setting');
         $husky_directory_template = 'husky-directory-template.php';
         $is_directory = is_page('husky_100');
 		if ($is_directory) {
-			print_r($this_dir . $husky_directory_template);
-			return $this_dir . $husky_directory_template;
+			if (file_exists(get_stylesheet_directory() . '/' . $husky_directory_template)) {
+				print_r("stylesheet: " . get_stylesheet_directory() . "</br>");
+				return get_stylesheet_directory() . '/' . $husky_directory_template;
+			}
+			else if (file_exists(get_template_directory() . '/' . $husky_directory_template)) {
+				print_r("template directory: " . get_template_directory());
+				return get_template_directory() . '/' . $husky_directory_template;
+			}
+			print_r("Dir: " . $this_dir . "</br>");
+			return $this_dir . '/' . $husky_directory_template;
 		}
 		return $template;
 	}
