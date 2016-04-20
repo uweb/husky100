@@ -160,11 +160,7 @@
         $featureOffset = 12;
         foreach ( $people as $person ) {
            //gather assets
-           if ( !$personimageurl ) {
-            //set to default image here
-            $personimageurl = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
-            $personimageurlhigh = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
-           }
+           $personimageurl = $person->ID;
            
 
            //spit out html 
