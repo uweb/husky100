@@ -131,21 +131,25 @@ if ( ! post_type_exists( 'husky100' ) ):
 		}
 	}
 
+	// THIS IS BREAKING!!! 
 	function add_husky_directory_template($template) {
-		// TEST
-		// $this_dir = dirname(__FILE__);
-  //       //$custom_page = get_option('husky_directory_page_setting');
-  //       $husky_directory_template = 'husky-directory-template.php';
-  //       $is_directory = is_page('husky_100');
-		// if ($is_directory) {
-		// 	if (file_exists(get_stylesheet_directory() . '/' . $husky_directory_template)) {
-		// 		return get_stylesheet_directory() . '/' . $husky_directory_template;
-		// 	}
-		// 	else if (file_exists(get_template_directory() . '/' . $husky_directory_template)) {
-		// 		return get_template_directory() . '/' . $husky_directory_template;
-		// 	}
-		// 	return $this_dir . '/' . $husky_directory_template;
-		// }
+		$this_dir = dirname(__FILE__);
+		print_r($this_dir);
+        //$custom_page = get_option('husky_directory_page_setting');
+        $husky_directory_template = 'husky-directory-template.php';
+        $is_directory = is_page('husky_100');
+        print_r($is_directory);
+		if ($is_directory) {
+			print_r(get_stylesheet_directory());
+			print_r(get_template_directory());
+			if (file_exists(get_stylesheet_directory() . '/' . $husky_directory_template)) {
+				return get_stylesheet_directory() . '/' . $husky_directory_template;
+			}
+			else if (file_exists(get_template_directory() . '/' . $husky_directory_template)) {
+				return get_template_directory() . '/' . $husky_directory_template;
+			}
+			return $this_dir . '/' . $husky_directory_template;
+		}
 		return $template;
 	}
 
