@@ -315,7 +315,7 @@ div#thin-strip ul li a.slash:after {
   text-indent: -99999px;
   background-color: rgba(0, 0, 0, 0);
   padding: 17px 36px;
-  margin: -10px 0 0 -20px;
+  margin: -10px 0 -15px -20px;
 }
 #husky100 .full-bio .linkedin:hover,
 #husky100 .full-bio .linkedin:active {
