@@ -172,7 +172,8 @@ $(window).load(function(){
 
         el.preventDefault();
         // Stop propagation, otherwise it will bubble and want to close the slide
-        el.stopPropagation();
+        el.stopPropagation();        
+        $filter.addClass('select_active');
         $grid.isotope({
           filter: function() {
             return $text ? $(this).find('.tags').text().match( $text ) : true;
