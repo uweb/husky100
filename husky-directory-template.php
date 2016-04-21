@@ -42,9 +42,11 @@
         <div class="row">
           <h1><?php the_title(); ?></h1>
           <div class="udub-slant"><span></span></div>
-          <p>The Husky 100 recognizes 100 UW undergraduate and graduate students from Bothell, Seattle and Tacoma in all areas of study who are making the most of their time at the UW.</p>
-          <div class="boundless-button sm"><span><a href="#">Apply</a></span></div>
-          <div class="boundless-button sm second"><span><a href="#">Learn more</a></span></div>
+          <?php 
+              while ( have_posts() ) : the_post(); 
+                the_content();
+              endwhile;
+           ?>
         </div>
       </div>
     </div>
