@@ -241,6 +241,13 @@ div#thin-strip ul li a.slash:after {
     font-size: 40px;
   }
 }
+@font-face {
+  font-family: 'Uni Sans';
+  src: url('assets/fonts/uni_sans_thin-webfont.eot');
+  src: url('assets/fonts/uni_sans_thin-webfont.eot?#iefix') format('embedded-opentype'), url('assets/fonts/uni_sans_thin-webfont.woff') format('woff'), url('assets/fonts/uni_sans_thin-webfont.ttf') format('truetype'), url('assets/fonts/uni_sans_thin-webfont.svg#uni_sans_thin-webfont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 #husky100 {
   /* Large Devices, Wide Screens */
   /* Medium Devices, Desktops */
@@ -316,7 +323,7 @@ div#thin-strip ul li a.slash:after {
   text-indent: -99999px;
   background-color: rgba(0, 0, 0, 0);
   padding: 17px 36px;
-  margin: -10px 0 0 -20px;
+  margin: -10px 0 -15px -20px;
 }
 #husky100 .full-bio .linkedin:hover,
 #husky100 .full-bio .linkedin:active {
