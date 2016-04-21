@@ -314,18 +314,31 @@ div#thin-strip ul li a.slash:after {
   background: url(../assets/linkedin.png) no-repeat center center;
   text-indent: -99999px;
   background-color: rgba(0, 0, 0, 0);
-  padding: 17px 36px;
-  margin: -10px 0 -15px -20px;
+  position: relative;
+  margin: 0 0 0 35px;
+  display: inline-block;
+  width: 40px;
+  height: 30px;
 }
 #husky100 .full-bio .linkedin:hover,
 #husky100 .full-bio .linkedin:active {
   background: url(../assets/linkedin-active.png) no-repeat center center transparent;
+}
+#husky100 .full-bio .linkedin:before {
+  position: absolute;
+  right: 41px;
+  height: 45px;
+  width: 19px;
+  top: -3px;
+  content: "";
+  background: url(../assets/slash.svg) no-repeat 0 0;
 }
 #husky100 .full-bio h2 {
   text-transform: uppercase;
   font-weight: 900;
   color: #4b2e83;
   margin-top: 0;
+  line-height: 33px;
 }
 #husky100 .full-bio h2:after {
   content: "";
