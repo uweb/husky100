@@ -36,7 +36,7 @@ function delete_husky_directory_page() {
 if ( ! post_type_exists( 'husky100' ) ):
 
 	add_action('init', 'husky_post_type');
-	add_action('template_include', 'add_husky_directory_template');
+	add_action('template_include', 'add_husky_directory_template', 99);
 
 	function husky_post_type() {
 		$labels = array(
@@ -131,19 +131,27 @@ if ( ! post_type_exists( 'husky100' ) ):
 		}
 	}
 
+	// THIS IS BREAKING!!! 
 	function add_husky_directory_template($template) {
 		$this_dir = dirname(__FILE__);
+		$current_url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+		//print_r($current_url . "</br>");
         //$custom_page = get_option('husky_directory_page_setting');
         $husky_directory_template = 'husky-directory-template.php';
         $is_directory = is_page('husky_100');
 		if ($is_directory) {
 			if (file_exists(get_stylesheet_directory() . '/' . $husky_directory_template)) {
+				//print_r("stylesheet: " . get_stylesheet_directory() . "</br>");
 				return get_stylesheet_directory() . '/' . $husky_directory_template;
 			}
 			else if (file_exists(get_template_directory() . '/' . $husky_directory_template)) {
+				//print_r("template directory: " . get_template_directory());
 				return get_template_directory() . '/' . $husky_directory_template;
+			} 
+			else if (file_exists($this_dir . '/' . $husky_directory_template)) {
+				//print_r("Dir: " . $this_dir . '/' . $husky_directory_template . "</br>");
+				return $this_dir . '/' . $husky_directory_template;
 			}
-			return $this_dir . '/' . $husky_directory_template;
 		}
 		return $template;
 	}

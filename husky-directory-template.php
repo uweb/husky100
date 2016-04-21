@@ -1,9 +1,3 @@
-<?php
-/*
-Template Name: Husky 100
-*/
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,14 +25,14 @@ Template Name: Husky 100
     <div id="thin-strip">
         <a class="wordmark" href="http://uw.edu" tabindex="-1" title="University of Washington Home">Home</a>
         <ul>
-            <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a>
-            <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a>
-            <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a>
-            <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a>
-            <li><a href="http://uw.edu/students" class="slash" title="Students">Students</a>
-            <li><a href="http://uw.edu/parents" class="slash" title="Parents">Parents</a>
-            <li><a href="http://uw.edu/facultystaff" class="slash" title="Faculty &amp; Staff">Faculty &amp; Staff</a>
-            <li><a href="http://uw.edu/alumni" class="slash" title="Alumi">Alumni</a>
+            <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a></li>
+            <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a></li>
+            <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a></li>
+            <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a></li>
+            <li><a href="http://uw.edu/students" class="slash" title="Students">Students</a></li>
+            <li><a href="http://uw.edu/parents" class="slash" title="Parents">Parents</a></li>
+            <li><a href="http://uw.edu/facultystaff" class="slash" title="Faculty &amp; Staff">Faculty &amp; Staff</a></li>
+            <li><a href="http://uw.edu/alumni" class="slash" title="Alumi">Alumni</a></li>
         </ul>
     </div>
  
@@ -166,8 +160,10 @@ Template Name: Husky 100
         $featureOffset = 12;
         foreach ( $people as $person ) {
            //gather assets
-           $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = ['200','300'] )[0];
-           $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' )[0];
+           $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , array(200,300) );
+           $personimageurl = $personimageurl[0];
+           $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' );
+           $personimageurlhigh = $personimageurlhigh[0];
            if ( !$personimageurl ) {
             //set to default image here
             $personimageurl = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
@@ -191,8 +187,10 @@ Template Name: Husky 100
 
            if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
             $fact = $fastfacts[$peoplecount / $featureOffset];
-            $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = ['200','300'] )[0];
-            $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' )[0];
+            $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , array(200,300) );
+            $factimageurl = $factimageurl[0];
+            $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' );
+            $factimageurlhigh = $factimageurlhigh[0];
             ?>
                 <div data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
                     <div >
