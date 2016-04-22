@@ -1,6 +1,6 @@
 $(window).load(function(){    
 
-    $( function() {
+    // $( function() {
 
       var qsRegex,
           $searcher_wrap = $( "#searcher_wrap" ),
@@ -186,7 +186,7 @@ $(window).load(function(){
       })
 
                  
-    });
+   //  });
 
 });  
 

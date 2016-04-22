@@ -873,7 +873,7 @@ div#thin-strip ul li a.slash:after {
     margin: 0;
   }
   #husky100 .grid-item.open {
-    height: auto;
+    height: initial;
   }
   #husky100 .grid-item.open .flipper {
     position: static;
