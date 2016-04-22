@@ -716,7 +716,7 @@
     }
     .grid-item {
       &.open {
-        height: initial;
+        height: auto !important;
         .flipper {
           position: static;
         }
@@ -729,7 +729,8 @@
         .full-bio {
           position: static;
           width: 100%;
-          margin-left: 0;            
+          margin-left: 0;    
+          overflow: visible;        
           .bio-text {
             max-height: none;
           }      

@@ -873,7 +873,7 @@ div#thin-strip ul li a.slash:after {
     margin: 0;
   }
   #husky100 .grid-item.open {
-    height: initial;
+    height: auto !important;
   }
   #husky100 .grid-item.open .flipper {
     position: static;
@@ -888,6 +888,7 @@ div#thin-strip ul li a.slash:after {
     position: static;
     width: 100%;
     margin-left: 0;
+    overflow: visible;
   }
   #husky100 .grid-item.open .full-bio .bio-text {
     max-height: none;
