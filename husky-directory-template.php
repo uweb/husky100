@@ -16,10 +16,13 @@
         <![endif]--> 
         
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../template-hierarchy/thinstrip.css' ?>' type='text/css' media='all' />
+      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../template-hierarchy/module-hero-image.css' ?>' type='text/css' media='all' />
+
+      
 
     </head>
     <body <?php body_class(); ?> id="husky100">
-
     <a href="#main_content" class="screen-reader-shortcut">Skip to main content</a>
 
     <div id="thin-strip">
