@@ -338,7 +338,7 @@ div#thin-strip ul li a.slash:after {
   font-weight: 900;
   color: #4b2e83;
   margin-top: 0;
-  line-height: 33px;
+  line-height: 30px;
 }
 #husky100 .full-bio h2:after {
   content: "";
@@ -888,9 +888,6 @@ div#thin-strip ul li a.slash:after {
     position: static;
     width: 100%;
     margin-left: 0;
-  }
-  #husky100 .grid-item.open .full-bio .bio-text {
-    max-height: initial;
   }
   #husky100 .grid-item.open .tags {
     display: none;

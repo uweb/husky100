@@ -6,6 +6,7 @@ $(window).load(function(){
           $searcher_wrap = $( "#searcher_wrap" ),
           $searcher = $( "#searcher" ),
           $window = $( window ).height(),
+          $window_width = $( window ).width(),
           $filter = $('#filter');
 
       // init Isotope
@@ -45,10 +46,13 @@ $(window).load(function(){
       // Reusable scroll to position
 
       function scrollIt(el){
-        var $offset = ( $window - el.height() ) / 2  
+        var $offset = ( $window - el.height() ) / 2
+            // Scroll the tile to the top if mobile, otherwise center the tile on desktop
+            $mobile = $window_width < 768 ? 50 : $offset 
+
         $grid.one( 'arrangeComplete', function() {
           $('html, body').animate({
-            scrollTop: ( el.offset().top - $offset )
+            scrollTop: ( el.offset().top - $mobile )
           }, 900); 
         });
       }         
