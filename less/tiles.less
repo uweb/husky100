@@ -716,7 +716,7 @@
     }
     .grid-item {
       &.open {
-        height: 900px;
+        height: auto;
         .flipper {
           position: static;
         }
@@ -731,8 +731,15 @@
           width: 100%;
           margin-left: 0;            
           .bio-text {
-          //  max-height: initial;
-          }       
+           max-height: none;
+          }      
+          .linkedin {
+            margin: 0;
+            width: 38px;
+            &:before {
+                display: none;
+            }
+          } 
         }
         .tags {
           display: none;
