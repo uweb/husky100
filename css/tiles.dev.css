@@ -408,6 +408,9 @@ div#thin-strip ul li a.slash:after {
   max-height: 250px;
   overflow-y: scroll;
 }
+#husky100 .full-bio .bio-text p {
+  cursor: auto;
+}
 #husky100 .full-bio .linkedin {
   background: url(../assets/linkedin.png) no-repeat center center;
   text-indent: -99999px;
@@ -936,6 +939,7 @@ div#thin-strip ul li a.slash:after {
     margin-left: 0;
     border: 2px solid #ddd;
     padding: 10px 0 30px;
+    background-color: #ECECEC;
   }
   #husky100 .module-hero-image {
     padding-top: 70px;
@@ -987,6 +991,7 @@ div#thin-strip ul li a.slash:after {
     position: static;
     width: 100%;
     margin-left: 0;
+    padding: 40px 45px 50px;
   }
   #husky100 .grid-item.open .full-bio .bio-text {
     max-height: 325px;

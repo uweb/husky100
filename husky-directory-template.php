@@ -140,13 +140,13 @@
          $filter_terms = get_terms('filters', array(
              'hide_empty' => false,
          ));
-         foreach ($filter_terms as $term) {
-             echo    '<div class="grid-item special title-card stamp ' . $term->slug . '">
-                        <h2>' . $term->name . '</h2>
-                        <div class="udub-slant"><span></span></div>
-                        <p>' . $term->description . '</p>
-                      </div>';
-         }
+         // foreach ($filter_terms as $term) {
+         //     echo    '<div class="grid-item special title-card stamp ' . $term->slug . '">
+         //                <h2>' . $term->name . '</h2>
+         //                <div class="udub-slant"><span></span></div>
+         //                <p>' . $term->description . '</p>
+         //              </div>';
+         // }
          $tag_terms = get_terms('tags');
          foreach ($tag_terms as $tag_term) {
              echo    '<div class="grid-item special title-card ' . $tag_term->slug . '">
@@ -197,7 +197,7 @@
             $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' );
             $factimageurlhigh = $factimageurlhigh[0];
             ?>
-                <div data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
+                <div tabindex="0" data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
                     <div >
                       <div class="front">
                         <img src="<?php echo $factimageurlhigh; ?>" alt="<?php echo $fact->post_title; ?>">
@@ -219,7 +219,7 @@
                 <p class="major"><?php echo $major; ?></p>
                 <p><?php echo $graduation; ?></p>    
               </div>
-              <div class="full-bio">
+              <div tabindex="0" class="full-bio">
                 <h2><?php echo $person->post_title; ?>
                 <?php echo !empty($linkedin) ? '<a class="linkedin" href="<?php echo $linkedin; ?>">LinkedIn</a>' : ''; ?></h2>
                 <div class="bio-info">
