@@ -77,6 +77,9 @@ if ( ! post_type_exists( 'husky100' ) ):
 		add_meta_box( 'graduation', 'Anticipated graduation date', 'graduation_callback', 'husky100', 'side', 'low' );
 		add_meta_box( 'linkedin', 'LinkedIn link', 'linkedin_callback', 'husky100', 'side', 'low' );
 		
+		add_meta_box( 'tenet', 'Tenet', 'tenet_callback', 'husky100', 'normal', 'low' );
+		add_meta_box( 'quote', 'Quote', 'quote_callback', 'husky100', 'normal', 'low' );
+
 		remove_meta_box( 'filtersdiv', 'husky100', 'side' );
 		remove_meta_box( 'tagsdiv', 'husky100', 'side' );
 		add_meta_box( 'filtersdiv', 'Filters', 'post_categories_meta_box', 'husky100', 'normal', 'low', array( 'taxonomy' => 'filters' ) );
@@ -118,6 +121,31 @@ if ( ! post_type_exists( 'husky100' ) ):
 		?><input name="linkedin" value="<?php echo $linkedin ?>" /><?php
 	}
 
+	function tenet_callback() {
+		global $post;
+		$custom = get_post_custom($post->ID);
+		$tenet = $custom['tenet'][0];
+		?><select name="tenet"/>
+			<option>Tenet</option>
+			<option value="Undaunted" <?php echo ($tenet == "Undaunted") ? "selected" : ""; ?> >Undaunted</option>
+			<option value="We > Me" <?php echo ($tenet == "We > Me") ? "selected" : ""; ?> >We > Me</option>
+			<option value="Dare to Do" <?php echo ($tenet == "Dare to Do") ? "selected" : ""; ?> >Dare to Do</option>
+			<option value="Be the First" <?php echo ($tenet == "Be the First") ? "selected" : ""; ?> >Be the First</option>
+			<option value="Question the Answer" <?php echo ($tenet == "Question the Answer") ? "selected" : ""; ?> >Question the Answer</option>
+			<option value="Passion Never Rests" <?php echo ($tenet == "Passion Never Rests") ? "selected" : ""; ?> >Passion Never Rests</option>
+			<option value="Be A World of Good" <?php echo ($tenet == "Be A World of Good") ? "selected" : ""; ?> >Be A World of Good</option>
+			<option value="Together We Will" <?php echo ($tenet == "Together We Will") ? "selected" : ""; ?> >Together We Will</option>
+			<option value="Driven to Discover" <?php echo ($tenet == "Driven to Discover") ? "selected" : ""; ?> >Driven to Discover</option>
+		</select><?php
+	}
+
+	function quote_callback() {
+		global $post;
+		$custom = get_post_custom($post->ID);
+		$quote = $custom['quote'][0];
+		?><textarea name="quote" rows="4" cols="100"><?php echo $quote; ?></textarea><?php
+	}
+
 	add_action('save_post', 'save_person_details');
 
 	function save_person_details() {
@@ -128,6 +156,8 @@ if ( ! post_type_exists( 'husky100' ) ):
 			update_post_meta($post->ID, 'minor', $_POST['minor']);
 			update_post_meta($post->ID, 'graduation', $_POST['graduation']);
 			update_post_meta($post->ID, 'linkedin', $_POST['linkedin']);
+			update_post_meta($post->ID, 'tenet', $_POST['tenet']);
+			update_post_meta($post->ID, 'quote', $_POST['quote']);
 		}
 	}
 
