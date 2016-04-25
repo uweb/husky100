@@ -407,8 +407,6 @@ div#thin-strip ul li a.slash:after {
   padding-right: 10px;
   max-height: 250px;
   overflow-y: scroll;
-}
-#husky100 .full-bio .bio-text p {
   cursor: auto;
 }
 #husky100 .full-bio .linkedin {
