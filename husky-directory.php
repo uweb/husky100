@@ -74,7 +74,6 @@ if ( ! post_type_exists( 'husky100' ) ):
 		add_meta_box( 'hometown', 'Hometown', 'hometown_callback', 'husky100', 'side', 'low' );
 		add_meta_box( 'major', 'Major', 'major_callback', 'husky100', 'side', 'low' );
 		add_meta_box( 'minor', 'Minor', 'minor_callback', 'husky100', 'side', 'low' );
-		add_meta_box( 'graduation', 'Anticipated graduation date', 'graduation_callback', 'husky100', 'side', 'low' );
 		add_meta_box( 'linkedin', 'LinkedIn link', 'linkedin_callback', 'husky100', 'side', 'low' );
 		
 		add_meta_box( 'tenet', 'Tenet', 'tenet_callback', 'husky100', 'normal', 'low' );
@@ -105,13 +104,6 @@ if ( ! post_type_exists( 'husky100' ) ):
 		$custom = get_post_custom($post->ID);
 		$minor = $custom['minor'][0];
 		?><input name="minor" value="<?php echo $minor ?>" /><?php
-	}
-
-	function graduation_callback() {
-		global $post;
-		$custom = get_post_custom($post->ID);
-		$graduation = $custom['graduation'][0];
-		?><input name="graduation" value="<?php echo $graduation ?>" /><?php
 	}
 
 	function linkedin_callback() {
@@ -154,7 +146,6 @@ if ( ! post_type_exists( 'husky100' ) ):
 			update_post_meta($post->ID, 'hometown', $_POST['hometown']);
 			update_post_meta($post->ID, 'major', $_POST['major']);
 			update_post_meta($post->ID, 'minor', $_POST['minor']);
-			update_post_meta($post->ID, 'graduation', $_POST['graduation']);
 			update_post_meta($post->ID, 'linkedin', $_POST['linkedin']);
 			update_post_meta($post->ID, 'tenet', $_POST['tenet']);
 			update_post_meta($post->ID, 'quote', $_POST['quote']);
