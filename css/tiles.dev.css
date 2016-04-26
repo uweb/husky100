@@ -480,6 +480,10 @@ div#thin-strip ul li a.slash:after {
   background-color: white;
   height: 420px;
 }
+#husky100 .grid-sizer.featured.open,
+#husky100 .grid-item.featured.open {
+  height: 630px;
+}
 #husky100 .grid-sizer.open,
 #husky100 .grid-item.open {
   width: calc(60%);
@@ -534,7 +538,6 @@ div#thin-strip ul li a.slash:after {
   #husky100 .grid-sizer.featured,
   #husky100 .grid-item.featured {
     width: calc(33.33333333%);
-    height: 420px;
   }
   #husky100 .grid-sizer.open,
   #husky100 .grid-item.open {
