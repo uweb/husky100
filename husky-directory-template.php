@@ -137,24 +137,24 @@
 
          <!-- FILTER BOX -->
          <?php 
-         $filter_terms = get_terms('filters', array(
-             'hide_empty' => false,
-         ));
-         // foreach ($filter_terms as $term) {
-         //     echo    '<div class="grid-item special title-card stamp ' . $term->slug . '">
-         //                <h2>' . $term->name . '</h2>
+         // $filter_terms = get_terms('filters', array(
+         //     'hide_empty' => false,
+         // ));
+         // // foreach ($filter_terms as $term) {
+         // //     echo    '<div class="grid-item special title-card stamp ' . $term->slug . '">
+         // //                <h2>' . $term->name . '</h2>
+         // //                <div class="udub-slant"><span></span></div>
+         // //                <p>' . $term->description . '</p>
+         // //              </div>';
+         // // }
+         // $tag_terms = get_terms('tags');
+         // foreach ($tag_terms as $tag_term) {
+         //     echo    '<div class="grid-item special title-card ' . $tag_term->slug . '">
+         //                <h2 class="tags">' . $tag_term->name . '</h2>
          //                <div class="udub-slant"><span></span></div>
-         //                <p>' . $term->description . '</p>
+         //                <p>' . $tag_term->description . '</p>
          //              </div>';
          // }
-         $tag_terms = get_terms('tags');
-         foreach ($tag_terms as $tag_term) {
-             echo    '<div class="grid-item special title-card ' . $tag_term->slug . '">
-                        <h2 class="tags">' . $tag_term->name . '</h2>
-                        <div class="udub-slant"><span></span></div>
-                        <p>' . $tag_term->description . '</p>
-                      </div>';
-         }
           ?>
 
 
@@ -177,7 +177,6 @@
            $hometown = get_post_meta($person->ID, 'hometown', true);
            $major = get_post_meta($person->ID, 'major', true);
            $minor = get_post_meta($person->ID, 'minor', true);
-           $graduation = get_post_meta($person->ID, 'graduation', true);
            $linkedin = get_post_meta($person->ID, 'linkedin', true);
            $filters = wp_get_post_terms( $person->ID, 'filters' );
            $tags = wp_get_post_terms( $person->ID, 'tags' );
@@ -216,16 +215,14 @@
               <div class="back">
                 <h3><?php echo $person->post_title; ?></h3>
                 <!-- <p><?php echo $hometown; ?></p> -->
-                <p class="major"><?php echo $major; ?></p>
-                <p><?php echo $graduation; ?></p>    
+                <p class="major"><?php echo $major; ?></p> 
               </div>
               <div tabindex="0" class="full-bio">
                 <h2><?php echo $person->post_title; ?>
                 <?php echo !empty($linkedin) ? '<a class="linkedin" href="<?php echo $linkedin; ?>">LinkedIn</a>' : ''; ?></h2>
                 <div class="bio-info">
                   <p><?php echo $hometown; ?></p>
-                  <p><?php echo $major; ?></p>
-                  <p><?php echo $graduation; ?></p>                  
+                  <p><?php echo $major; ?></p>                
                 </div>
                 <div class="bio-text">
                   <p><?php echo $person->post_content; ?></p>
