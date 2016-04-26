@@ -414,13 +414,6 @@ div#thin-strip ul li a.slash:after {
   color: #4b2e83;
   font-size: 17px;
 }
-#husky100 .full-bio .bio-text span {
-  font-size: 17px;
-  line-height: 1.5;
-  margin: 0 0 14.5px;
-  font-weight: normal;
-  color: #3d3d3d;
-}
 #husky100 .full-bio .linkedin {
   background: url(../assets/linkedin.png) no-repeat center center;
   text-indent: -99999px;
