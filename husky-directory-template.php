@@ -16,8 +16,8 @@
         <![endif]--> 
         
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
-      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../template-hierarchy/thinstrip.css' ?>' type='text/css' media='all' />
-      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../template-hierarchy/module-hero-image.css' ?>' type='text/css' media='all' />
+      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/thinstrip.css' ?>' type='text/css' media='all' />
+      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/module-hero-image.css' ?>' type='text/css' media='all' />
 
       
 
@@ -59,7 +59,7 @@
         <button data-filter=":not(.title-card)">Show All <div class="udub-slant"><span></span></div></button>        
     </li> -->
     <li class="sort_by">
-      Sort by:
+      Filter by:
     </li>
     <li>
       <a id="clear" href="#" title="Clear filter">
@@ -131,6 +131,9 @@
 
     <div id="main-content">
          
+         <!-- This hides the stuttering of tiles during load -->
+        <div id="overlay"></div>
+
          <div class="grid">
 
          <div class="grid-sizer"></div>
@@ -218,8 +221,8 @@
                 <p class="major"><?php echo $major; ?></p> 
               </div>
               <div tabindex="0" class="full-bio">
-                <h2><?php echo $person->post_title; ?>
-                <?php echo !empty($linkedin) ? '<a class="linkedin" href=' . $linkedin . '>LinkedIn</a>' : ''; ?></h2>
+                <h2><?php echo $person->post_title; ?>\
+                <?php echo !empty($linkedin) ? '<a class="linkedin" href="' . $linkedin . '">LinkedIn</a>' : '' ?></h2>
                 <div class="bio-info">
                   <p><?php echo $hometown; ?></p>
                   <p><?php echo $major; ?></p>                

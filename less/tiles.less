@@ -34,6 +34,22 @@
       }
   }
 
+  // Overlay to hide loading stutter 
+  
+  div#main-content { 
+    position: relative; 
+  }
+
+  div#overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: white;
+      z-index: 1;
+  }
+
   // Color unfilled tiles
   .grid {
     background: url(../assets/stripes.svg) #E8E8E8;
@@ -56,6 +72,7 @@
       padding: 5px 10px;
       background-color: @purple;
       font-size: 14px;
+      line-height: 1.4;
     //  white-space: nowrap;
       margin: 5px 5px 0 0;
       display: inline-block;
@@ -83,26 +100,41 @@
       max-height: 250px;
       overflow-y: scroll;
       cursor: auto;
+      h4 {
+        font-weight: 900;
+        color: @purple;
+        font-size: 17px;
+      }
+      span {
+      //  font-size: 17px;
+      //  line-height: 1.5;
+      //  margin: 0 0 14.5px;
+      //  font-weight: normal;
+      //  color: #3d3d3d;
+      }
     }
     .linkedin {
       background: url(../assets/linkedin.png) no-repeat center center;
       text-indent: -99999px;
       background-color: rgba(0, 0, 0, 0);
       position: relative;
-      margin: 0 0 0 35px;
+      margin: 0 0 0 25px;
       display: inline-block;
       width: 40px;
       height: 30px;
+      position: absolute;
+      right: 0;
+      top: 0;
       &:hover,
       &:active {
         background: url(../assets/linkedin-active.png) no-repeat center center transparent;
       }
       &:before {
           position: absolute;
-          right: 41px;
-          height: 45px;
+          right: 38px;
+          height: 31px;
           width: 19px;
-          top: -3px;
+          top: 0px;
           content: "";
           background: url(../assets/slash.svg) no-repeat 0 0;
       }
@@ -113,6 +145,9 @@
       color: @purple;
       margin-top: 0;
       line-height: 30px;
+      position: relative;
+      padding-right: 70px;
+      display: inline-block;
       &:after {
         content: "";
         background: url(../assets/bar.svg) no-repeat top right;
@@ -157,6 +192,9 @@
       .the-width ( 2, 10 );
       background-color: white;  
       height: 420px;
+      &.open {
+        height: 630px;
+      }
     }
     &.open {
       .the-width ( 6, 10 );
@@ -211,7 +249,7 @@
       height: 210px;
       &.featured { 
         .the-width ( 2, 6 ); 
-        height: 423px;
+        //height: 420px;
       }
       &.open {
         .the-width ( 6, 6 );
@@ -369,7 +407,11 @@
       list-style: none;
       display: inline-block;
       position: relative;
-      margin-bottom: 20px;
+      margin-bottom: 20px;      
+      // Hide the year awarded
+      &:nth-child(6) {
+        display: none;
+      }
       &.select {
         &:hover select,
         &:active select,
@@ -707,7 +749,7 @@
       }
       li {
         width: 100%;   
-        margin: 0 0 10px;    
+        margin: 0 0 10px;
         button {
           width: 100%;
         }

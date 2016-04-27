@@ -368,6 +368,18 @@ div#thin-strip ul li a.slash:after {
   margin: 20px 50% 13px 0;
   line-height: 1.5;
 }
+#husky100 div#main-content {
+  position: relative;
+}
+#husky100 div#overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 1;
+}
 #husky100 .grid {
   background: url(../assets/stripes.svg) #e8e8e8;
 }
@@ -386,6 +398,7 @@ div#thin-strip ul li a.slash:after {
   padding: 5px 10px;
   background-color: #4b2e83;
   font-size: 14px;
+  line-height: 1.4;
   margin: 5px 5px 0 0;
   display: inline-block;
 }
@@ -409,15 +422,23 @@ div#thin-strip ul li a.slash:after {
   overflow-y: scroll;
   cursor: auto;
 }
+#husky100 .full-bio .bio-text h4 {
+  font-weight: 900;
+  color: #4b2e83;
+  font-size: 17px;
+}
 #husky100 .full-bio .linkedin {
   background: url(../assets/linkedin.png) no-repeat center center;
   text-indent: -99999px;
   background-color: rgba(0, 0, 0, 0);
   position: relative;
-  margin: 0 0 0 35px;
+  margin: 0 0 0 25px;
   display: inline-block;
   width: 40px;
   height: 30px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 #husky100 .full-bio .linkedin:hover,
 #husky100 .full-bio .linkedin:active {
@@ -425,10 +446,10 @@ div#thin-strip ul li a.slash:after {
 }
 #husky100 .full-bio .linkedin:before {
   position: absolute;
-  right: 41px;
-  height: 45px;
+  right: 38px;
+  height: 31px;
   width: 19px;
-  top: -3px;
+  top: 0px;
   content: "";
   background: url(../assets/slash.svg) no-repeat 0 0;
 }
@@ -438,6 +459,9 @@ div#thin-strip ul li a.slash:after {
   color: #4b2e83;
   margin-top: 0;
   line-height: 30px;
+  position: relative;
+  padding-right: 70px;
+  display: inline-block;
 }
 #husky100 .full-bio h2:after {
   content: "";
@@ -468,6 +492,10 @@ div#thin-strip ul li a.slash:after {
   width: calc(20%);
   background-color: white;
   height: 420px;
+}
+#husky100 .grid-sizer.featured.open,
+#husky100 .grid-item.featured.open {
+  height: 630px;
 }
 #husky100 .grid-sizer.open,
 #husky100 .grid-item.open {
@@ -523,7 +551,6 @@ div#thin-strip ul li a.slash:after {
   #husky100 .grid-sizer.featured,
   #husky100 .grid-item.featured {
     width: calc(33.33333333%);
-    height: 423px;
   }
   #husky100 .grid-sizer.open,
   #husky100 .grid-item.open {
@@ -659,6 +686,9 @@ div#thin-strip ul li a.slash:after {
   display: inline-block;
   position: relative;
   margin-bottom: 20px;
+}
+#husky100 ul#filter li:nth-child(6) {
+  display: none;
 }
 #husky100 ul#filter li.select:hover select,
 #husky100 ul#filter li.select:active select,
