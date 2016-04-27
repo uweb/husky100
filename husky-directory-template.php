@@ -181,8 +181,8 @@
            $major = get_post_meta($person->ID, 'major', true);
            $minor = get_post_meta($person->ID, 'minor', true);
            $linkedin = get_post_meta($person->ID, 'linkedin', true);
-           if ( strpos($linkedin, 'http') !== false ) {
-             $linkedin = "http://" . $linkedin;
+           if ( strpos($linkedin, 'http') == false ) {
+             $linkedin = "https://" . $linkedin;
            }
            $filters = wp_get_post_terms( $person->ID, 'filters' );
            $tags = wp_get_post_terms( $person->ID, 'tags' );
