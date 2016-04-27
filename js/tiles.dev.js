@@ -18,6 +18,13 @@ $(window).load(function(){
         },
         filter: ':not(.title-card)',
       });
+
+      // Remove overlay once all is loaded
+      $grid.imagesLoaded().progress( function() {
+        $('#overlay').fadeOut(300, function(){
+          $(this).remove();
+        });
+      });
     
       // use value of search field to filter
      var $quicksearch = $('.quicksearch').keyup( debounce( function() {

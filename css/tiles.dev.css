@@ -368,6 +368,18 @@ div#thin-strip ul li a.slash:after {
   margin: 20px 50% 13px 0;
   line-height: 1.5;
 }
+#husky100 div#main-content {
+  position: relative;
+}
+#husky100 div#overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 1;
+}
 #husky100 .grid {
   background: url(../assets/stripes.svg) #e8e8e8;
 }
@@ -386,6 +398,7 @@ div#thin-strip ul li a.slash:after {
   padding: 5px 10px;
   background-color: #4b2e83;
   font-size: 14px;
+  line-height: 1.4;
   margin: 5px 5px 0 0;
   display: inline-block;
 }
@@ -979,6 +992,9 @@ div#thin-strip ul li a.slash:after {
   #husky100 ul#filter li {
     width: 100%;
     margin: 0 0 10px;
+  }
+  #husky100 ul#filter li:nth-child(6) {
+    display: none;
   }
   #husky100 ul#filter li button {
     width: 100%;

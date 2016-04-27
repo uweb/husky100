@@ -34,6 +34,22 @@
       }
   }
 
+  // Overlay to hide loading stutter 
+  
+  div#main-content { 
+    position: relative; 
+  }
+
+  div#overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: white;
+      z-index: 1;
+  }
+
   // Color unfilled tiles
   .grid {
     background: url(../assets/stripes.svg) #E8E8E8;
@@ -56,6 +72,7 @@
       padding: 5px 10px;
       background-color: @purple;
       font-size: 14px;
+      line-height: 1.4;
     //  white-space: nowrap;
       margin: 5px 5px 0 0;
       display: inline-block;
@@ -729,6 +746,10 @@
       li {
         width: 100%;   
         margin: 0 0 10px;    
+        // Hide the year awarded
+        &:nth-child(6) {
+          display: none;
+        }
         button {
           width: 100%;
         }
