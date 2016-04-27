@@ -222,7 +222,7 @@
               </div>
               <div tabindex="0" class="full-bio">
                 <h2><?php echo $person->post_title; ?>
-                <?php echo !empty($linkedin) ? '<a class="linkedin" href="<?php echo $linkedin; ?>">LinkedIn</a>' : ''; ?></h2>
+                <?php echo !empty($linkedin) ? '<a class="linkedin" href="' . $linkedin . '">LinkedIn</a>' : '' ?></h2>
                 <div class="bio-info">
                   <p><?php echo $hometown; ?></p>
                   <p><?php echo $major; ?></p>                

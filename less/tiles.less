@@ -407,7 +407,11 @@
       list-style: none;
       display: inline-block;
       position: relative;
-      margin-bottom: 20px;
+      margin-bottom: 20px;      
+      // Hide the year awarded
+      &:nth-child(6) {
+        display: none;
+      }
       &.select {
         &:hover select,
         &:active select,
@@ -745,11 +749,7 @@
       }
       li {
         width: 100%;   
-        margin: 0 0 10px;    
-        // Hide the year awarded
-        &:nth-child(6) {
-          display: none;
-        }
+        margin: 0 0 10px;
         button {
           width: 100%;
         }

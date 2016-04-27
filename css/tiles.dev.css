@@ -687,6 +687,9 @@ div#thin-strip ul li a.slash:after {
   position: relative;
   margin-bottom: 20px;
 }
+#husky100 ul#filter li:nth-child(6) {
+  display: none;
+}
 #husky100 ul#filter li.select:hover select,
 #husky100 ul#filter li.select:active select,
 #husky100 ul#filter li.select:focus select {
@@ -992,9 +995,6 @@ div#thin-strip ul li a.slash:after {
   #husky100 ul#filter li {
     width: 100%;
     margin: 0 0 10px;
-  }
-  #husky100 ul#filter li:nth-child(6) {
-    display: none;
   }
   #husky100 ul#filter li button {
     width: 100%;
