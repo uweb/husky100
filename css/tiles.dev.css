@@ -377,7 +377,7 @@ div#thin-strip ul li a.slash:after {
   right: 0;
   left: 0;
   bottom: 0;
-  background: url(../assets/w.gif) right bottom no-repeat #ffffff;
+  background: url(../assets/w.gif) center 200px no-repeat #ffffff;
   z-index: 1;
 }
 #husky100 .grid {
