@@ -181,6 +181,9 @@
            $major = get_post_meta($person->ID, 'major', true);
            $minor = get_post_meta($person->ID, 'minor', true);
            $linkedin = get_post_meta($person->ID, 'linkedin', true);
+           if ( strpos($linkedin, 'http') === false ) {
+             $linkedin = "https://" . $linkedin;
+           }
            $filters = wp_get_post_terms( $person->ID, 'filters' );
            $tags = wp_get_post_terms( $person->ID, 'tags' );
            //FEATURE: do tags also need to be classes? 
@@ -221,7 +224,7 @@
                 <p class="major"><?php echo $major; ?></p> 
               </div>
               <div tabindex="0" class="full-bio">
-                <h2><?php echo $person->post_title; ?>
+                <h2><?php echo $person->post_title; ?>\
                 <?php echo !empty($linkedin) ? '<a class="linkedin" href="' . $linkedin . '">LinkedIn</a>' : '' ?></h2>
                 <div class="bio-info">
                   <p><?php echo $hometown; ?></p>
