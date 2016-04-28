@@ -62,8 +62,8 @@
       Filter by:
     </li>
     <li>
-      <a id="clear" href="#" title="Clear filter">
-      <svg xmlns="http://www.w3.org/2000/svg" width="35.848" height="35.794" viewBox="0 0 35.848 35.794"><circle fill="#DEDEDD" cx="17.999" cy="17.999" r="16.998"/><g fill="none" stroke="#FFF" stroke-width="3" stroke-miterlimit="10"><path d="M11.485 24.513l13.027-13.028M24.512 24.513L11.485 11.485"/></g></svg>Clear      
+      <a id="clear" href="#" title="Show all">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35.848" height="35.794" viewBox="0 0 35.848 35.794"><circle fill="#c2c2c2" cx="17.999" cy="17.999" r="16.998"/><g fill="none" stroke="#FFF" stroke-width="3" stroke-miterlimit="10"><path d="M11.485 24.513l13.027-13.028M24.512 24.513L11.485 11.485"/></g></svg>Show all      
       </a>
     </li>
     <?php
