@@ -75,7 +75,7 @@ $(window).load(function(){
             dataCheck = $this.data('name'),
             dataName = dataCheck && '#name=' + dataCheck;
 
-        if( !$this.hasClass('open') ) {
+        if( !$this.hasClass('open') && !$this.hasClass('special') ) {
           $('.grid-item').removeClass('open')
           $this.addClass('open');
           // Switch image
