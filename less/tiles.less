@@ -358,9 +358,33 @@
     text-align: center;
     padding: 18px 20px 20px 20px;
     overflow: hidden;
-    background-color: @purple;
+    background: url('../assets/lines.svg') 0 0 no-repeat @purple;
+    img {
+      display: none;
+    }
+    h3 {
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: right;
+      color: #FFF;
+      font-style: italic;
+      position: absolute;
+      bottom: 10px;
+      right: 50px;
+      font-size: 20px;
+      &:after {
+        content: "";
+        width: 1px;
+        height: 90px;
+        bottom: -40px;
+        background-color: #FFF;
+        position: absolute;
+        right: -20px;
+        transform: rotate(15deg);
+      }
+    }
     .front {
-      background-color: @purple;
+      background-color: transparent;
     }
     img {
       width: auto;

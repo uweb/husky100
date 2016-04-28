@@ -205,7 +205,7 @@
                 <div tabindex="0" data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
                     <div >
                       <div class="front">
-                        <img src="<?php echo $factimageurlhigh; ?>" alt="<?php echo $fact->post_title; ?>">
+                        <h3><?php echo $fact->post_title; ?></h3>
                       </div>
                     </div>
                   </div>

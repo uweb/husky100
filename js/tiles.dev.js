@@ -20,12 +20,15 @@ $(window).load(function(){
       });
 
       // Remove overlay once all is loaded
-      $grid.imagesLoaded().progress( function() {
+      $grid.one( 'arrangeComplete', function() {
         $('#overlay').fadeOut(300, function(){
           $(this).remove();
         });
       });
     
+     // Fire isotope initially
+     $grid.isotope();
+
       // use value of search field to filter
      var $quicksearch = $('.quicksearch').keyup( debounce( function() {
        qsRegex = new RegExp( $quicksearch.val(), 'gi' );
