@@ -161,9 +161,9 @@
 
     }
   }
-  .grid-item.open {
-    cursor: url(../assets/x.svg), auto;
-  }
+  // .grid-item.open {
+  //   cursor: url(../assets/x.svg), auto;
+  // }
   
 
   // For the badge
@@ -178,6 +178,13 @@
       position: absolute;
       left: 0;
       bottom: 20px;        
+    }
+  }
+  .featured {
+    .front {
+      &:after {
+        display: none;
+      }
     }
   }
 

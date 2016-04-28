@@ -473,9 +473,6 @@ div#thin-strip ul li a.slash:after {
   font-family: "Uni sans", sans-serif;
   letter-spacing: .05em;
 }
-#husky100 .grid-item.open {
-  cursor: url(../assets/x.svg), auto;
-}
 #husky100 .front:after {
   content: "";
   display: none;
@@ -486,6 +483,9 @@ div#thin-strip ul li a.slash:after {
   position: absolute;
   left: 0;
   bottom: 20px;
+}
+#husky100 .featured .front:after {
+  display: none;
 }
 #husky100 .open .full-bio {
   display: block;
