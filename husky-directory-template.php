@@ -25,18 +25,20 @@
     <body <?php body_class(); ?> id="husky100">
     <a href="#main_content" class="screen-reader-shortcut">Skip to main content</a>
 
-    <div id="thin-strip">
-        <a class="wordmark" href="http://uw.edu" tabindex="-1" title="University of Washington Home">Home</a>
-        <ul>
-            <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a></li>
-            <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a></li>
-            <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a></li>
-            <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a></li>
-            <li><a href="http://uw.edu/students" class="slash" title="Students">Students</a></li>
-            <li><a href="http://uw.edu/parents" class="slash" title="Parents">Parents</a></li>
-            <li><a href="http://uw.edu/facultystaff" class="slash" title="Faculty &amp; Staff">Faculty &amp; Staff</a></li>
-            <li><a href="http://uw.edu/alumni" class="slash" title="Alumi">Alumni</a></li>
-        </ul>
+    <div role="banner">
+      <div id="thin-strip">
+          <a class="wordmark" href="http://uw.edu" tabindex="-1" title="University of Washington Home">Home</a>
+          <ul>
+              <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a></li>
+              <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a></li>
+              <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a></li>
+              <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a></li>
+              <li><a href="http://uw.edu/students" class="slash" title="Students">Students</a></li>
+              <li><a href="http://uw.edu/parents" class="slash" title="Parents">Parents</a></li>
+              <li><a href="http://uw.edu/facultystaff" class="slash" title="Faculty &amp; Staff">Faculty &amp; Staff</a></li>
+              <li><a href="http://uw.edu/alumni" class="slash" title="Alumi">Alumni</a></li>
+          </ul>
+      </div>
     </div>
  
 
@@ -54,65 +56,79 @@
       </div>
     </div>
     <!-- FEATURE: dynamically load the filters - Now a dropdown structure --> 
-    <ul id="filter">
-   <!--  <li>
-        <button data-filter=":not(.title-card)">Show All <div class="udub-slant"><span></span></div></button>        
-    </li> -->
-    <li class="sort_by">
-      Filter by:
-    </li>
-    <li>
-      <a id="clear" href="#" title="Show all">
-      <svg xmlns="http://www.w3.org/2000/svg" width="35.848" height="35.794" viewBox="0 0 35.848 35.794"><circle fill="#c2c2c2" cx="17.999" cy="17.999" r="16.998"/><g fill="none" stroke="#FFF" stroke-width="3" stroke-miterlimit="10"><path d="M11.485 24.513l13.027-13.028M24.512 24.513L11.485 11.485"/></g></svg>Show all      
-      </a>
-    </li>
-    <?php
-        //get filters
-        //foreach filter print button
-        //set current filter
-        //reflect that in filter box
-        //
-        $filter_parent_terms = get_terms('filters', array(
-            'hide_empty' => false,
-            'parent' => 0
-        ));
-        foreach ($filter_parent_terms as $parent) {
-             echo '<li class="select">
-                     <select>' . '<option>' . $parent->name . '</option>';
 
-             foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
-                if ($child->slug == 'arts-sci-all-divisions') {
-                    echo '<option value=".arts-sci-arts, .arts-sci-humanities, .arts-sci-natural-sci, .arts-sci-social-sci, .arts-sci-all-divisions">' . $child->name . '</option>';
-                    $childrens = get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $child->term_id ) );
-                    foreach ( $childrens as $children ) {
-                        echo '<option value=".' . $children->slug . '">&emsp;' . $children->name . '</option>';
+    <div role="form" aria-label="Filter Results">
+    
+        <ul id="filter">
+        <li class="sort_by">
+          Filter by:
+        </li>
+        <li>
+          <a id="clear" href="#" title="Show all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="35.848" height="35.794" viewBox="0 0 35.848 35.794"><circle fill="#c2c2c2" cx="17.999" cy="17.999" r="16.998"/><g fill="none"    stroke="#FFF" stroke-width="3" stroke-miterlimit="10"><path d="M11.485 24.513l13.027-13.028M24.512 24.513L11.485 11.485"/></g></svg>Show all      
+          </a>
+        </li>
+        <?php
+            //get filters
+            //foreach filter print button
+            //set current filter
+            //reflect that in filter box
+            //
+            $filter_parent_terms = get_terms('filters', array(
+                'hide_empty' => false,
+                'parent' => 0
+            ));
+            foreach ($filter_parent_terms as $parent) {
+                 echo '<li class="select">
+                         <select>' . '<option>' . $parent->name . '</option>';
+    
+                 foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
+                    if ($child->slug == 'arts-sci-all-divisions') {
+                        echo '<option value=".arts-sci-arts, .arts-sci-humanities, .arts-sci-natural-sci, .arts-sci-social-sci, .arts-sci-all-divisions">' . $child->name . '</option>';
+                        $childrens = get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $child->term_id ) );
+                        foreach ( $childrens as $children ) {
+                            echo '<option value=".' . $children->slug . '">&emsp;' . $children->name . '</option>';
+                        }
+                    } else {
+                        echo '<option value=".' . $child->slug . '">' . $child->name . '</option>';
                     }
-                } else {
-                    echo '<option value=".' . $child->slug . '">' . $child->name . '</option>';
-                }
-             }
-
-             echo '</select>        
-                   </li>';
-        }
-
-        //print_r($filterneum_terms);
-        // foreach ($terms as $term) {
-        //     echo '<li>
-        //             <button data-filter=".' . $term->slug . '">' . $term->name . ' <div class="udub-slant"><span></span></div></button>        
-        //           </li>';
-        //     print_r($term);
-        // }
-    ?>
-      <li class="search_slash">
-        <a title="Search button" id="searcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="26.396" height="55.35" viewBox="0 0 26.396 55.35" aria-hidden="true"><path fill="#4B2E83" d="M2.146 20.753l5.372-5.365c1.378.973 3.054 1.55 4.866 1.55h.002c4.672 0 8.473-3.8 8.473-8.47C20.857 3.798 17.057 0 12.385 0c-4.67 0-8.47 3.8-8.47 8.468 0 1.763.543 3.4 1.468 4.758L0 18.603l2.146 2.15zm10.24-17.917c3.11 0 5.64 2.526 5.64 5.632 0 3.107-2.53 5.635-5.64 5.635-3.106 0-5.634-2.528-5.634-5.635 0-3.104 2.527-5.63 5.634-5.632zm6.22 32.162c0-.414-.162-.804-.455-1.095-.585-.59-1.605-.59-2.193 0l-5.588 5.583-5.585-5.584c-.588-.588-1.612-.587-2.195 0-.294.292-.456.682-.456 1.096s.162.804.455 1.098l5.585 5.586-5.587 5.586c-.294.295-.456.687-.455 1.102 0 .413.163.8.45 1.087.58.593 1.614.597 2.2.004l5.585-5.584 5.584 5.582c.29.297.683.46 1.1.46s.81-.163 1.097-.455c.292-.292.454-.68.455-1.093.002-.415-.16-.807-.455-1.102l-5.586-5.586 5.587-5.586c.294-.294.455-.684.455-1.098z"/></svg></a>        
-      </li>
-    </ul>
-
-    <div id="searcher_wrap">
-      <input type="text" class="quicksearch" placeholder="Start typing" />
+                 }
+    
+                 echo '</select>        
+                       </li>';
+            }
+    
+            //print_r($filterneum_terms);
+            // foreach ($terms as $term) {
+            //     echo '<li>
+            //             <button data-filter=".' . $term->slug . '">' . $term->name . ' <div class="udub-slant"><span></span></div></button>        
+            //           </li>';
+            //     print_r($term);
+            // }
+        ?>
+          <li class="search_slash">
+            <a title="Search button" id="searcher" href="#">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+               width="22.889px" height="59.075px" viewBox="0 0 22.889 59.075" enable-background="new 0 0 22.889 59.075" xml:space="preserve">
+            <path fill="#4C2E84" d="M13.676,0.294c-4.998,0-9.063,4.067-9.063,9.065c0,1.897,0.587,3.658,1.587,5.116l-5.751,5.744l2.225,2.229
+              l5.734-5.726c1.486,1.067,3.302,1.703,5.267,1.703h0.002c4.998,0,9.064-4.067,9.064-9.066C22.741,4.361,18.674,0.294,13.676,0.294z
+               M19.824,9.359c0,3.385-2.754,6.14-6.139,6.14c-3.389,0-6.147-2.754-6.149-6.14c0-3.384,2.759-6.137,6.149-6.137
+              C17.07,3.223,19.824,5.976,19.824,9.359z"/>
+            <line fill="none" stroke="#B8A678" stroke-width="3.5" stroke-miterlimit="10" x1="1.396" y1="52.409" x2="19.614" y2="34.191"/>
+            <line fill="none" stroke="#B8A678" stroke-width="3.5" stroke-miterlimit="10" x1="19.614" y1="52.409" x2="1.396" y2="34.191"/>
+            </svg>
+            </a>        
+          </li>
+        </ul>
+    
+    
+    
+        <div role="search" id="searcher_wrap">
+          <input type="text" class="quicksearch" placeholder="Start typing" />
+        </div>
+      
     </div>
-  
+
 
     <!-- Add this to  ontouchstart="this.classList.toggle('hover');" -->
     <?php
@@ -129,14 +145,14 @@
 
     ?>
 
-    <div id="main-content">
+    <div id="main-content" role="main">
          
          <!-- This hides the stuttering of tiles during load -->
         <div id="overlay"></div>
 
-         <div class="grid">
+         <ul class="grid">
 
-         <div class="grid-sizer"></div>
+         <li class="grid-sizer"></li>
 
          <!-- FILTER BOX -->
          <?php 
@@ -202,19 +218,15 @@
             $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' );
             $factimageurlhigh = $factimageurlhigh[0];
             ?>
-                <div tabindex="0" data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
-                    <div >
-                      <div class="front">
-                        <h3><?php echo $fact->post_title; ?></h3>
-                      </div>
-                    </div>
-                  </div>
+                <li tabindex="0" data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
+                      <h3><?php echo $fact->post_title; ?></h3>
+                </li>
             <?php
            }
 
            //spit out html 
            ?>
-            <div tabindex="0" data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
+            <li tabindex="0" data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
             <div class="flipper">
               <div class="front" style="<?php echo 'background-image:url(' . $personimageurl . ');'; ?> ">
               </div>
@@ -240,7 +252,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </li>
 
 
 
@@ -252,7 +264,7 @@
         ?>
 
 
-         </div>   
+         </ul>   
 
     </div>
     
