@@ -410,7 +410,9 @@ div#thin-strip ul li a.slash:after {
   margin: 5px 5px 0 0;
   display: inline-block;
 }
-#husky100 .full-bio a:hover {
+#husky100 .full-bio a:hover,
+#husky100 .full-bio a:active,
+#husky100 .full-bio a:focus {
   background-color: #b7a57a;
 }
 #husky100 .full-bio .bio-info p {
@@ -661,6 +663,9 @@ div#thin-strip ul li a.slash:after {
 #husky100 .grid-item.infographic img {
   display: none;
 }
+#husky100 .grid-item.infographic:focus {
+  background-color: #b7a57a;
+}
 #husky100 .grid-item.infographic h3 {
   font-weight: 900;
   text-transform: uppercase;
@@ -736,8 +741,27 @@ div#thin-strip ul li a.slash:after {
 }
 #husky100 ul#filter li.select:hover select,
 #husky100 ul#filter li.select:active select,
-#husky100 ul#filter li.select:focus select {
+#husky100 ul#filter li.select:focus select,
+#husky100 ul#filter li.select:hover label,
+#husky100 ul#filter li.select:active label,
+#husky100 ul#filter li.select:focus label {
   background-color: #ECECEC;
+}
+#husky100 ul#filter li.select label {
+  position: absolute;
+  z-index: 999;
+  background-color: #FFF;
+  left: 12px;
+  top: 2px;
+  bottom: 2px;
+  right: 45px;
+  text-align: left;
+  padding: 4px 0 0 12px;
+  pointer-events: none;
+  font-family: "Encode Sans Compressed", sans-serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #4b2e83;
 }
 #husky100 ul#filter li.select:after,
 #husky100 ul#filter li.select:before {
@@ -848,6 +872,11 @@ div#thin-strip ul li a.slash:after {
 #husky100 #searcher:hover path,
 #husky100 #searcher:focus path {
   fill: #b7a57a;
+}
+#husky100 #searcher:focus {
+  border: 1px solid #4D90FE;
+  -webkit-box-shadow: 0px 0px 5px #4d90fe;
+  box-shadow: 0px 0px 5px #4d90fe;
 }
 #husky100 div#searcher_wrap {
   text-align: center;

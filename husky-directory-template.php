@@ -79,8 +79,9 @@
                 'parent' => 0
             ));
             foreach ($filter_parent_terms as $parent) {
-                 echo '<li class="select">
-                         <select>' . '<option>' . $parent->name . '</option>';
+                 echo '<li class="select">' .
+                        '<label>' . $parent->name . '</label>' .
+                         '<select>';
     
                  foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                     if ($child->slug == 'arts-sci-all-divisions') {
@@ -108,7 +109,7 @@
         ?>
           <li class="search_slash">
             <a title="Search button" id="searcher" href="#">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            <svg version="1.1" aria-hidden="true" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                width="22.889px" height="59.075px" viewBox="0 0 22.889 59.075" enable-background="new 0 0 22.889 59.075" xml:space="preserve">
             <path fill="#4C2E84" d="M13.676,0.294c-4.998,0-9.063,4.067-9.063,9.065c0,1.897,0.587,3.658,1.587,5.116l-5.751,5.744l2.225,2.229
               l5.734-5.726c1.486,1.067,3.302,1.703,5.267,1.703h0.002c4.998,0,9.064-4.067,9.064-9.066C22.741,4.361,18.674,0.294,13.676,0.294z
