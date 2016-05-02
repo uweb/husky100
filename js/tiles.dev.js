@@ -195,7 +195,6 @@ $(window).load(function(){
         });
       })
 
-                 
    //  });
 
 });  
@@ -214,3 +213,9 @@ function debounce( fn, threshold ) {
     timeout = setTimeout( delayed, threshold || 100 );
   }
 }
+
+// IE10 fix for select menu issue
+if ("onpropertychange" in document && !!window.matchMedia) {
+  $("html").addClass("ie10");
+}
+

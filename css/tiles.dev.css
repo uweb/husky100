@@ -1216,3 +1216,6 @@ div#thin-strip ul li a.slash:after {
   -ms-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
 }
+.ie10 #husky100 ul#filter li.select label {
+  position: static;
+}

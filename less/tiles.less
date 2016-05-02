@@ -6,6 +6,7 @@
 @import "../../template-hierarchy/less/parts/module-hero-image.less";
 @import "../../template-hierarchy/less/parts/fonts.less";
 
+
 #husky100 { 
   div#thin-strip {
     top: 0;
@@ -1013,5 +1014,11 @@
 /* back, initially hidden pane */
 .back {
   .rotateY(-180deg);
+}
+
+
+// IE10 
+.ie10 #husky100 ul#filter li.select label {
+  position: static;
 }
 
