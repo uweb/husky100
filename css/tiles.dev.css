@@ -416,9 +416,9 @@ div#thin-strip ul li a.slash:after {
   margin: 5px 5px 0 0;
   display: inline-block;
 }
-#husky100 .full-bio a:hover,
-#husky100 .full-bio a:active,
-#husky100 .full-bio a:focus {
+#husky100 .full-bio .tags a:hover,
+#husky100 .full-bio .tags a:active,
+#husky100 .full-bio .tags a:focus {
   background-color: #b7a57a;
 }
 #husky100 .full-bio .bio-info p {
