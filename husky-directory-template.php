@@ -6,7 +6,9 @@
         <meta charset="utf-8">
         <meta name="description" content="<?php bloginfo('description', 'display'); ?>">
         <meta name="viewport" content="width=device-width">
+        <meta property="og:image" content="http://www.washington.edu/husky100/files/2016/05/husky100-badge-lg.png">
 
+        
         <?php wp_head(); ?>
 
         <!--[if lt IE 9]>
