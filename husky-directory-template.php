@@ -19,7 +19,13 @@
       <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/thinstrip.css' ?>' type='text/css' media='all' />
       <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/module-hero-image.css' ?>' type='text/css' media='all' />
 
-      
+      <!--[if IE 9]>
+          <style>
+           html #husky100 ul#filter li.select label {
+            position: static;
+          }
+          </style>
+      <![endif]-->
 
     </head>
     <body <?php body_class(); ?> id="husky100">
