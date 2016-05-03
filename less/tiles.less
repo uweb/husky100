@@ -76,6 +76,12 @@
     margin-left: 49.8%;
     overflow: hidden;
     padding: 40px 50px 50px;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // &:focus {
+    //   outline: none;
+    // }
     p {
       font-size: 14px;
       line-height: 1.5;
@@ -862,8 +868,11 @@
         }
       }
     }
-
+    
     .grid-item {
+      &.featured.open {
+        height: 900px;
+      }
       &.open {
         height: 900px;
         .flipper {

@@ -1087,6 +1087,9 @@ div#thin-strip ul li a.slash:after {
     width: 100%;
     margin: 0;
   }
+  #husky100 .grid-item.featured.open {
+    height: 900px;
+  }
   #husky100 .grid-item.open {
     height: 900px;
   }

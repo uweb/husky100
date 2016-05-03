@@ -87,6 +87,7 @@ $(window).load(function(){
         if( !$this.hasClass('open') && !$this.hasClass('special') ) {
           $('.grid-item').removeClass('open')
           $this.addClass('open');
+          // $this.find('h2').focus();
           // Switch image
           imageSwitch($this);                           
 
