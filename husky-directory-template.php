@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width">
         <meta property="og:image" content="http://www.washington.edu/husky100/files/2016/05/husky100-badge-lg.png">
 
-        
+
         <?php wp_head(); ?>
 
         <!--[if lt IE 9]>
@@ -250,6 +250,7 @@
                 <div class="bio-info">
                   <p><?php echo $hometown; ?></p>
                   <p><?php echo $major; ?></p>                
+                  <p><?php echo $minor; ?></p>                
                 </div>
                 <div class="bio-text">
                   <p><?php echo $person->post_content; ?></p>
