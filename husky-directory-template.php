@@ -236,7 +236,7 @@
            //spit out html 
            ?>
             <li tabindex="0" data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
-            <div class="flipper" role="button" aria-expanded="false" aria-haspopup>
+            <div class="flipper" role="button" aria-expanded="false">
               <div class="front" style="<?php echo 'background-image:url(' . $personimageurl . ');'; ?> ">
               </div>
               <div class="back">
