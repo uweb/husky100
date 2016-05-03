@@ -96,10 +96,10 @@
                         echo '<option value=".arts-sci-arts, .arts-sci-humanities, .arts-sci-natural-sci, .arts-sci-social-sci, .arts-sci-all-divisions">' . $child->name . '</option>';
                         $childrens = get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $child->term_id ) );
                         foreach ( $childrens as $children ) {
-                            echo '<option value=".' . $children->slug . '">&emsp;' . $children->name . '</option>';
+                            echo ( ($children->count > 0) ? '<option value=".' . $children->slug . '">&emsp;' . $children->name . '</option>' : '');
                         }
                     } else {
-                        echo '<option value=".' . $child->slug . '">' . $child->name . '</option>';
+                        echo ( ($child->count > 0) ? '<option value=".' . $child->slug . '">' . $child->name . '</option>' : '');
                     }
                  }
     
