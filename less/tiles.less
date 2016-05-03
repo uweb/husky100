@@ -572,6 +572,11 @@
         display: inline;
       }
     }
+    .labelToggle {
+      label {
+        display: none;
+      }
+    }
     #clear {
       color: #A5A5A5;
       font-weight: bold;
@@ -698,7 +703,9 @@
       cursor: pointer;
       background-color: @purple;
       padding: 15px;
-      h3 {
+      p.back-title {
+        font-family: @font-family-headline;        
+        font-weight: 900;
         color: white;
         text-transform: uppercase;
         margin: 0 0 5px;

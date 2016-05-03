@@ -67,9 +67,18 @@ $(window).load(function(){
         });
       }         
 
+      // Add and remove ARIA tags 
+      function aria(el){
+        var fullBio = el.find('.full-bio'),
+            flipper = el.find('.flipper'),
+            hiddenCheck = fullBio.attr( 'aria-hidden', false ) === false ? true : false,
+            expandedCheck = flipper.attr( 'aria-expanded', true ) === true ? false : true;
 
+        fullBio.attr( 'aria-hidden', hiddenCheck )        
+        flipper.attr( 'aria-expanded', expandedCheck ) 
+      }
 
-      // Main portion that opens and closes the 
+      // Main portion that opens and closes the tiles
       $grid.on( 'click', '.grid-item', function() {
         var $this = $(this),
             dataCheck = $this.data('name'),
@@ -85,9 +94,15 @@ $(window).load(function(){
           scrollIt($this)
 
           // Add data attribute 'name' to URL has
-          window.location.hash = dataName;          
+          window.location.hash = dataName;  
+
+          // Switch ARIA tags
+          aria($this)
+     
         } else {
           $this.removeClass('open')
+          // Switch ARIA tags
+          aria($this)
         }
         $grid.isotope();                
       });              
@@ -105,6 +120,7 @@ $(window).load(function(){
         $('select').prop('selectedIndex',0);
         $('.grid-item').removeClass('open');
         $filter.removeClass('select_active')
+        $filter.find('li').removeClass('labelToggle')
         window.location.hash = '';          
         $grid.isotope({ filter: ':not(.title-card)' });
       })
@@ -114,7 +130,7 @@ $(window).load(function(){
         // get filter value from option value
         var filterValue = this.value;
         $filter.addClass('select_active')
-
+        $(this).parent('li').addClass('labelToggle')
         // use filterFn if matches value
         filterValue = filterValue;
         $grid.isotope({ filter: filterValue });
@@ -174,6 +190,9 @@ $(window).load(function(){
 
           // Scroll-to portion
           scrollIt($dataName)          
+
+          // Switch ARIA tags
+          aria($dataName)
 
       }               
 

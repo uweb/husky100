@@ -236,15 +236,15 @@
            //spit out html 
            ?>
             <li tabindex="0" data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
-            <div class="flipper" role="button">
+            <div class="flipper" role="button" aria-expanded="false" aria-haspopup>
               <div class="front" style="<?php echo 'background-image:url(' . $personimageurl . ');'; ?> ">
               </div>
               <div class="back">
-                <h3><?php echo $person->post_title; ?></h3>
+                <p class="back-title"><?php echo $person->post_title; ?></p>
                 <!-- <p><?php echo $hometown; ?></p> -->
                 <p class="major"><?php echo $major; ?></p> 
               </div>
-              <div tabindex="0" class="full-bio">
+              <div tabindex="0" class="full-bio" aria-hidden="true">
                 <h2><?php echo $person->post_title; ?>
                 <?php echo !empty($linkedin) ? '<a target="_blank" class="linkedin" href="' . $linkedin . '">LinkedIn</a>' : '' ?></h2>
                 <div class="bio-info">

@@ -827,6 +827,9 @@ div#thin-strip ul li a.slash:after {
   margin: 0 10px 0 20px;
   display: inline;
 }
+#husky100 ul#filter .labelToggle label {
+  display: none;
+}
 #husky100 ul#filter #clear {
   color: #A5A5A5;
   font-weight: bold;
@@ -949,7 +952,9 @@ div#thin-strip ul li a.slash:after {
   background-color: #4b2e83;
   padding: 15px;
 }
-#husky100 .grid-item .back h3 {
+#husky100 .grid-item .back p.back-title {
+  font-family: "Encode Sans Compressed", sans-serif;
+  font-weight: 900;
   color: white;
   text-transform: uppercase;
   margin: 0 0 5px;
