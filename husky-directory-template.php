@@ -89,7 +89,7 @@
             foreach ($filter_parent_terms as $parent) {
                  echo '<li class="select">' .
                         '<label>' . $parent->name . '</label>' .
-                         '<select>';
+                         '<select><option>' . 'Select a ' . $parent->name . '</option>';
     
                  foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                     if ($child->slug == 'arts-sci-all-divisions') {
@@ -236,7 +236,7 @@
            //spit out html 
            ?>
             <li tabindex="0" data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
-            <div class="flipper">
+            <div class="flipper" role="button">
               <div class="front" style="<?php echo 'background-image:url(' . $personimageurl . ');'; ?> ">
               </div>
               <div class="back">
