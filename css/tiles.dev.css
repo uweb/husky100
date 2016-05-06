@@ -677,11 +677,10 @@ div#thin-strip ul li a.slash:after {
   text-transform: uppercase;
   text-align: right;
   color: #FFF;
-  font-style: italic;
   position: absolute;
   bottom: 10px;
   right: 50px;
-  font-size: 24px;
+  font-size: 23px;
   padding-left: 20px;
 }
 #husky100 .grid-item.infographic h3:after {
