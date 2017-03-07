@@ -177,12 +177,15 @@ if ( ! post_type_exists( 'husky100' ) ):
 		return $template;
 	}
 
-
 endif;
 
 if (!taxonomy_exists('filters')):
 
 	add_action('init', 'filters_taxonomy');
+	add_action('restrict_manage_posts','restrict_people_by_year');
+	add_filter('parse_query','convert_husky100_id_to_taxonomy_term_in_query');
+	//add_action('manage_husky100_posts_columns', 'add_year_column_to_husky100_list');
+	//add_action('manage_posts_custom_column', 'show_year_column_for_husky100_list',10,2);
 
 	function filters_taxonomy() {
 		register_taxonomy('filters', 'husky100', array(
@@ -202,6 +205,10 @@ if (!taxonomy_exists('filters')):
 				'not_found' => 'No filters found.'
 			),
 			'hierarchical'  => true,
+			'public'=>true,
+	        'hierarchical'=>true,
+	        'show_ui'=>true,
+	        'query_var'=>true
 			//'show_ui'	  	=> false
 		));
 		register_taxonomy_for_object_type('filters', 'husky100');
@@ -215,6 +222,9 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Year', 'filters')){
 			wp_insert_term('Year', 'filters');
+		}
+		if(!get_term('Year Awarded', 'filters')){
+			wp_insert_term('Year Awarded', 'filters');
 		}
 		//Discipline
 		$parent_term = term_exists( 'Discipline', 'filters' ); // array is returned if taxonomy is given
@@ -456,6 +466,112 @@ if (!taxonomy_exists('filters')):
 			);
 		}
 
+		//Year awarded
+		$parent_term_year_awarded = term_exists( 'Year Awarded', 'filters' ); // array is returned if taxonomy is given
+		$parent_term_year_awarded_id = $parent_term_year_awarded['term_id']; // get numeric term id
+		if(!get_term('2016', 'filters')){
+			wp_insert_term(
+			  '2016', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_year_awarded_id
+			  )
+			);
+		}
+		if(!get_term('2017', 'filters')){
+			wp_insert_term(
+			  '2017', // the term 
+			  'filters', // the taxonomy
+			  array(
+			    'parent'=> $parent_term_year_awarded_id
+			  )
+			);
+		}
+
+	}
+
+
+	function restrict_people_by_year() {
+	    global $typenow;
+	    global $wp_query;
+	    if ($typenow=='husky100') {
+	        $taxonomy = 'filters';
+	        $filters_taxonomy = get_taxonomy($taxonomy);
+	        $year_id = term_exists( 'Year Awarded', 'filters');
+	        $term = isset($wp_query->query['filters']) ? $wp_query->query['filters'] :'';
+	        wp_dropdown_categories(array(
+	            'show_option_all' =>  __("All years awarded"),
+	            'taxonomy'        =>  $taxonomy,
+	            'name'            =>  'filters',
+	            //'term'			  =>  'year-awarded',
+	            //'orderby'         =>  'name',
+	            'child_of'		  =>  $year_id['term_id'],
+	            'selected'        =>  $term,
+	            'hierarchical'    =>  true,
+	            'depth'           =>  3,
+	            'show_count'      =>  true, // Show # listings in parens
+	            'hide_empty'      =>  false, // Don't show filters w/o people
+	        ));
+	    }
+	}
+
+	function convert_husky100_id_to_taxonomy_term_in_query($query) {
+	    global $pagenow;
+	    $qv = &$query->query_vars;
+	    if ($pagenow=='edit.php' &&
+	            isset($qv['taxonomy']) && $qv['taxonomy']=='filters' &&
+	            isset($qv['term']) && is_numeric($qv['term'])) {
+	        $term = get_term_by('id',$qv['term'],'filters');
+	        $qv['term'] = $term;
+	    }
+
+	    // global $pagenow;
+	    // $type = 'post';
+	    // if (isset($_GET['post_type'])) {
+	    //     $type = $_GET['post_type'];
+	    // }
+	    // if ( 'husky100' == $type && is_admin() && $pagenow=='edit.php' && isset($_GET['filters']) && $_GET['filters'] != '') {
+	    //     $query->query_vars['meta_key'] = 'filters';
+	    //     $query->query_vars['meta_value'] = get_term($_GET['filters'], 'filters');
+	    // }
+	}
+
+	function add_year_column_to_husky100_list( $posts_columns ) {
+	    if (!isset($posts_columns['date'])) {
+	        $new_posts_columns = $posts_columns;
+	    } else {
+	        $new_posts_columns = array();
+	        $index = 0;
+	        foreach($posts_columns as $key => $posts_column) {
+	            if ($key=='date')
+	                $new_posts_columns['filters'] = null;
+	            $new_posts_columns[$key] = $posts_column;
+	        }
+	    }
+	    $new_posts_columns['filters'] = 'Filters';
+	    return $new_posts_columns;
+	}
+
+	
+	function show_year_column_for_husky100_list( $column_name,$post_id ) {
+	    global $typenow;
+	    if ($typenow=='husky100') {
+	        $taxonomy = 'filters';
+	        switch ($column_name) {
+	        case 'filters':
+	            $filters = get_the_terms($post_id,$taxonomy);
+	            if (is_array($filters)) {
+	                foreach($filters as $key => $filter) {
+	                    // $edit_link = get_term_link($filter,$taxonomy);
+	                    // $filters[$key] = '<a href="'.$edit_link.'">' . $filter->name . '</a>';
+	                    $filters[$key] = $filter->name;
+	                }
+	                //echo implode("<br/>",$filters);
+	                echo implode(' | ',$filters);
+	            }
+	            break;
+	        }
+	    }
 	}
 
 endif;
@@ -536,5 +652,7 @@ if ( ! post_type_exists( 'fastfacts' ) ):
 	}
 
 endif;
+
+
 
 ?>
