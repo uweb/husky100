@@ -518,11 +518,11 @@ if (!taxonomy_exists('filters')):
 	function convert_husky100_id_to_taxonomy_term_in_query($query) {
 	    global $pagenow;
 	    $qv = &$query->query_vars;
-//	    print_r($qv);
+	    //print_r($qv);
 	    if ($pagenow=='edit.php' &&
-	            isset($qv['taxonomy']) && $qv['taxonomy']=='filters' &&
 	            isset($qv['term']) && is_numeric($qv['term'])) {
 	        $term = get_term_by('id',$qv['term'],'filters');
+	    	print_r($term);
 	        $qv['term'] = $term;
 	    }
 
