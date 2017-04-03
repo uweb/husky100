@@ -143,7 +143,17 @@
     <?php
     //sort of students will all occur here
         
-    $args = array('post_type' => 'husky100', 'posts_per_page' => -1);
+    $args = array(
+      'post_type' => 'husky100', 
+      'posts_per_page' => -1,
+      'tax_query' => array(
+          array(
+            'taxonomy' => 'filters',
+            'field'    => 'slug',
+            'terms'    => '2016',
+          ),
+        ),
+      );
     $query = new WP_Query($args);
     $people = $query->get_posts(); 
     shuffle($people);
