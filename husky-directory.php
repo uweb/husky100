@@ -461,7 +461,7 @@ if (!taxonomy_exists('filters')):
 			  'Undergrad', // the term 
 			  'filters', // the taxonomy
 			  array(
-			    'slug' => 'year-awarded',
+			    'slug' => 'year-awarded-the-husky-100',
 			    'parent'=> $parent_term_year_id
 			  )
 			);
