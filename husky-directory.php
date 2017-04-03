@@ -182,8 +182,8 @@ endif;
 if (!taxonomy_exists('filters')):
 
 	add_action('init', 'filters_taxonomy');
-	add_action('restrict_manage_posts','restrict_people_by_year');
-	add_filter('parse_query','convert_husky100_id_to_taxonomy_term_in_query');
+	//add_action('restrict_manage_posts','restrict_people_by_year');
+	//add_filter('parse_query','convert_husky100_id_to_taxonomy_term_in_query');
 	//add_action('manage_husky100_posts_columns', 'add_year_column_to_husky100_list');
 	//add_action('manage_posts_custom_column', 'show_year_column_for_husky100_list',10,2);
 
@@ -224,7 +224,7 @@ if (!taxonomy_exists('filters')):
 			wp_insert_term('Year', 'filters');
 		}
 		if(!get_term('Year Awarded', 'filters')){
-			wp_insert_term('Year Awarded', 'filters');
+			wp_insert_term('Year Awarded', 'filters', array('slug' => 'year-awarded-the-husky-100'));
 		}
 		//Discipline
 		$parent_term = term_exists( 'Discipline', 'filters' ); // array is returned if taxonomy is given
@@ -467,28 +467,28 @@ if (!taxonomy_exists('filters')):
 		}
 
 		//Year awarded
-		// $parent_term_year_awarded = term_exists( 'Year Awarded', 'filters' ); // array is returned if taxonomy is given
-		// $parent_term_year_awarded_id = $parent_term_year_awarded['term_id']; // get numeric term id
-		// if(!get_term('2016', 'filters')){
-		// 	wp_insert_term(
-		// 	  '2016', // the term 
-		// 	  'filters', // the taxonomy
-		// 	  array(
-		// 	  	'slug' => '2016',
-		// 	    'parent'=> $parent_term_year_awarded_id
-		// 	  )
-		// 	);
-		// }
-		// if(!get_term('2017', 'filters')){
-		// 	wp_insert_term(
-		// 	  '2017', // the term 
-		// 	  'filters', // the taxonomy
-		// 	  array(
-		// 	  	'slug' => '2017',
-		// 	    'parent'=> $parent_term_year_awarded_id
-		// 	  )
-		// 	);
-		// }
+		$parent_term_year_awarded = term_exists( 'Year Awarded', 'filters' ); // array is returned if taxonomy is given
+		$parent_term_year_awarded_id = $parent_term_year_awarded['term_id']; // get numeric term id
+		if(!get_term('2016', 'filters')){
+			wp_insert_term(
+			  '2016', // the term 
+			  'filters', // the taxonomy
+			  array(
+			  	'slug' => '2016',
+			    'parent'=> $parent_term_year_awarded_id
+			  )
+			);
+		}
+		if(!get_term('2017', 'filters')){
+			wp_insert_term(
+			  '2017', // the term 
+			  'filters', // the taxonomy
+			  array(
+			  	'slug' => '2017',
+			    'parent'=> $parent_term_year_awarded_id
+			  )
+			);
+		}
 
 	}
 
