@@ -461,35 +461,34 @@ if (!taxonomy_exists('filters')):
 			  'Undergrad', // the term 
 			  'filters', // the taxonomy
 			  array(
-			    'slug' => 'year-awarded-the-husky-100',
 			    'parent'=> $parent_term_year_id
 			  )
 			);
 		}
 
 		//Year awarded
-		$parent_term_year_awarded = term_exists( 'Year Awarded', 'filters' ); // array is returned if taxonomy is given
-		$parent_term_year_awarded_id = $parent_term_year_awarded['term_id']; // get numeric term id
-		if(!get_term('2016', 'filters')){
-			wp_insert_term(
-			  '2016', // the term 
-			  'filters', // the taxonomy
-			  array(
-			  	'slug' => '2016',
-			    'parent'=> $parent_term_year_awarded_id
-			  )
-			);
-		}
-		if(!get_term('2017', 'filters')){
-			wp_insert_term(
-			  '2017', // the term 
-			  'filters', // the taxonomy
-			  array(
-			  	'slug' => '2017',
-			    'parent'=> $parent_term_year_awarded_id
-			  )
-			);
-		}
+		// $parent_term_year_awarded = term_exists( 'Year Awarded', 'filters' ); // array is returned if taxonomy is given
+		// $parent_term_year_awarded_id = $parent_term_year_awarded['term_id']; // get numeric term id
+		// if(!get_term('2016', 'filters')){
+		// 	wp_insert_term(
+		// 	  '2016', // the term 
+		// 	  'filters', // the taxonomy
+		// 	  array(
+		// 	  	'slug' => '2016',
+		// 	    'parent'=> $parent_term_year_awarded_id
+		// 	  )
+		// 	);
+		// }
+		// if(!get_term('2017', 'filters')){
+		// 	wp_insert_term(
+		// 	  '2017', // the term 
+		// 	  'filters', // the taxonomy
+		// 	  array(
+		// 	  	'slug' => '2017',
+		// 	    'parent'=> $parent_term_year_awarded_id
+		// 	  )
+		// 	);
+		// }
 
 	}
 
