@@ -486,9 +486,12 @@
       display: inline-block;
       position: relative;
       //margin-bottom: 20px;      
-      // Hide the year awarded
+      // The year awarded field
       &:nth-child(6) {
         display: none;
+        @media only screen and (min-width : 769px) {
+          select { width: 180px; }
+        }
       }
       &.select {
         &:hover select,

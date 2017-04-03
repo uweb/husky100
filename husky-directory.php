@@ -461,6 +461,7 @@ if (!taxonomy_exists('filters')):
 			  'Undergrad', // the term 
 			  'filters', // the taxonomy
 			  array(
+			    'slug' => 'year-awarded',
 			    'parent'=> $parent_term_year_id
 			  )
 			);
@@ -474,6 +475,7 @@ if (!taxonomy_exists('filters')):
 			  '2016', // the term 
 			  'filters', // the taxonomy
 			  array(
+			  	'slug' => '2016',
 			    'parent'=> $parent_term_year_awarded_id
 			  )
 			);
@@ -483,6 +485,7 @@ if (!taxonomy_exists('filters')):
 			  '2017', // the term 
 			  'filters', // the taxonomy
 			  array(
+			  	'slug' => '2017',
 			    'parent'=> $parent_term_year_awarded_id
 			  )
 			);
