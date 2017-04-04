@@ -146,7 +146,7 @@ $(window).load(function(){
           }
         });
         filterValueReturn = ( allarts ? '.arts-sci-arts'+filterValue+', .arts-sci-humanities'+filterValue+', .arts-sci-natural-sci'+filterValue+', .arts-sci-social-sci'+filterValue+', .arts-sci-all-divisions'+filterValue : filterValue );
-        console.log(filterValueReturn)
+        //console.log(filterValueReturn)
         // use filterFn if matches value
         filterValue = filterValue;
         $grid.isotope({ filter: filterValueReturn });
