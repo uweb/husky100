@@ -490,7 +490,7 @@ div#thin-strip ul li a.slash:after {
   display: none;
   width: 190px;
   height: 92px;
-  background: url(../assets/badge.png) 0 0 no-repeat;
+  background: url(../assets/husky100badge.png) 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   left: 0;
@@ -740,9 +740,6 @@ div#thin-strip ul li a.slash:after {
   list-style: none;
   display: inline-block;
   position: relative;
-}
-#husky100 ul#filter li:nth-child(6) {
-  display: none;
 }
 @media only screen and (min-width: 769px) {
   #husky100 ul#filter li:nth-child(6) select {

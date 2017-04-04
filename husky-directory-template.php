@@ -146,13 +146,13 @@
     $args = array(
       'post_type' => 'husky100', 
       'posts_per_page' => -1,
-      'tax_query' => array(
-          array(
-            'taxonomy' => 'filters',
-            'field'    => 'slug',
-            'terms'    => '2016',
-          ),
-        ),
+      // 'tax_query' => array(
+      //     array(
+      //       'taxonomy' => 'filters',
+      //       'field'    => 'slug',
+      //       'terms'    => '2016',
+      //     ),
+      //   ),
       );
     $query = new WP_Query($args);
     $people = $query->get_posts(); 
@@ -220,11 +220,15 @@
              $linkedin = "https://" . $linkedin;
            }
            $filters = wp_get_post_terms( $person->ID, 'filters' );
+           $yearawarded = "";
            $tags = wp_get_post_terms( $person->ID, 'tags' );
            //FEATURE: do tags also need to be classes? 
            $personclasses = "";
            foreach ($filters as $filter ) {
                $personclasses .= $filter->slug . " ";
+               if($filter->parent == "314" ) { //if parent is "year awarded"
+                $yearawarded = $filter->name;
+               }
            }
            if ( $peoplecount % $featureOffset == 3 ) {
                 $personclasses .= "featured ";
@@ -248,6 +252,13 @@
             <li tabindex="0" data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
             <div class="flipper" role="button" aria-expanded="false">
               <div class="front" style="<?php echo 'background-image:url(' . $personimageurl . ');'; ?> ">
+                <!-- <span class="badge"><span> 
+                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     width="10.583px" height="60px" viewBox="0 0 10.583 37.5" enable-background="new 0 0 10.583 37.5" xml:space="preserve">
+                  <line fill="none" stroke="#CACCCD" stroke-miterlimit="10" x1="10.053" y1="0.125" x2="0.484" y2="37.332"/>
+                  </svg>
+                  <?php //echo $yearawarded; ?>
+                </span></span> -->
               </div>
               <div class="back">
                 <p class="back-title"><?php echo $person->post_title; ?></p>
