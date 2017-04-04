@@ -1043,6 +1043,9 @@ div#thin-strip ul li a.slash:after {
   #husky100 .module-hero-image .container:after {
     display: none;
   }
+  #husky100 ul#filter li.select {
+    margin-bottom: 10px;
+  }
 }
 @media only screen and (max-width: 768px) {
   #husky100 .search_slash:before {

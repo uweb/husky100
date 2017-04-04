@@ -67,7 +67,7 @@
 
     <div role="form" aria-label="Filter Results">
     
-        <ul id="filter">
+        <ul id="filter" class="select_active">
         <li class="sort_by">
           Filter by:
         </li>
@@ -87,9 +87,9 @@
                 'parent' => 0
             ));
             foreach ($filter_parent_terms as $parent) {
-                 echo '<li class="select">' .
+                 echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':'') . '">' .
                         '<label>' . $parent->name . '</label>' .
-                         '<select><option>' . 'Select a ' . $parent->name . '</option>';
+                         '<select><option disabled>' . 'Select a ' . $parent->name . '</option><option class="viewall" value="">View all</option>';
     
                  foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                     if ($child->slug == 'arts-sci-all-divisions') {
@@ -99,7 +99,7 @@
                             echo ( ($children->count > 0) ? '<option value=".' . $children->slug . '">&emsp;' . $children->name . '</option>' : '');
                         }
                     } else {
-                        echo ( ($child->count > 0) ? '<option value=".' . $child->slug . '">' . $child->name . '</option>' : '');
+                        echo ( ($child->count > 0) ? '<option value=".' . $child->slug . '" ' . (($child->slug=='2017')?'selected':'') . '>' . $child->name . '</option>' : '');
                     }
                  }
     

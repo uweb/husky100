@@ -109,10 +109,10 @@ $(window).load(function(){
       });              
 
       // bind filter button click
-      $filter.on( 'click', 'button', function() {
-        var filterValue = $( this ).attr('data-filter');
-        $grid.isotope({ filter: filterValue });
-      }); 
+      // $filter.on( 'click', 'button', function() {
+      //   var filterValue = $( this ).attr('data-filter');
+      //   $grid.isotope({ filter: filterValue });
+      // }); 
 
       // Clear select menus and re-isotope
       $('#clear').on('click', function(el){
@@ -128,10 +128,19 @@ $(window).load(function(){
 
       // bind filter on select change
       $filter.on( 'change', 'select', function() {
+        if(this.value === ''){
+         $(this).parent('li').removeClass('labelToggle')
+        } else {
+          $(this).parent('li').addClass('labelToggle')
+        }
+
         // get filter value from option value
-        var filterValue = this.value;
+        var filterValue = '';
         $filter.addClass('select_active')
-        $(this).parent('li').addClass('labelToggle')
+        $('.labelToggle > select').each(function(){
+          filterValue += $( this ).val();
+        });
+        console.log(filterValue);
         // use filterFn if matches value
         filterValue = filterValue;
         $grid.isotope({ filter: filterValue });
