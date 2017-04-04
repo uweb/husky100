@@ -220,8 +220,8 @@ if (!taxonomy_exists('filters')):
 		if(!get_term('Campus', 'filters')){
 			wp_insert_term('Campus', 'filters');
 		}
-		if(!get_term('Year', 'filters')){
-			wp_insert_term('Year', 'filters');
+		if(!get_term('Class Standing', 'filters')){
+			wp_insert_term('Class Standing', 'filters', array('slug' => 'year'));
 		}
 		if(!get_term('Year Awarded', 'filters')){
 			wp_insert_term('Year Awarded', 'filters', array('slug' => 'year-awarded-the-husky-100'));
@@ -445,7 +445,7 @@ if (!taxonomy_exists('filters')):
 		}
 
 		//Year	
-		$parent_term_year = term_exists( 'Year', 'filters' ); // array is returned if taxonomy is given
+		$parent_term_year = term_exists( 'Class Standing', 'filters' ); // array is returned if taxonomy is given
 		$parent_term_year_id = $parent_term_year['term_id']; // get numeric term id
 		if(!get_term('Grad', 'filters')){
 			wp_insert_term(
