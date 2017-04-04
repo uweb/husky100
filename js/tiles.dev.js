@@ -136,14 +136,20 @@ $(window).load(function(){
 
         // get filter value from option value
         var filterValue = '';
+        var allarts = false;
         $filter.addClass('select_active')
         $('.labelToggle > select').each(function(){
-          filterValue += $( this ).val();
+          if($( this ).val() == '.arts-sci-arts, .arts-sci-humanities, .arts-sci-natural-sci, .arts-sci-social-sci, .arts-sci-all-divisions'){
+            allarts = true;
+          } else {
+            filterValue += $( this ).val();
+          }
         });
-        console.log(filterValue);
+        filterValueReturn = ( allarts ? '.arts-sci-arts'+filterValue+', .arts-sci-humanities'+filterValue+', .arts-sci-natural-sci'+filterValue+', .arts-sci-social-sci'+filterValue+', .arts-sci-all-divisions'+filterValue : filterValue );
+        console.log(filterValueReturn)
         // use filterFn if matches value
         filterValue = filterValue;
-        $grid.isotope({ filter: filterValue });
+        $grid.isotope({ filter: filterValueReturn });
       });
 
       // change is-checked class on buttons
