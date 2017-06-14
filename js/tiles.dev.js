@@ -32,11 +32,13 @@ $(window).load(function(){
       // use value of search field to filter
      var $quicksearch = $('.quicksearch').keyup( debounce( function() {
        qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+       var filterValueReturn = getFilterValue($filter);
+       //console.log(filterValueReturn)
        $grid.isotope({
          filter: function() {
            var $this = $(this);
            var search = qsRegex ? $this.text().match( qsRegex ) : true;
-           return search && $this.is( ':not(.title-card)' );
+           return search && $this.is( ':not(.title-card)' ) && $this.is(filterValueReturn);
          }
        });
      }, 200 ) );
@@ -133,23 +135,20 @@ $(window).load(function(){
         } else {
           $(this).parent('li').addClass('labelToggle')
         }
-
-        // get filter value from option value
-        var filterValue = '';
-        var allarts = false;
-        $filter.addClass('select_active')
-        $('.labelToggle > select').each(function(){
-          if($( this ).val() == '.arts-sci-arts, .arts-sci-humanities, .arts-sci-natural-sci, .arts-sci-social-sci, .arts-sci-all-divisions'){
-            allarts = true;
-          } else {
-            filterValue += $( this ).val();
-          }
-        });
-        filterValueReturn = ( allarts ? '.arts-sci-arts'+filterValue+', .arts-sci-humanities'+filterValue+', .arts-sci-natural-sci'+filterValue+', .arts-sci-social-sci'+filterValue+', .arts-sci-all-divisions'+filterValue : filterValue );
-        //console.log(filterValueReturn)
+        filterValueReturn = getFilterValue($filter);
+        console.log(filterValueReturn)
+        //ADDINSEARCHHERE
         // use filterFn if matches value
-        filterValue = filterValue;
-        $grid.isotope({ filter: filterValueReturn });
+        //filterValue = filterValue;
+       var qsRegex = new RegExp( $('.quicksearch').val(), 'gi' );
+       var filterValueReturn = getFilterValue($filter);
+       $grid.isotope({
+         filter: function() {
+           var $this = $(this);
+           var search = qsRegex ? $this.text().match( qsRegex ) : true;
+           return search && $this.is( ':not(.title-card)' ) && $this.is(filterValueReturn);
+         }
+       });
       });
 
       // change is-checked class on buttons
@@ -252,5 +251,24 @@ function debounce( fn, threshold ) {
 // IE10 fix for select menu issue
 if ("onpropertychange" in document && !!window.matchMedia) {
   $("html").addClass("ie10");
+}
+
+function getFilterValue( $filter ) {
+
+  // get filter value from option value
+    
+    var filterValue = '';
+    var allarts = false;
+    $filter.addClass('select_active')
+    $('.labelToggle > select').each(function(){
+      if($( this ).val() == '.arts-sci-arts, .arts-sci-humanities, .arts-sci-natural-sci, .arts-sci-social-sci, .arts-sci-all-divisions'){
+        allarts = true;
+      } else {
+        filterValue += $( this ).val();
+      }
+    });
+    filterValueReturn = ( allarts ? '.arts-sci-arts'+filterValue+', .arts-sci-humanities'+filterValue+', .arts-sci-natural-sci'+filterValue+', .arts-sci-social-sci'+filterValue+', .arts-sci-all-divisions'+filterValue : filterValue );
+    return filterValueReturn;   
+
 }
 
