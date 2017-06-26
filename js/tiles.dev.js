@@ -32,7 +32,7 @@ $(window).load(function(){
       // use value of search field to filter
      var $quicksearch = $('.quicksearch').keyup( debounce( function() {
        qsRegex = new RegExp( $quicksearch.val(), 'gi' );
-       var filterValueReturn = getFilterValue($filter);
+       var filterValueReturn = getFilterValue($filter) ? getFilterValue($filter) : '*';
        //console.log(filterValueReturn)
        $grid.isotope({
          filter: function() {
@@ -135,13 +135,9 @@ $(window).load(function(){
         } else {
           $(this).parent('li').addClass('labelToggle')
         }
-        filterValueReturn = getFilterValue($filter);
-        console.log(filterValueReturn)
-        //ADDINSEARCHHERE
-        // use filterFn if matches value
-        //filterValue = filterValue;
        var qsRegex = new RegExp( $('.quicksearch').val(), 'gi' );
-       var filterValueReturn = getFilterValue($filter);
+       var filterValueReturn = getFilterValue($filter) ? getFilterValue($filter) : '*';
+
        $grid.isotope({
          filter: function() {
            var $this = $(this);
