@@ -428,6 +428,10 @@ div#thin-strip ul li a.slash:after {
   -webkit-font-smoothing: initial;
   font-family: "Uni sans", sans-serif;
 }
+#husky100 .full-bio .bio-info .year-awarded {
+  color: #4b2e83;
+  font-weight: bold;
+}
 #husky100 .full-bio .bio-text {
   margin: 10px -10px 20px 0;
   padding-right: 10px;

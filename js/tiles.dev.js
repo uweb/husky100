@@ -16,7 +16,7 @@ $(window).load(function(){
         masonry: {
           columnWidth: '.grid-sizer'
         },
-        filter: '.2017:not(.title-card)',
+        filter: '.2018:not(.title-card)',
       });
 
       // Remove overlay once all is loaded
