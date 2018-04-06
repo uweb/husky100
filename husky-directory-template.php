@@ -99,7 +99,7 @@
                             echo ( ($children->count > 0) ? '<option value=".' . $children->slug . '">&emsp;' . $children->name . '</option>' : '');
                         }
                     } else {
-                        echo ( ($child->count > 0) ? '<option value=".' . $child->slug . '" ' . (($child->slug=='2017')?'selected':'') . '>' . $child->name . '</option>' : '');
+                        echo ( ($child->count > 0) ? '<option value=".' . $child->slug . '" ' . (($child->slug=='2018')?'selected':'') . '>' . $child->name . '</option>' : '');
                     }
                  }
     
@@ -226,7 +226,7 @@
            $personclasses = "";
            foreach ($filters as $filter ) {
                $personclasses .= $filter->slug . " ";
-               if($filter->parent == "314" ) { //if parent is "year awarded"
+               if($filter->parent == "31" ) { //if parent is "year awarded"
                 $yearawarded = $filter->name;
                }
            }
