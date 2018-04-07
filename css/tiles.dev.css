@@ -948,6 +948,7 @@ div#thin-strip ul li a.slash:after {
 }
 #husky100 .grid-item .front {
   background-color: white;
+  background-position: top center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
