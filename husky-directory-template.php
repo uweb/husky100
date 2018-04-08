@@ -272,7 +272,7 @@
                   <p><?php echo $hometown; ?></p>
                   <p><?php echo $major; ?></p>                
                   <p><?php echo $minor; ?></p>  
-                  <p class="year-awarded">Husky 100 awarded <?php echo $yearawarded; ?></p>              
+                  <p class="year-awarded">Year awarded <?php echo $yearawarded; ?></p>              
                 </div>
                 <div class="bio-text">
                   <p><?php echo $person->post_content; ?></p>
