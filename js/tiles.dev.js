@@ -256,7 +256,8 @@ $(window).load(function(){
         //$('#main-content ul.grid').append( html );
         //rerun isotope 
         //$grid.isotope();
-        $grid.isotope( 'appended', html );
+        $grid.append( html )
+             .isotope( 'appended', html );
         //rerun lazy
         myLazyLoad.update();
 
