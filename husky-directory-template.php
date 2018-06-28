@@ -9,7 +9,7 @@
         <meta property="og:image" content="http://www.washington.edu/husky100/files/2017/04/husky100badge.png">
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.9.0/lazyload.min.js"></script>
-        
+
         <?php wp_head(); ?>
 
         <!--[if lt IE 9]>
@@ -147,13 +147,13 @@
     $args = array(
       'post_type' => 'husky100', 
       'posts_per_page' => -1,
-      // 'tax_query' => array(
-      //     array(
-      //       'taxonomy' => 'filters',
-      //       'field'    => 'slug',
-      //       'terms'    => '2016',
-      //     ),
-      //   ),
+      'tax_query' => array(
+          array(
+            'taxonomy' => 'filters',
+            'field'    => 'slug',
+            'terms'    => '2018',
+          ),
+        ),
       );
     $query = new WP_Query($args);
     $people = $query->get_posts(); 

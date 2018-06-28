@@ -1,11 +1,3 @@
-  $(document).ready(function() {
-      console.log("document ready occurred!");
-});
-
-$(window).load(function() {
-      console.log("window load occurred!");
-});
-
 $(window).load(function(){    
 
     // $( function() {
@@ -235,6 +227,17 @@ $(window).load(function(){
 
    //  });
 
+
+ // lazyloading (not IE) in 3... 2... 1...
+  // var ua = window.navigator.userAgent;
+  // var msie = ua.indexOf("MSIE ");
+  // if (msie < 0) // If NOT Internet Explorer
+  // {
+      var myLazyLoad = new LazyLoad({
+          elements_selector: ".lazy"
+      });
+  // }
+
 });  
 
 // Debounce so filtering doesn't happen every millisecond
@@ -276,14 +279,5 @@ function getFilterValue( $filter ) {
 
 }
 
- // lazyloading (not IE) in 3... 2... 1...
-  // var ua = window.navigator.userAgent;
-  // var msie = ua.indexOf("MSIE ");
-  // if (msie < 0) // If NOT Internet Explorer
-  // {
-      // var myLazyLoad = new LazyLoad({
-      //     elements_selector: ".lazy"
-      // });
-  // }
 
 
