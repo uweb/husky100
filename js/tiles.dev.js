@@ -1,3 +1,11 @@
+  $(document).ready(function() {
+      console.log("document ready occurred!");
+});
+
+$(window).load(function() {
+      console.log("window load occurred!");
+});
+
 $(window).load(function(){    
 
     // $( function() {
@@ -278,10 +286,4 @@ function getFilterValue( $filter ) {
       // });
   // }
 
-  $(document).ready(function() {
-      alert("document ready occurred!");
-});
 
-$(window).load(function() {
-      alert("window load occurred!");
-});
