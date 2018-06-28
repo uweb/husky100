@@ -615,6 +615,12 @@ function load_other_resources() {
 	wp_enqueue_script('tiles-js');
 	wp_register_style('tiles-style', plugins_url('css/tiles.css', __FILE__));
 	wp_enqueue_style('tiles-style');
+
+	//ajax stuff
+	wp_localize_script( 'tiles-js', 'ajaxpagination', array(
+		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		//'query_vars' => json_encode( $wp_query->query )
+	));
 }
 
 require( plugin_dir_path( __FILE__ ) . 'functions.php');

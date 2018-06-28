@@ -241,6 +241,28 @@ $(window).load(function(){
    //  });
 
 
+   //start ajax of non-current husky 100
+   $.ajax({
+      url: ajaxpagination.ajaxurl,
+      type: 'post',
+      dataType: 'html',
+      data: {
+        action: 'ajax_pagination',
+        // query_vars: ajaxpagination.query_vars,
+        currentyear: '2018'
+      },
+      success: function( html ) {
+        console.log( 'done' );
+        //$('#main-content ul.grid').append( html );
+        //rerun isotope 
+        //$grid.isotope();
+        $grid.isotope( 'appended', html );
+        //rerun lazy
+        myLazyLoad.update();
+
+      }
+    })
+
 });  
 
 // Debounce so filtering doesn't happen every millisecond
