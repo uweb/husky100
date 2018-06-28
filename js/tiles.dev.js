@@ -41,6 +41,7 @@ $(window).load(function(){
     
      // Fire isotope initially
      $grid.isotope();
+     falseScroll();
 
       // use value of search field to filter
      var $quicksearch = $('.quicksearch').keyup( debounce( function() {
@@ -237,7 +238,7 @@ $(window).load(function(){
             return $text ? $(this).find('.tags').text().match( $text ) : true;
           }
         });
-        falseScroll()
+        falseScroll();
       })
 
    //  });
