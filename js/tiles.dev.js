@@ -2,16 +2,6 @@ $(window).load(function(){
 
     // $( function() {
 
-      // lazyloading (not IE) in 3... 2... 1...
-      // var ua = window.navigator.userAgent;
-      // var msie = ua.indexOf("MSIE ");
-      // if (msie < 0) // If NOT Internet Explorer
-      // {
-          var myLazyLoad = new LazyLoad({
-              elements_selector: ".lazy"
-          });
-      // }
-
       var qsRegex,
           $searcher_wrap = $( "#searcher_wrap" ),
           $searcher = $( "#searcher" ),
@@ -278,3 +268,20 @@ function getFilterValue( $filter ) {
 
 }
 
+ // lazyloading (not IE) in 3... 2... 1...
+  // var ua = window.navigator.userAgent;
+  // var msie = ua.indexOf("MSIE ");
+  // if (msie < 0) // If NOT Internet Explorer
+  // {
+      // var myLazyLoad = new LazyLoad({
+      //     elements_selector: ".lazy"
+      // });
+  // }
+
+  $(document).ready(function() {
+      alert("document ready occurred!");
+});
+
+$(window).load(function() {
+      alert("window load occurred!");
+});
