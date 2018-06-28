@@ -70,7 +70,7 @@ $(window).load(function(){
 
       // Reusable scroll to position
 
-      function scrollIt(el){
+      function scrollIt(el){ 
         var $offset = ( $window - el.height() ) / 2
             // Scroll the tile to the top if mobile, otherwise center the tile on desktop
             $mobile = $window_width < 768 ? 50 : $offset 
@@ -158,6 +158,7 @@ $(window).load(function(){
            return search && $this.is( ':not(.title-card)' ) && $this.is(filterValueReturn);
          }
        });
+       falseScroll()
       });
 
       // change is-checked class on buttons
@@ -236,6 +237,7 @@ $(window).load(function(){
             return $text ? $(this).find('.tags').text().match( $text ) : true;
           }
         });
+        falseScroll()
       })
 
    //  });
@@ -253,14 +255,28 @@ $(window).load(function(){
       },
       success: function( html ) {
         $content = $( html );
-        $grid.append( $content );
+        $grid.append( $content )
+             .isotope( 'appended', $content );
         myLazyLoad.update();
-        $grid.isotope( 'appended', $content );
-        //console.log( 'done' );
+
+        // Find featured images and give them high-res images;
+        $('.featured').each( function(i, els){
+          var el = $(els);
+          imageSwitch(el);
+        });
+
+        //fake scroll on load
+        //fake scroll on filter update
+        falseScroll();
       }
     })
 
 });  
+
+//false scroll
+function falseScroll() {
+  $(window).scrollTop($(window).scrollTop()+1);
+}
 
 // Debounce so filtering doesn't happen every millisecond
 function debounce( fn, threshold ) {
