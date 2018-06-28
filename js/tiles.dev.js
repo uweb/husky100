@@ -252,15 +252,15 @@ $(window).load(function(){
         currentyear: '2018'
       },
       success: function( html ) {
-        console.log( 'done' );
+        $content = $( html );
         //$('#main-content ul.grid').append( html );
         //rerun isotope 
         //$grid.isotope();
-        $grid.append( html )
-             .isotope( 'appended', html );
+        $grid.append( $content )
+             .isotope( 'appended', $content );
         //rerun lazy
         myLazyLoad.update();
-
+        //console.log( 'done' );
       }
     })
 
