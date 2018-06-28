@@ -253,13 +253,9 @@ $(window).load(function(){
       },
       success: function( html ) {
         $content = $( html );
-        //$('#main-content ul.grid').append( html );
-        //rerun isotope 
-        //$grid.isotope();
-        $grid.append( $content )
-             .isotope( 'appended', $content );
-        //rerun lazy
+        $grid.append( $content );
         myLazyLoad.update();
+        $grid.isotope( 'appended', $content );
         //console.log( 'done' );
       }
     })
