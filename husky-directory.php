@@ -16,7 +16,7 @@ register_activation_hook( __FILE__, 'create_husky_directory_page');
 register_deactivation_hook( __FILE__, 'delete_husky_directory_page');
 
 function create_husky_directory_page() {
-	$husky_directory_post = array( 
+	$husky_directory_post = array(
 		'post_title' => 'Husky 100',
 		'post_name' => 'husky_100',
 		'post_type' => 'page'
@@ -75,7 +75,7 @@ if ( ! post_type_exists( 'husky100' ) ):
 		add_meta_box( 'major', 'Major', 'major_callback', 'husky100', 'side', 'low' );
 		add_meta_box( 'minor', 'Minor', 'minor_callback', 'husky100', 'side', 'low' );
 		add_meta_box( 'linkedin', 'LinkedIn link', 'linkedin_callback', 'husky100', 'side', 'low' );
-		
+
 		add_meta_box( 'tenet', 'Tenet', 'tenet_callback', 'husky100', 'normal', 'low' );
 		add_meta_box( 'quote', 'Quote', 'quote_callback', 'husky100', 'normal', 'low' );
 
@@ -88,35 +88,35 @@ if ( ! post_type_exists( 'husky100' ) ):
 	function hometown_callback() {
 		global $post;
 		$custom = get_post_custom($post->ID);
-		$hometown = $custom['hometown'][0];
+		$hometown = isset($custom['hometown']) ? $custom['hometown'][0] : '';
 		?><input name="hometown" value="<?php echo $hometown ?>" /><?php
 	}
 
 	function major_callback() {
 		global $post;
 		$custom = get_post_custom($post->ID);
-		$major = $custom['major'][0];
+		$major = isset($custom['major']) ? $custom['major'][0] : '';
 		?><input name="major" value="<?php echo $major ?>" /><?php
 	}
 
 	function minor_callback() {
 		global $post;
 		$custom = get_post_custom($post->ID);
-		$minor = $custom['minor'][0];
+		$minor = isset($custom['minor']) ? $custom['minor'][0] : '';
 		?><input name="minor" value="<?php echo $minor ?>" /><?php
 	}
 
 	function linkedin_callback() {
 		global $post;
 		$custom = get_post_custom($post->ID);
-		$linkedin = $custom['linkedin'][0];
+		$linkedin = isset($custom['linkedin']) ? $custom['linkedin'][0] : '';
 		?><input name="linkedin" value="<?php echo $linkedin ?>" /><?php
 	}
 
 	function tenet_callback() {
 		global $post;
 		$custom = get_post_custom($post->ID);
-		$tenet = $custom['tenet'][0];
+		$tenet = isset($custom['tenet']) ? $custom['tenet'][0] : '';
 		?><select name="tenet"/>
 			<option>Tenet</option>
 			<option value="Undaunted" <?php echo ($tenet == "Undaunted") ? "selected" : ""; ?> >Undaunted</option>
@@ -134,7 +134,7 @@ if ( ! post_type_exists( 'husky100' ) ):
 	function quote_callback() {
 		global $post;
 		$custom = get_post_custom($post->ID);
-		$quote = $custom['quote'][0];
+		$quote = isset($custom['quote']) ? $custom['quote'][0] : '';
 		?><textarea name="quote" rows="4" cols="100"><?php echo $quote; ?></textarea><?php
 	}
 
@@ -152,7 +152,7 @@ if ( ! post_type_exists( 'husky100' ) ):
 		}
 	}
 
-	// THIS IS BREAKING!!! 
+	// THIS IS BREAKING!!!
 	function add_husky_directory_template($template) {
 		$this_dir = dirname(__FILE__);
 		$current_url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
@@ -168,7 +168,7 @@ if ( ! post_type_exists( 'husky100' ) ):
 			else if (file_exists(get_template_directory() . '/' . $husky_directory_template)) {
 				//print_r("template directory: " . get_template_directory());
 				return get_template_directory() . '/' . $husky_directory_template;
-			} 
+			}
 			else if (file_exists($this_dir . '/' . $husky_directory_template)) {
 				//print_r("Dir: " . $this_dir . '/' . $husky_directory_template . "</br>");
 				return $this_dir . '/' . $husky_directory_template;
@@ -231,7 +231,7 @@ if (!taxonomy_exists('filters')):
 		$parent_term_id = $parent_term['term_id']; // get numeric term id
 		if(!get_term('Arts & Sci: All divisions', 'filters')){
 			wp_insert_term(
-			  'Arts & Sci: All divisions', // the term 
+			  'Arts & Sci: All divisions', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -242,7 +242,7 @@ if (!taxonomy_exists('filters')):
 			$parent_term_id_arts = $parent_term_arts['term_id']; // get numeric term id
 			if(!get_term('Arts & Sci: Arts', 'filters')){
 				wp_insert_term(
-				  'Arts & Sci: Arts', // the term 
+				  'Arts & Sci: Arts', // the term
 				  'filters', // the taxonomy
 				  array(
 				    'parent'=> $parent_term_id_arts
@@ -251,7 +251,7 @@ if (!taxonomy_exists('filters')):
 			}
 			if(!get_term('Arts & Sci: Humanities', 'filters')){
 				wp_insert_term(
-				  'Arts & Sci: Humanities', // the term 
+				  'Arts & Sci: Humanities', // the term
 				  'filters', // the taxonomy
 				  array(
 				    'parent'=> $parent_term_id_arts
@@ -260,7 +260,7 @@ if (!taxonomy_exists('filters')):
 			}
 			if(!get_term('Arts & Sci: Natural Sci', 'filters')){
 				wp_insert_term(
-				  'Arts & Sci: Natural Sci', // the term 
+				  'Arts & Sci: Natural Sci', // the term
 				  'filters', // the taxonomy
 				  array(
 				    'parent'=> $parent_term_id_arts
@@ -269,7 +269,7 @@ if (!taxonomy_exists('filters')):
 			}
 			if(!get_term('Arts & Sci: Social Sci', 'filters')){
 				wp_insert_term(
-				  'Arts & Sci: Social Sci', // the term 
+				  'Arts & Sci: Social Sci', // the term
 				  'filters', // the taxonomy
 				  array(
 				    'parent'=> $parent_term_id_arts
@@ -279,7 +279,7 @@ if (!taxonomy_exists('filters')):
 
 		if(!get_term('Built Environments', 'filters')){
 			wp_insert_term(
-			  'Built Environments', // the term 
+			  'Built Environments', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -288,7 +288,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Business', 'filters')){
 			wp_insert_term(
-			  'Business', // the term 
+			  'Business', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -297,7 +297,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Dentistry', 'filters')){
 			wp_insert_term(
-			  'Dentistry', // the term 
+			  'Dentistry', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -306,7 +306,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Education', 'filters')){
 			wp_insert_term(
-			  'Education', // the term 
+			  'Education', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -315,7 +315,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Engineering', 'filters')){
 			wp_insert_term(
-			  'Engineering', // the term 
+			  'Engineering', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -324,7 +324,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Environment', 'filters')){
 			wp_insert_term(
-			  'Environment', // the term 
+			  'Environment', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -333,7 +333,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Computer Sci / Info / Tech', 'filters')){
 			wp_insert_term(
-			  'Computer Sci / Info / Tech', // the term 
+			  'Computer Sci / Info / Tech', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -342,7 +342,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Law', 'filters')){
 			wp_insert_term(
-			  'Law', // the term 
+			  'Law', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -351,7 +351,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Medicine', 'filters')){
 			wp_insert_term(
-			  'Medicine', // the term 
+			  'Medicine', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -360,7 +360,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Healthcare and Nursing', 'filters')){
 			wp_insert_term(
-			  'Healthcare and Nursing', // the term 
+			  'Healthcare and Nursing', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -369,7 +369,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Pharmacy', 'filters')){
 			wp_insert_term(
-			  'Pharmacy', // the term 
+			  'Pharmacy', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -378,7 +378,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Public Policy and Governance', 'filters')){
 			wp_insert_term(
-			  'Public Policy and Governance', // the term 
+			  'Public Policy and Governance', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -387,7 +387,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Public Health', 'filters')){
 			wp_insert_term(
-			  'Public Health', // the term 
+			  'Public Health', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -396,7 +396,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Social Work and Criminal Justice', 'filters')){
 			wp_insert_term(
-			  'Social Work and Criminal Justice', // the term 
+			  'Social Work and Criminal Justice', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -405,7 +405,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Urban Studies', 'filters')){
 			wp_insert_term(
-			  'Urban Studies', // the term 
+			  'Urban Studies', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_id
@@ -418,7 +418,7 @@ if (!taxonomy_exists('filters')):
 		$parent_term_campus_id = $parent_term_campus['term_id']; // get numeric term id
 		if(!get_term('Bothell', 'filters')){
 			wp_insert_term(
-			  'Bothell', // the term 
+			  'Bothell', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_campus_id
@@ -427,7 +427,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Seattle', 'filters')){
 			wp_insert_term(
-			  'Seattle', // the term 
+			  'Seattle', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_campus_id
@@ -436,7 +436,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Tacoma', 'filters')){
 			wp_insert_term(
-			  'Tacoma', // the term 
+			  'Tacoma', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_campus_id
@@ -444,12 +444,12 @@ if (!taxonomy_exists('filters')):
 			);
 		}
 
-		//Year	
+		//Year
 		$parent_term_year = term_exists( 'Class Standing', 'filters' ); // array is returned if taxonomy is given
 		$parent_term_year_id = $parent_term_year['term_id']; // get numeric term id
 		if(!get_term('Grad', 'filters')){
 			wp_insert_term(
-			  'Grad', // the term 
+			  'Grad', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_year_id
@@ -458,7 +458,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('Undergrad', 'filters')){
 			wp_insert_term(
-			  'Undergrad', // the term 
+			  'Undergrad', // the term
 			  'filters', // the taxonomy
 			  array(
 			    'parent'=> $parent_term_year_id
@@ -471,7 +471,7 @@ if (!taxonomy_exists('filters')):
 		$parent_term_year_awarded_id = $parent_term_year_awarded['term_id']; // get numeric term id
 		if(!get_term('2016', 'filters')){
 			wp_insert_term(
-			  '2016', // the term 
+			  '2016', // the term
 			  'filters', // the taxonomy
 			  array(
 			  	'slug' => '2016',
@@ -481,7 +481,7 @@ if (!taxonomy_exists('filters')):
 		}
 		if(!get_term('2017', 'filters')){
 			wp_insert_term(
-			  '2017', // the term 
+			  '2017', // the term
 			  'filters', // the taxonomy
 			  array(
 			  	'slug' => '2017',
@@ -555,7 +555,7 @@ if (!taxonomy_exists('filters')):
 	    return $new_posts_columns;
 	}
 
-	
+
 	function show_year_column_for_husky100_list( $column_name,$post_id ) {
 	    global $typenow;
 	    if ($typenow=='husky100') {
