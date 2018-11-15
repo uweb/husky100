@@ -16,8 +16,8 @@
             <script src="<?php bloginfo("template_directory"); ?>/assets/ie/js/html5shiv.js" type="text/javascript"></script>
             <script src="<?php bloginfo("template_directory"); ?>/assets/ie/js/respond.js" type="text/javascript"></script>
             <link rel='stylesheet' href='<?php bloginfo("template_directory"); ?>/assets/ie/css/ie.css' type='text/css' media='all' />
-        <![endif]--> 
-        
+        <![endif]-->
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
       <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/thinstrip.css' ?>' type='text/css' media='all' />
       <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/module-hero-image.css' ?>' type='text/css' media='all' />
@@ -49,32 +49,32 @@
           </ul>
       </div>
     </div>
- 
+
 
     <div class="module-hero-image" style="background-image:url('<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>')">
-      <div class="container">     
+      <div class="container">
         <div class="row">
           <h1><?php the_title(); ?></h1>
           <div class="udub-slant"><span></span></div>
-          <?php 
-              while ( have_posts() ) : the_post(); 
+          <?php
+              while ( have_posts() ) : the_post();
                 the_content();
               endwhile;
            ?>
         </div>
       </div>
     </div>
-    <!-- FEATURE: dynamically load the filters - Now a dropdown structure --> 
+    <!-- FEATURE: dynamically load the filters - Now a dropdown structure -->
 
     <div role="form" aria-label="Filter Results">
-    
+
         <ul id="filter" class="select_active">
         <li class="sort_by">
           Filter by:
         </li>
         <li>
           <a id="clear" href="#" title="Show all">
-          <svg xmlns="http://www.w3.org/2000/svg" width="35.848" height="35.794" viewBox="0 0 35.848 35.794"><circle fill="#c2c2c2" cx="17.999" cy="17.999" r="16.998"/><g fill="none"    stroke="#FFF" stroke-width="3" stroke-miterlimit="10"><path d="M11.485 24.513l13.027-13.028M24.512 24.513L11.485 11.485"/></g></svg>Show all      
+          <svg xmlns="http://www.w3.org/2000/svg" width="35.848" height="35.794" viewBox="0 0 35.848 35.794"><circle fill="#c2c2c2" cx="17.999" cy="17.999" r="16.998"/><g fill="none"    stroke="#FFF" stroke-width="3" stroke-miterlimit="10"><path d="M11.485 24.513l13.027-13.028M24.512 24.513L11.485 11.485"/></g></svg>Show all
           </a>
         </li>
         <?php
@@ -91,7 +91,7 @@
                  echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':'') . '">' .
                         '<label>' . $parent->name . '</label>' .
                          '<select><option disabled>' . 'Select a ' . $parent->name . '</option><option class="viewall" value="">View all</option>';
-    
+
                  foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                     if ($child->slug == 'arts-sci-all-divisions') {
                         echo '<option value=".arts-sci-arts, .arts-sci-humanities, .arts-sci-natural-sci, .arts-sci-social-sci, .arts-sci-all-divisions">' . $child->name . '</option>';
@@ -103,15 +103,15 @@
                         echo ( ($child->count > 0) ? '<option value=".' . $child->slug . '" ' . (($child->slug=='2018')?'selected':'') . '>' . $child->name . '</option>' : '');
                     }
                  }
-    
-                 echo '</select>        
+
+                 echo '</select>
                        </li>';
             }
-    
+
             //print_r($filterneum_terms);
             // foreach ($terms as $term) {
             //     echo '<li>
-            //             <button data-filter=".' . $term->slug . '">' . $term->name . ' <div class="udub-slant"><span></span></div></button>        
+            //             <button data-filter=".' . $term->slug . '">' . $term->name . ' <div class="udub-slant"><span></span></div></button>
             //           </li>';
             //     print_r($term);
             // }
@@ -127,36 +127,36 @@
             <line fill="none" stroke="#B8A678" stroke-width="3.5" stroke-miterlimit="10" x1="1.396" y1="52.409" x2="19.614" y2="34.191"/>
             <line fill="none" stroke="#B8A678" stroke-width="3.5" stroke-miterlimit="10" x1="19.614" y1="52.409" x2="1.396" y2="34.191"/>
             </svg>
-            </a>        
+            </a>
           </li>
         </ul>
-    
-    
-    
+
+
+
         <div role="search" id="searcher_wrap">
           <input type="text" class="quicksearch" placeholder="Start typing" />
         </div>
-      
+
     </div>
 
 
     <!-- Add this to  ontouchstart="this.classList.toggle('hover');" -->
     <?php
     //sort of students will all occur here
-        
+
     $args = array(
-      'post_type' => 'husky100', 
+      'post_type' => 'husky100',
       'posts_per_page' => -1,
-      'tax_query' => array(
-          array(
-            'taxonomy' => 'filters',
-            'field'    => 'slug',
-            'terms'    => '2018',
-          ),
-        ),
+      // 'tax_query' => array(
+      //     array(
+      //       'taxonomy' => 'filters',
+      //       'field'    => 'slug',
+      //       'terms'    => '2018',
+      //     ),
+      //   ),
       );
     $query = new WP_Query($args);
-    $people = $query->get_posts(); 
+    $people = $query->get_posts();
     shuffle($people);
 
     $fastfactsargs = array('post_type' => 'fastfacts', 'posts_per_page' => -1);
@@ -166,7 +166,7 @@
     ?>
 
     <div id="main-content" role="main">
-         
+
          <!-- This hides the stuttering of tiles during load -->
         <div id="overlay"></div>
 
@@ -175,7 +175,7 @@
          <li class="grid-sizer"></li>
 
          <!-- FILTER BOX -->
-         <?php 
+         <?php
          // $filter_terms = get_terms('filters', array(
          //     'hide_empty' => false,
          // ));
@@ -223,7 +223,7 @@
            $filters = wp_get_post_terms( $person->ID, 'filters' );
            $yearawarded = "";
            $tags = wp_get_post_terms( $person->ID, 'tags' );
-           //FEATURE: do tags also need to be classes? 
+           //FEATURE: do tags also need to be classes?
            $personclasses = "";
            foreach ($filters as $filter ) {
                $personclasses .= $filter->slug . " ";
@@ -248,12 +248,12 @@
             <?php
            }
 
-           //spit out html 
+           //spit out html
            ?>
             <li tabindex="0" data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
             <div class="flipper" role="button" aria-expanded="false">
               <div class="front lazy" data-src="<?php echo $personimageurl; ?>">
-                <!-- <span class="badge"><span> 
+                <!-- <span class="badge"><span>
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      width="10.583px" height="60px" viewBox="0 0 10.583 37.5" enable-background="new 0 0 10.583 37.5" xml:space="preserve">
                   <line fill="none" stroke="#CACCCD" stroke-miterlimit="10" x1="10.053" y1="0.125" x2="0.484" y2="37.332"/>
@@ -264,16 +264,16 @@
               <div class="back">
                 <p class="back-title"><?php echo $person->post_title; ?></p>
                 <!-- <p><?php echo $hometown; ?></p> -->
-                <p class="major"><?php echo $major; ?></p> 
+                <p class="major"><?php echo $major; ?></p>
               </div>
               <div tabindex="0" class="full-bio" aria-hidden="true">
                 <h2><?php echo $person->post_title; ?>
                 <?php echo !empty($linkedin) ? '<a target="_blank" class="linkedin" href="' . $linkedin . '">LinkedIn</a>' : '' ?></h2>
                 <div class="bio-info">
                   <p><?php echo $hometown; ?></p>
-                  <p><?php echo $major; ?></p>                
-                  <p><?php echo $minor; ?></p>  
-                  <p class="year-awarded">Year awarded <?php echo $yearawarded; ?></p>              
+                  <p><?php echo $major; ?></p>
+                  <p><?php echo $minor; ?></p>
+                  <p class="year-awarded">Year awarded <?php echo $yearawarded; ?></p>
                 </div>
                 <div class="bio-text">
                   <p><?php echo $person->post_content; ?></p>
@@ -297,10 +297,10 @@
         ?>
 
 
-         </ul>   
+         </ul>
 
     </div>
-    
+
 
 
 
