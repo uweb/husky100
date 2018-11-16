@@ -8,7 +8,6 @@
         <meta name="viewport" content="width=device-width">
         <meta property="og:image" content="http://www.washington.edu/husky100/files/2017/04/husky100badge.png">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.9.0/lazyload.min.js"></script>
 
         <?php wp_head(); ?>
 
@@ -18,7 +17,6 @@
             <link rel='stylesheet' href='<?php bloginfo("template_directory"); ?>/assets/ie/css/ie.css' type='text/css' media='all' />
         <![endif]-->
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
       <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/thinstrip.css' ?>' type='text/css' media='all' />
       <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/module-hero-image.css' ?>' type='text/css' media='all' />
 
@@ -235,7 +233,7 @@
                 $personclasses .= "featured ";
            }
 
-           if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
+           if( $peoplecount % $featureOffset == 9 && $peoplecount % $featureOffset <=count($fastfacts)) { //determines where fast facts are
             $fact = $fastfacts[$peoplecount / $featureOffset];
             $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , array(200,300) );
             $factimageurl = $factimageurl[0];
