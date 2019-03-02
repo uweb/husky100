@@ -1,4 +1,4 @@
-$(window).load(function(){    
+$(window).load(function(){
 
     // $( function() {
 
@@ -38,7 +38,7 @@ $(window).load(function(){
           $(this).remove();
         });
       });
-    
+
      // Fire isotope initially
      $grid.isotope();
      falseScroll();
@@ -67,31 +67,31 @@ $(window).load(function(){
       $('.featured').each( function(i, els){
         var el = $(els);
         imageSwitch(el);
-      }) 
+      })
 
       // Reusable scroll to position
 
-      function scrollIt(el){ 
+      function scrollIt(el){
         var $offset = ( $window - el.height() ) / 2
             // Scroll the tile to the top if mobile, otherwise center the tile on desktop
-            $mobile = $window_width < 768 ? 50 : $offset 
+            $mobile = $window_width < 768 ? 50 : $offset
 
         $grid.one( 'arrangeComplete', function() {
           $('html, body').animate({
             scrollTop: ( el.offset().top - $mobile )
-          }, 900); 
+          }, 900);
         });
-      }         
+      }
 
-      // Add and remove ARIA tags 
+      // Add and remove ARIA tags
       function aria(el){
         var fullBio = el.find('.full-bio'),
             flipper = el.find('.flipper'),
             hiddenCheck = fullBio.attr( 'aria-hidden', false ) === false ? true : false,
             expandedCheck = flipper.attr( 'aria-expanded', true ) === true ? false : true;
 
-        fullBio.attr( 'aria-hidden', hiddenCheck )        
-        flipper.attr( 'aria-expanded', expandedCheck ) 
+        fullBio.attr( 'aria-hidden', hiddenCheck )
+        flipper.attr( 'aria-expanded', expandedCheck )
       }
 
       // Main portion that opens and closes the tiles
@@ -105,30 +105,30 @@ $(window).load(function(){
           $this.addClass('open');
           // $this.find('h2').focus();
           // Switch image
-          imageSwitch($this);                           
+          imageSwitch($this);
 
           // Scroll-to portion
           scrollIt($this)
 
           // Add data attribute 'name' to URL has
-          window.location.hash = dataName;  
+          window.location.hash = dataName;
 
           // Switch ARIA tags
           aria($this)
-     
+
         } else {
           $this.removeClass('open')
           // Switch ARIA tags
           aria($this)
         }
-        $grid.isotope();                
-      });              
+        $grid.isotope();
+      });
 
       // bind filter button click
       // $filter.on( 'click', 'button', function() {
       //   var filterValue = $( this ).attr('data-filter');
       //   $grid.isotope({ filter: filterValue });
-      // }); 
+      // });
 
       // Clear select menus and re-isotope
       $('#clear').on('click', function(el){
@@ -138,7 +138,7 @@ $(window).load(function(){
         $('.grid-item').removeClass('open');
         $filter.removeClass('select_active')
         $filter.find('li').removeClass('labelToggle')
-        window.location.hash = '';          
+        window.location.hash = '';
         $grid.isotope({ filter: ':not(.title-card)' });
       })
 
@@ -159,7 +159,8 @@ $(window).load(function(){
            return search && $this.is( ':not(.title-card)' ) && $this.is(filterValueReturn);
          }
        });
-       falseScroll()
+       falseScroll();
+       myLazyLoad.update();
       });
 
       // change is-checked class on buttons
@@ -169,18 +170,18 @@ $(window).load(function(){
           $buttonGroup.find('.is-checked').removeClass('is-checked');
           $(this).addClass('is-checked');
         });
-      }); 
+      });
 
       // Search field
-      $('#searcher').on('click', function(el){  
+      $('#searcher').on('click', function(el){
 
-        el.preventDefault();  
+        el.preventDefault();
         $searcher_wrap.find('input').focus();
-        $searcher_wrap.toggleClass('active_search'); 
+        $searcher_wrap.toggleClass('active_search');
 
         if ( $searcher.hasClass('is-checked') ) {
           $searcher_wrap.find('input').val('')
-          $('.quicksearch').keyup();                  
+          $('.quicksearch').keyup();
         }
         $searcher.toggleClass('is-checked');
       })
@@ -215,12 +216,12 @@ $(window).load(function(){
           imageSwitch($dataName);
 
           // Scroll-to portion
-          scrollIt($dataName)          
+          scrollIt($dataName)
 
           // Switch ARIA tags
           aria($dataName)
 
-      }               
+      }
 
 
       // Search through category tags
@@ -231,7 +232,7 @@ $(window).load(function(){
 
         el.preventDefault();
         // Stop propagation, otherwise it will bubble and want to close the slide
-        el.stopPropagation();        
+        el.stopPropagation();
         $filter.addClass('select_active');
         $grid.isotope({
           filter: function() {
@@ -239,6 +240,7 @@ $(window).load(function(){
           }
         });
         falseScroll();
+        myLazyLoad.update();
       })
 
    //  });
@@ -272,7 +274,7 @@ $(window).load(function(){
       }
     })
 
-});  
+});
 
 //false scroll
 function falseScroll() {
@@ -302,7 +304,7 @@ if ("onpropertychange" in document && !!window.matchMedia) {
 function getFilterValue( $filter ) {
 
   // get filter value from option value
-    
+
     var filterValue = '';
     var allarts = false;
     $filter.addClass('select_active')
@@ -314,7 +316,7 @@ function getFilterValue( $filter ) {
       }
     });
     filterValueReturn = ( allarts ? '.arts-sci-arts'+filterValue+', .arts-sci-humanities'+filterValue+', .arts-sci-natural-sci'+filterValue+', .arts-sci-social-sci'+filterValue+', .arts-sci-all-divisions'+filterValue : filterValue );
-    return filterValueReturn;   
+    return filterValueReturn;
 
 }
 
