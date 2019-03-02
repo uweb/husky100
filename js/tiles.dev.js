@@ -247,32 +247,32 @@ $(window).load(function(){
 
 
    //start ajax of non-current husky 100
-   $.ajax({
-      url: ajaxpagination.ajaxurl,
-      type: 'post',
-      dataType: 'html',
-      data: {
-        action: 'ajax_pagination',
-        // query_vars: ajaxpagination.query_vars,
-        currentyear: '2018'
-      },
-      success: function( html ) {
-        $content = $( html );
-        $grid.append( $content )
-             .isotope( 'appended', $content );
-        myLazyLoad.update();
+   // $.ajax({
+   //    url: ajaxpagination.ajaxurl,
+   //    type: 'post',
+   //    dataType: 'html',
+   //    data: {
+   //      action: 'ajax_pagination',
+   //      // query_vars: ajaxpagination.query_vars,
+   //      currentyear: '2018'
+   //    },
+   //    success: function( html ) {
+   //      $content = $( html );
+   //      $grid.append( $content )
+   //           .isotope( 'appended', $content );
+   //      myLazyLoad.update();
 
-        // Find featured images and give them high-res images;
-        $('.featured').each( function(i, els){
-          var el = $(els);
-          imageSwitch(el);
-        });
+   //      // Find featured images and give them high-res images;
+   //      $('.featured').each( function(i, els){
+   //        var el = $(els);
+   //        imageSwitch(el);
+   //      });
 
-        //fake scroll on load
-        //fake scroll on filter update
-        falseScroll();
-      }
-    })
+   //      //fake scroll on load
+   //      //fake scroll on filter update
+   //      falseScroll();
+   //    }
+   //  })
 
 });
 
