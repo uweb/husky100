@@ -1,17 +1,8 @@
 $(window).load(function(){
 
-    // $( function() {
-
-
- // lazyloading (not IE) in 3... 2... 1...
-  // var ua = window.navigator.userAgent;
-  // var msie = ua.indexOf("MSIE ");
-  // if (msie < 0) // If NOT Internet Explorer
-  // {
       var myLazyLoad = new LazyLoad({
           elements_selector: ".lazy"
       });
-  // }
 
 
 
@@ -29,7 +20,6 @@ $(window).load(function(){
         masonry: {
           columnWidth: '.grid-sizer'
         },
-        filter: '.2018:not(.title-card)',
       });
 
       // Remove overlay once all is loaded
@@ -47,7 +37,6 @@ $(window).load(function(){
      var $quicksearch = $('.quicksearch').keyup( debounce( function() {
        qsRegex = new RegExp( $quicksearch.val(), 'gi' );
        var filterValueReturn = getFilterValue($filter) ? getFilterValue($filter) : '*';
-       //console.log(filterValueReturn)
        $grid.isotope({
          filter: function() {
            var $this = $(this);
@@ -56,17 +45,11 @@ $(window).load(function(){
          }
        });
      }, 200 ) );
-
-      // Function to replace the image with the high-rest one
-      function imageSwitch(el){
-        var $this = el;
-        $this.find('.front').css('background-image', 'url(' + $this.data('img') + ')');
-      }
-
       // Find featured images and give them high-res images;
       $('.featured').each( function(i, els){
         var el = $(els);
         imageSwitch(el);
+        myLazyLoad.update();
       })
 
       // Reusable scroll to position
@@ -103,7 +86,6 @@ $(window).load(function(){
         if( !$this.hasClass('open') && !$this.hasClass('special') ) {
           $('.grid-item').removeClass('open')
           $this.addClass('open');
-          // $this.find('h2').focus();
           // Switch image
           imageSwitch($this);
 
@@ -124,12 +106,6 @@ $(window).load(function(){
         $grid.isotope();
       });
 
-      // bind filter button click
-      // $filter.on( 'click', 'button', function() {
-      //   var filterValue = $( this ).attr('data-filter');
-      //   $grid.isotope({ filter: filterValue });
-      // });
-
       // Clear select menus and re-isotope
       $('#clear').on('click', function(el){
         el.preventDefault();
@@ -141,6 +117,10 @@ $(window).load(function(){
         window.location.hash = '';
         $grid.isotope({ filter: ':not(.title-card)' });
       })
+
+      $('select#year-awarded').change(function(el){
+        location = $(this).find(':selected').data('url');
+      });
 
       // bind filter on select change
       $filter.on( 'change', 'select', function() {
@@ -204,22 +184,22 @@ $(window).load(function(){
 
 
       // Open by URL hash
-      if(location.hash.match(/^#name/)) {
+    if(location.hash.match(/^#name/)) {
+        var hashName = location.hash.substring(6),
+            $dataName = $('*[data-name="' + hashName + '"]');
 
-          var hashName = location.hash.substring(6),
-              $dataName = $('*[data-name="' + hashName + '"]');
+        $dataName.addClass('open');
+        $grid.isotope();
 
-          $dataName.toggleClass('open');
-          $grid.isotope();
+        // Replace with high quality image
+        imageSwitch($dataName);
+        myLazyLoad.update();
 
-          // Replace with high quality image
-          imageSwitch($dataName);
+        // Scroll-to portion
+        scrollIt($dataName);
 
-          // Scroll-to portion
-          scrollIt($dataName)
-
-          // Switch ARIA tags
-          aria($dataName)
+        // Switch ARIA tags
+        aria($dataName);
 
       }
 
@@ -242,37 +222,6 @@ $(window).load(function(){
         falseScroll();
         myLazyLoad.update();
       })
-
-   //  });
-
-
-   //start ajax of non-current husky 100
-   // $.ajax({
-   //    url: ajaxpagination.ajaxurl,
-   //    type: 'post',
-   //    dataType: 'html',
-   //    data: {
-   //      action: 'ajax_pagination',
-   //      // query_vars: ajaxpagination.query_vars,
-   //      currentyear: '2018'
-   //    },
-   //    success: function( html ) {
-   //      $content = $( html );
-   //      $grid.append( $content )
-   //           .isotope( 'appended', $content );
-   //      myLazyLoad.update();
-
-   //      // Find featured images and give them high-res images;
-   //      $('.featured').each( function(i, els){
-   //        var el = $(els);
-   //        imageSwitch(el);
-   //      });
-
-   //      //fake scroll on load
-   //      //fake scroll on filter update
-   //      falseScroll();
-   //    }
-   //  })
 
 });
 
@@ -320,5 +269,11 @@ function getFilterValue( $filter ) {
 
 }
 
-
-
+// Function to replace the image with the high-rest one
+function imageSwitch(el){
+    var $this = el;
+    var $front = $this.find('.flipper .front');
+    var $img = $this.data('img');
+    $front.toggleClass('lazy');
+    $front.css('background-image', 'url(' + $img + ')');
+}
