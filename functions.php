@@ -23,7 +23,7 @@ function ajax_pagination() {
 
 	//get people
     $args = array(
-      'post_type' => 'husky100', 
+      'post_type' => 'husky100',
       'posts_per_page' => -1,
       'tax_query' => array(
           array(
@@ -35,7 +35,7 @@ function ajax_pagination() {
         ),
       );
     $query = new WP_Query($args);
-    $people = $query->get_posts(); 
+    $people = $query->get_posts();
     shuffle($people);
 
     // $fastfactsargs = array('post_type' => 'fastfacts', 'posts_per_page' => -1);
@@ -51,7 +51,7 @@ function ajax_pagination() {
        //gather assets
        $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , array(200,300) );
        $personimageurl = $personimageurl[0];
-       $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' );
+       $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , array(400,600) );
        $personimageurlhigh = $personimageurlhigh[0];
        if ( !$personimageurl ) {
         //set to default image here
@@ -68,7 +68,7 @@ function ajax_pagination() {
        $filters = wp_get_post_terms( $person->ID, 'filters' );
        $yearawarded = "";
        $tags = wp_get_post_terms( $person->ID, 'tags' );
-       //FEATURE: do tags also need to be classes? 
+       //FEATURE: do tags also need to be classes?
        $personclasses = "";
        foreach ($filters as $filter ) {
            $personclasses .= $filter->slug . " ";
@@ -86,11 +86,11 @@ function ajax_pagination() {
        //  $factimageurl = $factimageurl[0];
        //  $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' );
        //  $factimageurlhigh = $factimageurlhigh[0];
-        
+
        //  $returnstring += '<li tabindex="0" data-name="' + $fact->post_name + '" class="flip-container grid-item special infographic">' +
 			    //               '<h3>' + $fact->post_title + '</h3>' +
 			    //         '</li>';
-  
+
        // }
 
         $returnstring .= '<li tabindex="0" data-name="' . $person->post_name . '" data-img="' . $personimageurlhigh . '" class="flip-container grid-item ' . $personclasses . '">' .
@@ -103,13 +103,13 @@ function ajax_pagination() {
 					          '</div>' .
 					          '<div tabindex="0" class="full-bio" aria-hidden="true">' .
 					            '<h2>'. $person->post_title ;
-       	$returnstring .= (!empty($linkedin) ? '<a target="_blank" class="linkedin" href="' . $linkedin . '">LinkedIn</a>' : ''); 
+       	$returnstring .= (!empty($linkedin) ? '<a target="_blank" class="linkedin" href="' . $linkedin . '">LinkedIn</a>' : '');
        	$returnstring .= 		'</h2>' .
 					            '<div class="bio-info">' .
 					              '<p>' . $hometown . '</p>' .
-					              '<p>' . $major . '</p>' .             
-					              '<p>' . $minor . '</p>' . 
-					              '<p class="year-awarded">Year awarded ' . $yearawarded . '</p>' .             
+					              '<p>' . $major . '</p>' .
+					              '<p>' . $minor . '</p>' .
+					              '<p class="year-awarded">Year awarded ' . $yearawarded . '</p>' .
 					            '</div>' .
 					            '<div class="bio-text">' .
 					              '<p>' . $person->post_content . '</p>' .
@@ -132,5 +132,40 @@ function ajax_pagination() {
 
 add_action( 'wp_ajax_nopriv_ajax_pagination', 'ajax_pagination' );
 add_action( 'wp_ajax_ajax_pagination', 'ajax_pagination' );
+
+
+/*
+ * Adding custom JSON controllers for Husky 100
+ *
+ */
+add_filter('json_api_controllers', 'add_husky100_controller');
+add_filter('json_api_husky100_controller_path', 'set_husky100_controller_path');
+
+function add_husky100_controller($controllers) {
+  $controllers[] = 'husky100';
+  return $controllers;
+}
+
+function set_husky100_controller_path() {
+  return dirname(__FILE__) . "/inc/husky100-json.php";
+}
+
+
+/**
+ * Adding custom photo output sizes
+ */
+
+add_theme_support( 'post-thumbnails' );
+add_image_size( 'husky100_large', '500');
+add_image_size( 'husky100_feature', '300'); // (cropped)
+
+add_filter( 'image_size_names_choose', 'husky100_custom_image_sizes' );
+function husky100_custom_image_sizes( $sizes ) {
+  return array_merge( $sizes, array(
+    'husky100_large' => __( 'Husky 100 Large Photos' ),
+    'husky100_feature' => __( 'Husky 100 Featured Photos' ),
+    )
+  );
+}
 
 ?>
