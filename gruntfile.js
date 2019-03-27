@@ -48,7 +48,8 @@ module.exports = function(grunt) {
     less: {
         production: {
           options: {
-            cleancss: true
+            cleancss: true,
+            compress: true,
       },
       files: {
         'css/tiles.css': 'less/tiles.less'
@@ -64,7 +65,7 @@ module.exports = function(grunt) {
       config : {
         files : ['gruntfile.js'],
         options : {
-          reload: true
+          reload: true,
         }
       },
       js: {
@@ -91,4 +92,3 @@ module.exports = function(grunt) {
   grunt.registerTask( 'css', ['less', 'notify'] );
 
 };
- 
