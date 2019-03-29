@@ -190,14 +190,14 @@ $(window).load(function(){
             $dataName = $('*[data-name="' + hashName + '"]');
 
         $dataName.addClass('open');
-        $grid.isotope();
+        $grid.isotope({ filter: '',});
 
         // Replace with high quality image
-        imageSwitch($dataName);
-        myLazyLoad.update();
 
         // Scroll-to portion
         scrollIt($dataName);
+        imageSwitch($dataName);
+        myLazyLoad.update();
 
         // Switch ARIA tags
         aria($dataName);
