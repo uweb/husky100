@@ -113,7 +113,7 @@ class json_api_husky100_controller
                                 )
                             );
         }
-        delete_transient( $transient_name );
+        // delete_transient( $transient_name );
 
         $data_timeout = get_option('_transient_timeout_' . $transient_name);
         $transient = ( $data_timeout < time() ) ? false : true ;
