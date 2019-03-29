@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,20 +51,17 @@
       </div>
     </div>
 
-
+  <?php grab_husky100_page(); ?>
     <div class="module-hero-image" style="background-image:url('<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>')">
       <div class="container">
         <div class="row">
           <h1><?php the_title(); ?></h1>
           <div class="udub-slant"><span></span></div>
-          <?php
-              while ( have_posts() ) : the_post();
-                the_content();
-              endwhile;
-           ?>
+          <?php the_content(); ?>
         </div>
       </div>
     </div>
+    <?php wp_reset_query(); ?>
     <!-- FEATURE: dynamically load the filters - Now a dropdown structure -->
 
     <div role="form" aria-label="Filter Results">
@@ -90,6 +88,7 @@
             foreach ($filter_parent_terms as $parent) {
                  echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':'') . '">' .
                         '<label>' . $parent->name . '</label>' .
+                         // '<select' . (($parent->name == 'Year Awarded')? ' id="year-awarded"': '' ) . '><option disabled>' . 'Select a ' . $parent->name . '</option>';
                          '<select><option disabled>' . 'Select a ' . $parent->name . '</option><option class="viewall" value="">View all</option>';
 
                  foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
@@ -100,21 +99,13 @@
                             echo ( ($children->count > 0) ? '<option value=".' . $children->slug . '">&emsp;' . $children->name . '</option>' : '');
                         }
                     } else {
-                        echo ( ($child->count > 0) ? '<option value=".' . $child->slug . '" ' . (($child->slug=='2018')?'selected':'') . '>' . $child->name . '</option>' : '');
+                        echo ( ($child->count > 0) ? '<option data-url="' . get_site_url() . '/year/' . $child->slug . '" value=".' . $child->slug . '" ' . (($child->slug=='2018')?'selected':'') . '>' . $child->name . '</option>' : '');
                     }
                  }
 
                  echo '</select>
                        </li>';
             }
-
-            //print_r($filterneum_terms);
-            // foreach ($terms as $term) {
-            //     echo '<li>
-            //             <button data-filter=".' . $term->slug . '">' . $term->name . ' <div class="udub-slant"><span></span></div></button>
-            //           </li>';
-            //     print_r($term);
-            // }
         ?>
           <li class="search_slash">
             <a title="Search button" id="searcher" href="#">
@@ -144,19 +135,23 @@
     <?php
     //sort of students will all occur here
 
-    $args = array(
-      'post_type' => 'husky100',
-      'posts_per_page' => -1,
-      // 'tax_query' => array(
-      //     array(
-      //       'taxonomy' => 'filters',
-      //       'field'    => 'slug',
-      //       'terms'    => '2018',
-      //     ),
-      //   ),
-      );
-    $query = new WP_Query($args);
-    $people = $query->get_posts();
+    // $args = array(
+    //   'post_type' => 'husky100',
+    //   'posts_per_page' => 1,
+    //   // 'tax_query' => array(
+    //   //     array(
+    //   //       'taxonomy' => 'filters',
+    //   //       'field'    => 'slug',
+    //   //       'terms'    => '2018',
+    //   //     ),
+    //   //   ),
+    //   );
+    // $query = new WP_Query($args);
+    // $people = $query->get_posts();
+
+    $url = 'http://washington.edu/husky100?json=husky100.get_husky100_years&filter=' . get_query_var( 'term' ); // path to your JSON file
+    $data = file_get_contents($url); // put the contents of the file into a variable
+    $people = json_decode($data)->posts; // decode the JSON feed
     shuffle($people);
 
     $fastfactsargs = array('post_type' => 'fastfacts', 'posts_per_page' => -1);
@@ -200,36 +195,33 @@
         <!-- THE FUN PHP STUFF -->
         <?php
         $peoplecount = 1;
-        $factcount = 0;
         $featureOffset = 12;
         foreach ( $people as $person ) {
            //gather assets
-           $personimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , array(200,300) );
-           $personimageurl = $personimageurl[0];
-           $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->ID) , $size = 'large' );
-           $personimageurlhigh = $personimageurlhigh[0];
-           if ( !$personimageurl ) {
-            //set to default image here
-            $personimageurl = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
-            $personimageurlhigh = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
-           }
-           $hometown = get_post_meta($person->ID, 'hometown', true);
-           $major = get_post_meta($person->ID, 'major', true);
-           $minor = get_post_meta($person->ID, 'minor', true);
-           $linkedin = get_post_meta($person->ID, 'linkedin', true);
+           $personimageurl = $person->img;
+           $personimageurlhigh = $person->img_highres;
+
+           // // $personimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($person->id) , $size = 'large' );
+           // $personimageurlhigh = $personimageurlhigh[0];
+           // if ( !$personimageurl ) {
+           //  //set to default image here
+           //  $personimageurl = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
+           //  $personimageurlhigh = plugin_dir_url( __FILE__ ) . 'assets/default.jpg';
+           // }
+           $hometown = $person->hometown;
+           $major = $person->major;
+           $minor = $person->minor;
+           $linkedin = $person->linkedin;
            if ( strpos($linkedin, 'http') === false && strlen($linkedin) > 1) {
              $linkedin = "https://" . $linkedin;
            }
-           $filters = wp_get_post_terms( $person->ID, 'filters' );
-           $yearawarded = "";
-           $tags = wp_get_post_terms( $person->ID, 'tags' );
+           $filters = $person->classes;
+           $yearawarded = $person->year_awarded;
+           $tags = explode(', ', $person->tags);
            //FEATURE: do tags also need to be classes?
            $personclasses = "";
            foreach ($filters as $filter ) {
-               $personclasses .= $filter->slug . " ";
-               if($filter->parent == "31" ) { //if parent is "year awarded"
-                $yearawarded = $filter->name;
-               }
+               $personclasses .= $filter . " ";
            }
            if ( $peoplecount % $featureOffset == 3 ) {
                 $personclasses .= "featured ";
@@ -250,20 +242,12 @@
 
            //spit out html
            ?>
-            <li tabindex="0" data-name="<?php echo $person->post_name; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
+            <li tabindex="0" id="<?php echo $person->slug; ?>" data-name="<?php echo $person->slug; ?>" data-img="<?php echo $personimageurlhigh; ?>" class="flip-container grid-item <?php echo $personclasses; ?>">
             <div class="flipper" role="button" aria-expanded="false">
               <div class="front lazy" data-src="<?php echo $personimageurl; ?>">
-                <!-- <span class="badge"><span>
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     width="10.583px" height="60px" viewBox="0 0 10.583 37.5" enable-background="new 0 0 10.583 37.5" xml:space="preserve">
-                  <line fill="none" stroke="#CACCCD" stroke-miterlimit="10" x1="10.053" y1="0.125" x2="0.484" y2="37.332"/>
-                  </svg>
-                  <?php //echo $yearawarded; ?>
-                </span></span> -->
               </div>
               <div class="back">
                 <p class="back-title"><?php echo $person->post_title; ?></p>
-                <!-- <p><?php echo $hometown; ?></p> -->
                 <p class="major"><?php echo $major; ?></p>
               </div>
               <div tabindex="0" class="full-bio" aria-hidden="true">
@@ -276,22 +260,43 @@
                   <p class="year-awarded">Year awarded <?php echo $yearawarded; ?></p>
                 </div>
                 <div class="bio-text">
-                  <p><?php echo $person->post_content; ?></p>
+                  <p><?php echo $person->content; ?></p>
                 </div>
                 <div class="tags">
                 <?php foreach ($tags as $tag ) {
-                    echo '<a href="#">' . $tag->name . '</a>';
+                    echo '<a href="#">' . $tag . '</a>';
                 } ?>
                 </div>
               </div>
             </div>
           </li>
+
+
+
+
         <?php
             $peoplecount++;
         }
+
         ?>
+
+        <?php
+          // $url = get_site_url() . '/api/husky100/get_husky100/'; // path to your JSON file
+          // $data = file_get_contents($url); // put the contents of the file into a variable
+          // $people = json_decode($data)->posts; // decode the JSON feed
+          // // $characters = $characters->posts;
+
+          // foreach ($people as $person) {
+          //   echo $character->post_title . '<br>';
+          // }
+        ?>
+
+
          </ul>
+
     </div>
-    <?php wp_footer(); ?>
+<?php wp_footer(); ?>
+
+
 </body>
 </html>

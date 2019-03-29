@@ -83,7 +83,7 @@ class json_api_husky100_controller
     //             $results[]              = $result;
     //         }
 
-    //         set_transient( 'get_husky100', $results, 12 * HOUR_IN_SECONDS );
+    //         set_transient( 'get_husky100', $results, 48 * HOUR_IN_SECONDS );
     //     }
 
     //     return $this->posts_object_result($results, null);
@@ -173,7 +173,7 @@ class json_api_husky100_controller
 
                 $results[]              = $result;
             }
-            set_transient( $transient_name, $results, 12 * HOUR_IN_SECONDS );
+            set_transient( $transient_name, $results, 48 * HOUR_IN_SECONDS );
         }
 
         return $this->posts_object_result($results, null);
