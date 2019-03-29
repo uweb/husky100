@@ -138,17 +138,17 @@ add_action( 'wp_ajax_ajax_pagination', 'ajax_pagination' );
  * Adding custom JSON controllers for Husky 100
  *
  */
-add_filter('json_api_controllers', 'add_husky100_controller');
-add_filter('json_api_husky100_controller_path', 'set_husky100_controller_path');
 
 function add_husky100_controller($controllers) {
   $controllers[] = 'husky100';
   return $controllers;
 }
+add_filter('json_api_controllers', 'add_husky100_controller');
 
 function set_husky100_controller_path() {
-  return dirname(__FILE__) . "/inc/husky100-json.php";
+  return dirname( __FILE__ ) . "/inc/husky100-json.php";
 }
+add_filter('json_api_husky100_controller_path', 'set_husky100_controller_path');
 
 
 /**

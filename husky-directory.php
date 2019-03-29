@@ -571,7 +571,7 @@ add_action('init', 'load_other_resources');
 
 function load_other_resources() {
     wp_enqueue_script('jquery');
-    wp_register_script('tiles-js', plugins_url('js/tiles.js', __FILE__), 'jquery', '1.0', true);
+    wp_register_script('tiles-js', plugins_url('js/tiles.js', __FILE__), 'jquery', '1.5', true);
     wp_enqueue_script('tiles-js');
     wp_register_style('tiles-style', plugins_url('css/tiles.css', __FILE__));
     wp_enqueue_style('tiles-style');
