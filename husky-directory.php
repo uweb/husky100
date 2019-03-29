@@ -216,7 +216,8 @@ endif;
             'query_var'=>true,
             'rewrite' => array(
                 'slug' => 'year',
-                'with_front' => 'false',
+                'with_front' => false,
+                'hierarchical' => false,
                 'ep_mask' => EP_PAGES,
             ),
         ));

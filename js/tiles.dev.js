@@ -17,6 +17,7 @@ $(window).load(function(){
       var $grid = $('.grid').isotope({
         itemSelector: '.grid-item',
         percentPosition: true,
+        filter: getFilterValue($filter),
         masonry: {
           columnWidth: '.grid-sizer'
         },
