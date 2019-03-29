@@ -149,7 +149,7 @@
     // $query = new WP_Query($args);
     // $people = $query->get_posts();
 
-    $url = get_site_url() . '/api/husky100/get_husky100_years?filter=' . get_query_var( 'term' ); // path to your JSON file
+    $url = 'http://washington.edu/husky100?json=husky100.get_husky100_years&filter=' . get_query_var( 'term' ); // path to your JSON file
     $data = file_get_contents($url); // put the contents of the file into a variable
     $people = json_decode($data)->posts; // decode the JSON feed
     shuffle($people);
