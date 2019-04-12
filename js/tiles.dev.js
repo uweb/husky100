@@ -1,11 +1,59 @@
 $(window).load(function(){
 
+      var personTemplate = '<li tabindex="0" id="<%= slug %>" data-name="<%= slug %>" data-img="<%= img_highres %>" class="flip-container grid-item <%= classes %>">' +
+        '<div class="flipper" role="button" aria-expanded="false">' +
+          '<div class="front lazy" data-src="<%= img %>">' +
+          '</div>' +
+          '<div class="back">' +
+            '<p class="back-title"><%= post_title %></p>' +
+            '<p class="major"><%= major %></p>' +
+          '</div>' +
+          '<div tabindex="0" class="full-bio" aria-hidden="true">' +
+            '<h2><%= post_title %>' +
+            '<% if (  linkedin )  { %>' +
+              '<a target="_blank" class="linkedin" href="<%= linkedin %>">LinkedIn</a>' +
+            '<% } %>' +
+            '</h2>' +
+            '<div class="bio-info">' +
+              '<p><%= hometown %></p>' +
+              '<p><%= major %></p>' +
+              '<p><%= minor %></p>' +
+              '<p class="year-awarded">Year awarded <%= year_awarded %></p>' +
+            '</div>' +
+            '<div class="bio-text">' +
+              '<p><%= content %></p>' +
+            '</div>' +
+            '<div class="tags">' +
+              '<% _.each(tags, function(tag) { %>' +
+                '<a href="#" class="tag"><%= tag %></a>' +
+              '<% }); %>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</li>';
       var myLazyLoad = new LazyLoad({
           elements_selector: ".lazy"
       });
 
-
-
+      function addRecipient(data) {
+        var $person = data.posts[0];
+        // console.log($person);
+        $personCard = $( _.template( personTemplate ) ({
+                        slug: $person.slug,
+                        img_highres: $person.img_highres,
+                        img: $person.img,
+                        classes: $person.classes.join(' '),
+                        major: $person.major,
+                        minor: $person.minor,
+                        hometown: $person.hometown,
+                        linkedin: $person.linkedin,
+                        content: $person.content,
+                        tags: $person.tags,
+                        year_awarded: $person.year_awarded,
+                        post_title: $person.post_title,
+                      }) );
+        $grid.prepend( $personCard ).isotope( 'prepended', $personCard );
+      }
       var qsRegex,
           $searcher_wrap = $( "#searcher_wrap" ),
           $searcher = $( "#searcher" ),
@@ -183,33 +231,12 @@ $(window).load(function(){
           }
       });
 
-
-      // Open by URL hash
-    if(location.hash.match(/^#name/)) {
-        var hashName = location.hash.substring(6),
-            $dataName = $('*[data-name="' + hashName + '"]');
-
-        $dataName.addClass('open');
-        $grid.isotope({ filter: '',});
-
-        // Replace with high quality image
-
-        // Scroll-to portion
-        scrollIt($dataName);
-        imageSwitch($dataName);
-        myLazyLoad.update();
-
-        // Switch ARIA tags
-        aria($dataName);
-
-      }
-
-
       // Search through category tags
-      $('.tags').on('click', 'a', function(els){
+      $(document).on('click', 'a.tag', function(els){
         var $this = $(this),
             el = els;
             $text = $this.text();
+            // console.log($text);
 
         el.preventDefault();
         // Stop propagation, otherwise it will bubble and want to close the slide
@@ -224,6 +251,34 @@ $(window).load(function(){
         myLazyLoad.update();
       })
 
+    if(location.hash.match(/^#name/)) {
+        var hashName = location.hash.substring(6);
+        var recipientPayload = '?json=husky100.get_recipient&name=' + hashName;
+        $('#' + hashName).remove();
+        var recipientJSON = $.getJSON( recipientPayload, function(data){
+                    if (data.count > 0) {
+                      addRecipient(data);
+                      var $dataName = $('#' + hashName);
+                      $dataName.addClass('open');
+                      $grid.isotope({ filter: '',});
+
+
+                      // Scroll-to portion
+                      scrollIt($dataName);
+                      imageSwitch($dataName);
+
+                      // Replace with high quality image
+                      myLazyLoad.update();
+
+                      // Switch ARIA tags
+                      aria($dataName);
+                    }
+
+                  })
+                  .fail(function( jqxhr, textStatus, error ) {
+                      var err = textStatus + ", " + error;
+                      console.log( "Request Failed: " + err );})
+      }
 });
 
 //false scroll

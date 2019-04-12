@@ -266,7 +266,7 @@
                 </div>
                 <div class="tags">
                 <?php foreach ($tags as $tag ) {
-                    echo '<a href="#">' . $tag . '</a>';
+                    echo '<a href="#" class="tag">' . $tag . '</a>';
                 } ?>
                 </div>
               </div>
