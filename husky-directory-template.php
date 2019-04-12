@@ -99,7 +99,7 @@
                             echo ( ($children->count > 0) ? '<option value=".' . $children->slug . '">&emsp;' . $children->name . '</option>' : '');
                         }
                     } else {
-                        echo ( ($child->count > 0) ? '<option data-url="' . get_site_url() . '/year/' . $child->slug . '" value=".' . $child->slug . '" ' . (($child->slug=='2018')?'selected':'') . '>' . $child->name . '</option>' : '');
+                        echo ( ($child->count > 0) ? '<option data-url="' . get_site_url() . '/year/' . $child->slug . '" value=".' . $child->slug . '" ' . (($child->slug=='2019')?'selected':'') . '>' . $child->name . '</option>' : '');
                     }
                  }
 
@@ -149,7 +149,9 @@
     // $query = new WP_Query($args);
     // $people = $query->get_posts();
 
-    $url = 'http://washington.edu/husky100?json=husky100.get_husky100_years&filter=' . get_query_var( 'term' ); // path to your JSON file
+    // $url = get_site_url() . '/?json=husky100.get_husky100_years&filter=' . get_query_var( 'term' ); // path to your JSON file
+    $url = 'http://washington.edu/husky100/?json=husky100.get_husky100_years&filter=2019';
+    // $url = 'http://washington.edu/husky100?json=husky100.get_husky100_years&filter=' . get_query_var( 'term' ); // path to your JSON file
     $data = file_get_contents($url); // put the contents of the file into a variable
     $people = json_decode($data)->posts; // decode the JSON feed
     shuffle($people);
