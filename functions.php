@@ -168,4 +168,69 @@ function husky100_custom_image_sizes( $sizes ) {
   );
 }
 
+/**
+ * Adding a setting to the Reading Settings to set the Husky 100 year
+ */
+
+
+ function husky100_settings_api_init() {
+  // Add the section to reading settings so we can add our
+  // fields to it
+  add_settings_section(
+    'husky100_section',
+    'Husky 100 Year',
+    'husky100year_setting_section',
+    'reading'
+  );
+
+  // Add the field with the names and function to use for our new
+  // settings, put it in our new section
+  add_settings_field(
+    'husky100_default_year',
+    'Year',
+    'husky100year_setting_field',
+    'reading',
+    'husky100_section'
+  );
+
+  // Register our setting so that $_POST handling is done for us and
+  // our callback function just has to echo the <input>
+  register_setting( 'reading', 'default_year' );
+ } // eg_settings_api_init()
+
+ add_action( 'admin_init', 'husky100_settings_api_init' );
+
+
+ // ------------------------------------------------------------------
+ // Settings section callback function
+ // ------------------------------------------------------------------
+ //
+ // This function is needed if we added a new section. This function
+ // will be run at the start of our section
+ //
+
+ function husky100year_setting_section() {
+  echo '<p>Set the year for the Husky 100\'s main page and various other defaults within the plugin</p>';
+ }
+
+ // ------------------------------------------------------------------
+ // Callback function for our example setting
+ // ------------------------------------------------------------------
+ //
+ // creates a checkbox true/false option. Other types are surely possible
+ //
+
+ function husky100year_setting_field() {
+  $idObj = get_term_by('name', 'Year Awarded', 'filters');
+  $id = $idObj->term_id;
+    ?>
+  <div class="tagsdiv" id="year_awarded">
+      <div class="jaxtag">
+      <?php
+      // Use nonce for verification
+      wp_nonce_field( plugin_basename( __FILE__ ), 'filters_noncename' );
+      wp_dropdown_categories('taxonomy=filters&hide_empty=1&orderby=name&name=default_year&show_option_none=Select year&value_field=slug&child_of='. $id .'&selected='.get_option( 'default_year' ) ); ?>
+      </div>
+  </div> <?php
+ }
 ?>
