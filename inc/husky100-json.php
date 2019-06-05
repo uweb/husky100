@@ -167,12 +167,25 @@ class json_api_husky100_controller
         $transient_name = 'admit_husky100';
 
         $people_args = array(
-            array(
-                'taxonomy' => 'filters',
-                'field' => 'slug',
-                'terms' => get_option('default_year'),
-                'operator' => 'IN',
-            )
+            'relation' => 'AND',
+                array(
+                    'taxonomy' => 'filters',
+                    'field' => 'slug',
+                    'terms' => array(get_option('default_year') ),
+                    'operator' => 'IN',
+                ),
+                array(
+                    'taxonomy' => 'filters',
+                    'field' => 'slug',
+                    'terms' => array('seattle'),
+                    'operator' => 'IN',
+                ),
+                array(
+                    'taxonomy' => 'filters',
+                    'field' => 'slug',
+                    'terms' => array('undergrad'),
+                    'operator' => 'IN',
+                ),
         );
         // delete_transient( $transient_name );
 
