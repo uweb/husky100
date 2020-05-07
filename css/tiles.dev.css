@@ -2,10 +2,6 @@
   border-bottom-color: #4b2e83 !important;
   border-top-color: #4b2e83 !important;
 }
-.dropdown-arrow-inverse {
-  border-bottom-color: #4b2e83 !important;
-  border-top-color: #4b2e83 !important;
-}
 .logged-in div#thin-strip {
   top: 32px;
 }
@@ -1242,4 +1238,10 @@ div#thin-strip ul li a.slash:after {
 }
 .ie10 #husky100 ul#filter li.select label {
   position: static;
+}
+@media only screen and (max-width: 768px) {
+  #husky100 .open .front:after,
+  #husky100 .front:after {
+    content: none;
+  }
 }
