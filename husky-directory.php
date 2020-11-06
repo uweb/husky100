@@ -222,7 +222,7 @@ endif;
             ),
         ));
         register_taxonomy_for_object_type('filters', 'husky100');
-        flush_rewrite_rules();
+        // flush_rewrite_rules();
 
         //defualts
         if(!get_term('Discipline', 'filters')){
