@@ -159,10 +159,10 @@ $(window).load(function(){
       $('#clear').on('click', function(el){
         el.preventDefault();
         // Clear selects, open class, and hash
-        $('select').prop('selectedIndex',0);
+        $('.filtered > select').prop('selectedIndex',0);
         $('.grid-item').removeClass('open');
         $filter.removeClass('select_active')
-        $filter.find('li').removeClass('labelToggle')
+        $filter.find('.filtered').removeClass('labelToggle')
         window.location.hash = '';
         $grid.isotope({ filter: ':not(.title-card)' });
       })
@@ -312,14 +312,19 @@ function getFilterValue( $filter ) {
 
     var filterValue = '';
     var allarts = false;
-    $filter.addClass('select_active')
-    $('.labelToggle > select').each(function(){
+    $('.labelToggle.filtered > select').each(function(){
       if($( this ).val() == '.arts-sci-arts, .arts-sci-humanities, .arts-sci-natural-sci, .arts-sci-social-sci, .arts-sci-all-divisions'){
         allarts = true;
       } else {
         filterValue += $( this ).val();
       }
     });
+    if (filterValue !== "") {
+        $filter.addClass('select_active')
+    } else {
+      $('.filtered > select').prop('selectedIndex',0);
+
+    }
     filterValueReturn = ( allarts ? '.arts-sci-arts'+filterValue+', .arts-sci-humanities'+filterValue+', .arts-sci-natural-sci'+filterValue+', .arts-sci-social-sci'+filterValue+', .arts-sci-all-divisions'+filterValue : filterValue );
     return filterValueReturn;
 
