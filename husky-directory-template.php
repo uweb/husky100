@@ -101,7 +101,7 @@
                  echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':' filtered') . '">' .
                         '<label>' . $parent->name . '</label>' .
                          // '<select' . (($parent->name == 'Year Awarded')? ' id="year-awarded"': '' ) . '><option disabled>' . 'Select a ' . $parent->name . '</option>';
-                         '<select' . (($parent->name == 'Year Awarded')? ' id="year-awarded"': '' ) . '><option disabled>' . 'Select a ' . $parent->name . '</option>';
+                         '<select' . (($parent->name == 'Year Awarded')? ' id="year-awarded"': '' ) . '><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
 
                  foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                     if ($child->slug == 'arts-sci-all-divisions') {
@@ -162,7 +162,7 @@
     // $people = $query->get_posts();
 
     // $url = get_site_url() . '/?json=husky100.get_husky100_years&filter=' . get_query_var( 'term' ); // path to your JSON file
-    $url = 'http://washington.edu/husky100/?json=husky100.get_husky100_years&filter=' . $default_year;
+    $url = 'https://www.washington.edu/husky100/?json=husky100.get_husky100_years&filter=' . $default_year;
     // $url = 'http://washington.edu/husky100?json=husky100.get_husky100_years&filter=' . get_query_var( 'term' ); // path to your JSON file
     $data = file_get_contents($url); // put the contents of the file into a variable
     $people = json_decode($data)->posts; // decode the JSON feed

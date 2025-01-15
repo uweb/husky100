@@ -77,7 +77,7 @@
 
     <div role="form" aria-label="Filter Results">
 
-        <ul id="filter" class="select_active">
+        <ul id="filter">
         <li class="sort_by">
           Filter by:
         </li>
@@ -97,7 +97,7 @@
                 'parent' => 0
             ));
             foreach ($filter_parent_terms as $parent) {
-                 echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':'') . '">' .
+                 echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':' filtered') . '">' .
                         '<label>' . $parent->name . '</label>' .
                          '<select' . (($parent->name == 'Year Awarded')? ' id="year-awarded"': '' ) . '><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
                          // '<select' . (($parent->name == 'Year Awarded')? ' id="year-awarded"': '' ) . '><option disabled>' . 'Select a ' . $parent->name . '</option><option class="viewall" value="">View all</option>';
@@ -160,7 +160,7 @@
     // $query = new WP_Query($args);
     // $people = $query->get_posts();
 
-    $url = 'http://washington.edu/husky100?json=husky100.get_husky100_years&filter=' . get_query_var( 'term' ); // path to your JSON file
+    $url = 'https://www.washington.edu/husky100?json=husky100.get_husky100_years&filter=' . get_query_var( 'term' ); // path to your JSON file
     $data = file_get_contents($url); // put the contents of the file into a variable
     $people = json_decode($data)->posts; // decode the JSON feed
     shuffle($people);

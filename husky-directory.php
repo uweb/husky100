@@ -4,7 +4,7 @@
     Plugin Name: Husky 100
     Plugin URI: http://www.washington.edu
     Description: Makes a people content type and directory template for the Husky 100
-    Version: 0.1
+    Version: 1.8.2
     Author: UW Web Team
     */
 
