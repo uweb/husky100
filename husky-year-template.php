@@ -241,14 +241,16 @@
            if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
             $fact = $fastfacts[$peoplecount / $featureOffset];
             $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , array(200,300) );
-            $factimageurl = $factimageurl[0];
+            $factimageurl = isset($factimageurl) ? $factimageurl[0] : '';
             $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' );
-            $factimageurlhigh = $factimageurlhigh[0];
-            ?>
-                <li tabindex="0" data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
-                      <h3><?php echo $fact->post_title; ?></h3>
-                </li>
-            <?php
+            $factimageurlhigh = isset($factimageurlhigh) ? $factimageurlhigh[0] : '';
+              if ( $fact && $fact->post_name ) :
+              ?>
+                  <li tabindex="0" data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
+                        <h3><?php echo $fact->post_title; ?></h3>
+                  </li>
+              <?php
+              endif;
            }
 
            //spit out html
