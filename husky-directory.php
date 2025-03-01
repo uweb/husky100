@@ -571,6 +571,8 @@ endif;
 add_action('init', 'load_other_resources');
 
 function load_other_resources() {
+  if ( !is_admin () ) {
+    
     wp_enqueue_script('jquery');
     // wp_register_script('tiles-js', plugins_url('js/tiles.dev.js', __FILE__), 'jquery', '1.5', true);
     wp_register_script('tiles-js', plugins_url('js/tiles.js', __FILE__), 'jquery', '2.0', true);
@@ -583,6 +585,7 @@ function load_other_resources() {
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
         //'query_vars' => json_encode( $wp_query->query )
     ));
+  }
 }
 
 require( plugin_dir_path( __FILE__ ) . 'functions.php');
