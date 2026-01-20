@@ -579,6 +579,8 @@ function load_other_resources() {
     wp_enqueue_script('tiles-js');
     wp_register_style('tiles-style', plugins_url('css/tiles.css', __FILE__));
     wp_enqueue_style('tiles-style');
+     wp_register_style('husky100-style', plugins_url('css/husky100.css', __FILE__));
+    wp_enqueue_style('husky100-style');
 
     //ajax stuff
     wp_localize_script( 'tiles-js', 'ajaxpagination', array(
