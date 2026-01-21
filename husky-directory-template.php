@@ -67,7 +67,7 @@
         <div class="row">
           <h1><?php the_title(); ?></h1>
           <div class="udub-slant"><span></span></div>
-          <?php the_content(); ?>
+          <?php the_content();?>
         </div>
       </div>
     </div>
@@ -244,9 +244,11 @@
            if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
             $fact = $fastfacts[$peoplecount / $featureOffset];
             $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , array(200,300) );
-            $factimageurl = $factimageurl[0];
+           
+           // $factimageurl = $factimageurl[0];
             $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' );
-            $factimageurlhigh = $factimageurlhigh[0];
+           // $factimageurlhigh = $factimageurlhigh[0];
+            
             ?>
                 <li tabindex="0" data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
                       <h3><?php echo $fact->post_title; ?></h3>
