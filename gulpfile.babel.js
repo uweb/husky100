@@ -27,13 +27,13 @@ function serve(done) {
 }
 
 export function styles() {
-  return gulp.src('./sass/husky100.scss')         // input SCSS
+  return gulp.src('./dev/sass/husky100.scss')         // input SCSS
     .pipe(sourcemaps.init())
     .pipe(scss().on('error', scss.logError))
    // .pipe(autoprefixer())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./css'));                  // output CSS 
-}
+}console.log(styles)
 
 export function scripts() {
     return gulp.src('./dev/js/tiles.dev.js')
@@ -43,8 +43,8 @@ export function scripts() {
         .pipe(gulp.dest('./js'));
 }
 export function watch() {
-    gulp.watch('./sass/husky100.scss', gulp.series(styles, reload) ) ;
-    gulp.watch('./js/tiles.dev.js', gulp.series(scripts, reload));
+    gulp.watch('./dev/sass/husky100.scss', gulp.series(styles, reload) ) ;
+    gulp.watch('./dev/js/tiles.dev.js', gulp.series(scripts, reload));
 }
 
 //export default gulp.series(styles, scripts, watch);
