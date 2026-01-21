@@ -39,7 +39,7 @@ export function scripts() {
     return gulp.src('./dev/js/tiles.dev.js')
         .pipe(babel())
         .pipe(terser())
-        .pipe(concat('./newtiles.js'))
+        .pipe(concat('./tiles.js'))
         .pipe(gulp.dest('./js'));
 }
 export function watch() {
