@@ -1,53 +1,91 @@
 import gulp from 'gulp';
-import sass from 'gulp-sass';
-import dartSass from 'sass';
-import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import browserSync from 'browser-sync';
 import concat from 'gulp-concat';
-import terser from 'gulp-terser';
+import cssnano from 'cssnano';
+//import eslint from 'gulp-eslint';
+import postcss from 'gulp-postcss';
+import postcssPresetEnv from 'postcss-preset-env';
+import print from 'gulp-print';
+import dartSass from 'sass'; // Dart Sass
+import gulpSass from 'gulp-sass'; // Gulp Sass
+import uglify from 'gulp-uglify';
 
-const scss = sass(dartSass);
+const sass = gulpSass(dartSass); // Use DartSass with Gulp Sass; note, this did not change anything in Sass!
+
+
+const paths = {
+	styles: {
+		src: ['dev/scss/**/*.scss', '!dev/scss/**/_*.scss'] ,
+		dest: 'css/'
+	},
+	scripts: {
+		src: 'dev/js/**/*.js',
+		dest: 'js/'
+	}
+};
 
 // Initialize Browser Sync
 const server = browserSync.create();
+//const getPostcssPresetEnv = async () => (await import('postcss-preset-env')).default;
 
 function reload(done) {
-    server.reload();
-    done();
+	server.reload();
+	done();
 }
 
 function serve(done) {
 	server.init({
-		proxy: 'https://uw-multisite.local/',
-		port: '8181',
-       // open: false
+		proxy: 'https://uw-multisite.local/', 
+		port: 8181,
 	});
 	done();
 }
 
+/*
+* You can also declare named functions and export them as tasks
+*/
 export function styles() {
-  return gulp.src('./dev/sass/husky100.scss')         // input SCSS
-    .pipe(sourcemaps.init())
-    .pipe(scss().on('error', scss.logError))
-   // .pipe(autoprefixer())
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./css'));                  // output CSS 
-}console.log(styles)
+	return gulp.src(paths.styles.src)
+		.pipe(print())
+		.pipe(sass.sync({
+			outputStyle: 'compressed',
+			precision: 2,
+			errLogToConsole: true,
+		}).on('error', sass.logError))
+		.pipe(postcss([
+			postcssPresetEnv({
+				autoprefixer: { grid: false }
+			}),
+			cssnano
+		]))
+		.pipe(concat('husky100.css'))
+		.pipe(gulp.dest(paths.styles.dest));
+}
 
 export function scripts() {
-    return gulp.src('./dev/js/tiles.dev.js')
-        .pipe(babel())
-        .pipe(terser())
-        .pipe(concat('./tiles.js'))
-        .pipe(gulp.dest('./js'));
-}
-export function watch() {
-    gulp.watch('./dev/sass/husky100.scss', gulp.series(styles, reload) ) ;
-    gulp.watch('./dev/js/tiles.dev.js', gulp.series(scripts, reload));
+	return gulp.src(paths.scripts.src)
+		.pipe(print())
+		// .pipe(eslint())
+		// .pipe(eslint.format())
+		.pipe(babel())
+		.pipe(uglify())
+		.pipe(concat('main.min.js'))
+		.pipe(gulp.dest(paths.scripts.dest));
 }
 
-//export default gulp.series(styles, scripts, watch);
+
+
+export function watch() {
+	gulp.watch(paths.scripts.src, gulp.series(scripts, reload));
+	gulp.watch(paths.styles.src, gulp.series(styles, reload));
+	
+}
+
 // Run serve on first load, which also watches
-const firstRun = gulp.series(scripts, styles, serve, watch);
+const firstRun = gulp.series(scripts,  styles, serve, watch);
+
+/**
+ * Run the whole thing.
+ */
 export default firstRun;
