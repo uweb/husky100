@@ -7,7 +7,7 @@ import cssnano from 'cssnano';
 import postcss from 'gulp-postcss';
 import postcssPresetEnv from 'postcss-preset-env';
 import print from 'gulp-print';
-import dartSass from 'sass'; // Dart Sass
+import dartSass from 'sass'; // Dart ass
 import gulpSass from 'gulp-sass'; // Gulp Sass
 import uglify from 'gulp-uglify';
 
@@ -27,7 +27,6 @@ const paths = {
 
 // Initialize Browser Sync
 const server = browserSync.create();
-//const getPostcssPresetEnv = async () => (await import('postcss-preset-env')).default;
 
 function reload(done) {
 	server.reload();
@@ -70,7 +69,7 @@ export function scripts() {
 		// .pipe(eslint.format())
 		.pipe(babel())
 		.pipe(uglify())
-		.pipe(concat('main.min.js'))
+		.pipe(concat('husky100.js'))
 		.pipe(gulp.dest(paths.scripts.dest));
 }
 

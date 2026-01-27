@@ -74,7 +74,7 @@
     <?php wp_reset_query(); ?>
     <!-- FEATURE: dynamically load the filters - Now a dropdown structure -->
 
-    <div role="form" aria-label="Filter Results">
+    <div id="husky100-filter-form" role="form" aria-label="Filter Results">
 
         <ul id="filter">
         <li class="sort_by">
