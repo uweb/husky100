@@ -26,8 +26,8 @@
         <![endif]-->
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
-      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/thinstrip.css' ?>' type='text/css' media='all' />
-      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/module-hero-image.css' ?>' type='text/css' media='all' />
+      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . 'css/husky100.css' ?>' type='text/css' media='all' />
+      
 
       <!--[if IE 9]>
           <style>
@@ -48,16 +48,21 @@
     <div role="banner">
       <div id="thin-strip">
           <a class="wordmark" href="http://uw.edu" tabindex="-1" title="University of Washington Home">Home</a>
+         
           <ul>
-              <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a></li>
+              <!-- </li>
               <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a></li>
               <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a></li>
-              <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a></li>
+              <</li> -->
+              <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a><span class="dashicons dashicons-facebook-alt"></span> </li>
+              <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a><span class="dashicons dashicons-twitter"></span></li>
+              <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a><span class="dashicons dashicons-instagram"></span></li>
+              <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a><span class="dashicons dashicons-youtube"></span></li>
               <li><a href="http://uw.edu/students" class="slash" title="Students">Students</a></li>
               <li><a href="http://uw.edu/parents" class="slash" title="Parents">Parents</a></li>
               <li><a href="http://uw.edu/facultystaff" class="slash" title="Faculty &amp; Staff">Faculty &amp; Staff</a></li>
               <li><a href="http://uw.edu/alumni" class="slash" title="Alumi">Alumni</a></li>
-          </ul>
+          </ul> 
       </div>
     </div>
 
@@ -142,7 +147,7 @@
 
     </div>
 
-
+ 
     <!-- Add this to  ontouchstart="this.classList.toggle('hover');" -->
     <?php
     //sort of students will all occur here
@@ -312,7 +317,6 @@
 
     </div>
 <?php wp_footer(); ?>
-
 
 </body>
 </html>

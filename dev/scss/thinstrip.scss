@@ -47,7 +47,7 @@ div#thin-strip {
     li {
       list-style: none;
       float: left;
-      display: block;
+      display: inline-block;
       margin: 14px 0 0;
 
       &.facebook,
@@ -55,50 +55,56 @@ div#thin-strip {
       &.instagram,
       &.youtube {
         margin-right: 10px;
+        a {
+            margin: 0 0  0;
+            text-indent: -10000px;
+            display: block;
+            width: 30px;
+        }
+        .dashicons {
+            position: relative;
+            top: -25px;
+            &:hover{
+              color: #4b2e83;
+              transform: scale(110%);
+            }
+        }
       }
 
       &.facebook { 
-        background: url(../assets/parts/thinstrip.svg) no-repeat -7px -13px; 
-         a {
-            margin: 13px 0 0px 0;
-            text-indent: -10000px;
-            display: block;
-            width: 30px;
+        span{ 
+          &:before {
+            content: "\f305";
+          }
         }
       }
       &.twitter { 
-        background: url(../assets/parts/thinstrip.svg) no-repeat -48px -13px; 
-         a {
-            margin: 13px 0 0px 0;
-            text-indent: -10000px;
-            display: block;
-            width: 30px;
+        span{ 
+          &:before {
+            content: "\f301";
+          }
         }
       }
       &.instagram { 
-        background: url(../assets/parts/thinstrip.svg) no-repeat -97px -13px; 
-         a {
-            margin: 13px 0 0px 0;
-            text-indent: -10000px;
-            display: block;
-            width: 30px;
+        span{ 
+          &:before {
+            content: "\f12d";
+          }
         }
       }
       &.youtube {
-        background: url(../assets/parts/thinstrip.svg) no-repeat -124px -13px;
-        margin-right: 30px;
-         a {
-            margin: 13px 0 0px 0;
-            text-indent: -10000px;
-            display: block;
-            width: 30px;
+        span{ 
+          &:before {
+            content: "\f19b";
+          }
         }
+        margin-right: 30px;
       }
       &.search {
         text-indent: -10000px;
         width: 40px;
         height: 40px;
-        background: url(assets/parts/thinstrip.svg) no-repeat -25px -232px;
+        background: url(../assets/parts/thinstrip.svg) no-repeat -25px -232px;
       }
 
       a {
@@ -109,6 +115,9 @@ div#thin-strip {
         font-size: 15px;
         margin-right: 30px;
         line-height: 33px;
+        &:hover {
+          color: #4b3e83;
+        }
 
         &.slash:after {
           position: absolute;
@@ -117,7 +126,7 @@ div#thin-strip {
           width: 9px;
           top: -2px;
           content: "";
-          background: url(assets/parts/thinstrip.svg) no-repeat -154px -18px;
+          background: url(../assets/parts/thinstrip.svg) no-repeat -154px -18px;
         }
       }
     }
@@ -150,7 +159,7 @@ div#thin-strip {
       display: block;
       text-indent: -9999px;
       overflow: hidden;
-      background: url(assets/parts/thinstrip.svg) no-repeat 0 -71px;
+      background: url(../assets/parts/thinstrip.svg) no-repeat 0 -71px;
       position: absolute;
       left: 12px;
       bottom: -1px;
@@ -182,22 +191,22 @@ div#thin-strip {
             width: 9px;
             top: -2px;
             content: "";
-            background: url(assets/parts/thinstrip.svg) no-repeat -154px -18px;
+            background: url(../assets/parts/thinstrip.svg) no-repeat -154px -18px;
           }
         }
       }
 
       li.facebook {
-         background: url(../assets/parts/thinstrip.svg) no-repeat -7px -13px; 
+        //background: url(../assets/parts/thinstrip.svg) no-repeat -7px -13px; 
         }
       li.twitter {
-         background: url(../assets/parts/thinstrip.svg) no-repeat -48px -13px; 
+        // background: url(../assets/parts/thinstrip.svg) no-repeat -48px -13px; 
         }
       li.instagram {
-         background: url(../assets/parts/thinstrip.svg) no-repeat -97px -13px; 
+       //  background: url(../assets/parts/thinstrip.svg) no-repeat -97px -13px; 
         }
       li.youtube {
-         background: url(../assets/parts/thinstrip.svg) no-repeat -127px -13px; margin-right: 30px; 
+       //  background: url(../assets/parts/thinstrip.svg) no-repeat -127px -13px; margin-right: 30px; 
         }
       li.search {
         text-indent: -10000px;
@@ -251,7 +260,7 @@ div#thin-strip {
       left: -360px;
       opacity: 0.3;
       width: 580px;
-      background: url(assets/parents/parents.svg) no-repeat -100px 0;
+     // background: url(../assets/parents/parents.svg) no-repeat -100px 0;
       z-index: 0;
     }
   }
@@ -357,7 +366,7 @@ div#thin-strip {
 
       &:after {
         content: "";
-        background: url(assets/salmon/salmon.svg) no-repeat -189px -13px;
+       //) no-repeat -189px -13px;
         display: block;
         position: absolute;
         right: 15px;

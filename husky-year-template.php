@@ -8,13 +8,7 @@
         <meta name="description" content="<?php bloginfo('description', 'display'); ?>">
         <meta name="viewport" content="width=device-width">
         <meta property="og:image" content="http://www.washington.edu/husky100/files/2017/04/husky100badge.png">
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-KQ6QQBT');</script>
-        <!-- End Google Tag Manager -->
+       
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.9.0/lazyload.min.js"></script>
 
@@ -28,7 +22,6 @@
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
       <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . 'husky100.css' ?>' type='text/css' media='all' />
-      <!-- <link rel='stylesheet' href='<?php //echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/module-hero-image.css' ?>' type='text/css' media='all' /> -->
 
       <!--[if IE 9]>
           <style>
@@ -40,7 +33,7 @@
 
     </head>
     <body <?php body_class(); ?> id="husky100">
-   
+  
     <a href="#main_content" class="screen-reader-shortcut">Skip to main content</a>
 
     <div role="banner">
@@ -66,6 +59,7 @@
           <h1><?php the_title(); ?></h1>
           <div class="udub-slant"><span></span></div>
           <?php the_content(); ?>
+         
         </div>
       </div>
     </div>
@@ -137,7 +131,8 @@
         </div>
 
     </div>
-
+ 
+   
 
     <!-- Add this to  ontouchstart="this.classList.toggle('hover');" -->
     <?php
@@ -306,7 +301,5 @@
 
     </div>
 <?php wp_footer(); ?>
-
-
 </body>
 </html>
