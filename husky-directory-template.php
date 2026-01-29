@@ -94,8 +94,8 @@
                 'parent' => 0
             ));
             foreach ($filter_parent_terms as $parent) {
-               $parentNameID = strToLower(str_replace(' ','-',$parent->name));
-                 echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':' filtered') . '">' .
+                $parentNameID = strToLower(str_replace(' ','-',$parent->name));
+                echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':' filtered') . '">' .
                          '<label for="' .  $parentNameID  .'" >' . $parent->name . '</label>' .
                          '<select id="'.   $parentNameID    . '"><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
 

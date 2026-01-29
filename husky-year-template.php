@@ -40,10 +40,10 @@
       <div id="thin-strip">
           <a class="wordmark" href="http://uw.edu" tabindex="-1" title="University of Washington Home">Home</a>
           <ul>
-              <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a></li>
-              <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a></li>
-              <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a></li>
-              <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a></li>
+               <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a><i class="fa-brands fa-facebook-f"></i></li>
+              <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a><i class="fa-brands fa-twitter"></i></li>
+              <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a> <i class="fa-brands fa-instagram"></i></li>
+              <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a><i class="fa-brands fa-youtube"></i></li>
               <li><a href="http://uw.edu/students" class="slash" title="Students">Students</a></li>
               <li><a href="http://uw.edu/parents" class="slash" title="Parents">Parents</a></li>
               <li><a href="http://uw.edu/facultystaff" class="slash" title="Faculty &amp; Staff">Faculty &amp; Staff</a></li>
@@ -88,9 +88,10 @@
                 'parent' => 0
             ));
             foreach ($filter_parent_terms as $parent) {
+                $parentNameID = strToLower(str_replace(' ','-',$parent->name));
                  echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':' filtered') . '">' .
-                         '<label for="' .  $parent->name .'" >' . $parent->name . '</label>' .
-                         '<select id="'.   $parent->name     . '"><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
+                         '<label for="' .   $parentNameID .'" >' . $parent->name . '</label>' .
+                         '<select id="'.    $parentNameID    . '"><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
 
                  foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                     if ($child->slug == 'arts-sci-all-divisions') {
