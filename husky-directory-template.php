@@ -8,15 +8,10 @@
         <meta name="description" content="<?php bloginfo('description', 'display'); ?>">
         <meta name="viewport" content="width=device-width">
         <meta property="og:image" content="http://www.washington.edu/husky100/files/2017/04/husky100badge.png">
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-KQ6QQBT');</script>
+       
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.9.0/lazyload.min.js"></script>
-
+        <script src="https://kit.fontawesome.com/cd54b7bbd3.js" crossorigin="anonymous"></script>
         <?php wp_head(); ?>
 
         <!--[if lt IE 9]>
@@ -50,14 +45,10 @@
           <a class="wordmark" href="http://uw.edu" tabindex="-1" title="University of Washington Home">Home</a>
          
           <ul>
-              <!-- </li>
-              <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a></li>
-              <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a></li>
-              <</li> -->
-              <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a><span class="dashicons dashicons-facebook-alt"></span> </li>
-              <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a><span class="dashicons dashicons-twitter"></span></li>
-              <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a><span class="dashicons dashicons-instagram"></span></li>
-              <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a><span class="dashicons dashicons-youtube"></span></li>
+              <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a><i class="fa-brands fa-facebook-f"></i></li>
+              <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a><i class="fa-brands fa-twitter"></i></li>
+              <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a> <i class="fa-brands fa-instagram"></i></li>
+              <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a><i class="fa-brands fa-youtube"></i></li>
               <li><a href="http://uw.edu/students" class="slash" title="Students">Students</a></li>
               <li><a href="http://uw.edu/parents" class="slash" title="Parents">Parents</a></li>
               <li><a href="http://uw.edu/facultystaff" class="slash" title="Faculty &amp; Staff">Faculty &amp; Staff</a></li>
@@ -103,9 +94,10 @@
                 'parent' => 0
             ));
             foreach ($filter_parent_terms as $parent) {
+               $parentNameID = strToLower(str_replace(' ','-',$parent->name));
                  echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':' filtered') . '">' .
-                         '<label for="' .  $parent->name .'" >' . $parent->name . '</label>' .
-                         '<select id="'.   $parent->name     . '"><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
+                         '<label for="' .  $parentNameID  .'" >' . $parent->name . '</label>' .
+                         '<select id="'.   $parentNameID    . '"><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
 
                  foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                     if ($child->slug == 'arts-sci-all-divisions') {

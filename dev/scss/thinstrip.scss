@@ -56,18 +56,23 @@ div#thin-strip {
       &.youtube {
         margin-right: 10px;
         a {
-            margin: 0 0  0;
+            margin: 0 0 -3px 0;
             text-indent: -10000px;
             display: block;
-            width: 30px;
-        }
-        .dashicons {
             position: relative;
-            top: -25px;
-            &:hover{
+            width: 30px;
+            z-index: 1;
+        }
+        &:hover{
+            i.fa-brands {
               color: #4b2e83;
               transform: scale(110%);
             }
+        }
+        i.fa-brands {
+            position: relative;
+            top: -25px;
+            
         }
       }
 

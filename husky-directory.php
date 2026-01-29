@@ -578,6 +578,7 @@ function load_other_resources() {
 
     wp_register_script('husky100-js', $script_url, array('jquery'), $script_version, true);
     wp_enqueue_script('husky100-js');
+
     wp_register_style('husky100-style', plugins_url('css/husky100.css', __FILE__));
     wp_enqueue_style('husky100-style');
     // wp_register_style('husky100-style', plugins_url('css/husky100.css', __FILE__));
