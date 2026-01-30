@@ -319,6 +319,10 @@ div#thin-strip {
 
     a {
       padding: 6px 36px 5px 54px;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -373,6 +377,7 @@ div#thin-strip {
         width: 18px;
         height: 30px;
         margin-top: -16px;
+        background: url(../assets/parts/thinstrip.svg) no-repeat -189px -13px;
       }
     }
   }
