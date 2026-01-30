@@ -122,7 +122,7 @@ if ( ! post_type_exists( 'husky100' ) ):
         global $post;
         $custom = get_post_custom($post->ID);
         $tenet = $custom['tenet'][0];
-        ?><select name="tenet"/>
+        ?><select name="tenet">
             <option>Tenet</option>
             <option value="Undaunted" <?php echo ($tenet == "Undaunted") ? "selected" : ""; ?> >Undaunted</option>
             <option value="We > Me" <?php echo ($tenet == "We > Me") ? "selected" : ""; ?> >We > Me</option>

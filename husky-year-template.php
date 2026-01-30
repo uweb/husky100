@@ -11,6 +11,7 @@
        
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.9.0/lazyload.min.js"></script>
+        <script src="https://kit.fontawesome.com/cd54b7bbd3.js" crossorigin="anonymous"></script>
 
         <?php wp_head(); ?>
 
@@ -21,7 +22,8 @@
         <![endif]-->
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
-      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . 'husky100.css' ?>' type='text/css' media='all' />
+
+      <!-- <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . 'husky100.css' ?>' type='text/css' media='all' /> -->
 
       <!--[if IE 9]>
           <style>
@@ -66,7 +68,8 @@
     <?php wp_reset_query(); ?>
     <!-- FEATURE: dynamically load the filters - Now a dropdown structure -->
 
-    <div role="form" aria-label="Filter Results">
+    <!-- <div role="form" aria-label="Filter Results"> -->
+    <div id="husky100-filter-form" role="form" aria-label="Filter Results">
 
         <ul id="filter">
         <li class="sort_by">
@@ -231,18 +234,19 @@
            }
 
            if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
-            $fact = $fastfacts[$peoplecount / $featureOffset];
+            $fact = $fastfacts[$peoplecount / $featureOffset];    
             $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , array(200,300) );
-            $factimageurl = isset($factimageurl) ? $factimageurl[0] : '';
+          //  $factimageurl = isset($factimageurl) ? $factimageurl[0] : '';
             $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' );
-            $factimageurlhigh = isset($factimageurlhigh) ? $factimageurlhigh[0] : '';
-              if ( $fact && $fact->post_name ) :
+           // $factimageurlhigh = isset($factimageurlhigh) ? $factimageurlhigh[0] : '';
+            
+             // if ( $fact && $fact->post_name ) :
               ?>
                   <li tabindex="0" data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
                         <h3><?php echo $fact->post_title; ?></h3>
                   </li>
               <?php
-              endif;
+            //  endif;
            }
 
            //spit out html
