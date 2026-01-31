@@ -94,7 +94,7 @@
                 $parentNameID = strToLower(str_replace(' ','-',$parent->name));
                  echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':' filtered') . '">' .
                          '<label for="' .   $parentNameID .'" >' . $parent->name . '</label>' .
-                         '<select id="'.    $parentNameID    . '"><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
+                         '<select' .  (($parent->name == 'Year Awarded')?' arial-label="Year Awarded':'') . '   id="'.    $parentNameID    . '"><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
 
                  foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                     if ($child->slug == 'arts-sci-all-divisions') {
