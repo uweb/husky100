@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
+    <head lang="en">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title> <?php wp_title(' | ',TRUE,'right'); bloginfo('name'); ?> </title>
         <meta charset="utf-8">

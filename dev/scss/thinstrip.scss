@@ -107,15 +107,17 @@ div#thin-strip {
       }
 
       a {
-        color: #797979;
+        color: #373a3c;
         position: relative;
         font-family: "Encode Sans Compressed", sans-serif;
         font-weight: 600;
         font-size: 15px;
         margin-right: 30px;
         line-height: 33px;
+        text-decoration: none;
         &:hover {
           color: #4b3e83;
+          text-decoration: underline;
         }
 
         &.slash:after {

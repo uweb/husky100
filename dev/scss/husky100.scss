@@ -5,19 +5,9 @@
 #husky100 {
   div#thin-strip {
     top: 0;
-
-    a:focus,
-    a:active {
-      border: 1px solid #4d90fe;
-      @include mixins.box-shadow(0px 0px 5px #4d90fe);
-    }
   }
 
-  &.logged-in {
-    .module-hero-image {
-      margin-top: 14px;
-    }
-  }
+
 
   
 
@@ -93,6 +83,7 @@
       a:active,
       a:focus {
         background-color: var(--light-gold);
+        color: var(--husky-purple);
       }
     }
 
@@ -677,11 +668,6 @@
       path {
         fill: var(--light-gold);
       }
-    }
-
-    &:focus {
-      border: 1px solid #4d90fe;
-      @include mixins.box-shadow(0px 0px 5px #4d90fe);
     }
   }
 

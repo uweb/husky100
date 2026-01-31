@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title> <?php wp_title(' | ',TRUE,'right'); bloginfo('name'); ?> </title>
