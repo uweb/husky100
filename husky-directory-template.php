@@ -58,8 +58,11 @@
     <div class="module-hero-image" style="background-image:url('<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>')">
       <div class="container">
         <div class="row">
-          <h1><?php the_title(); ?></h1>
-          <div class="udub-slant"><span></span></div>
+          <h1>
+            <?php the_title(); ?>
+            <div class="udub-slant"><span></span></div>
+          </h1>
+          
           <?php the_content();?>
         </div>
       </div>
@@ -94,7 +97,7 @@
                 $parentNameID = strToLower(str_replace(' ','-',$parent->name));
                 echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':' filtered') . '">' .
                          '<label for="' .  $parentNameID  .'" >' . $parent->name . '</label>' .
-                         '<select' .  (($parent->name == 'Year Awarded')?' aria-label="Year Awarded"':'') . ' id="'.   $parentNameID    . '"><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
+                         '<select' .  (($parent->name == 'Year Awarded')?' aria-label="Year Awarded"':'') . ' id="'. $parentNameID    .'"><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
 
                  foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                     if ($child->slug == 'arts-sci-all-divisions') {
