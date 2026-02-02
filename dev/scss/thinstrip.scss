@@ -322,7 +322,7 @@ div#thin-strip {
     a {
       padding: 6px 36px 5px 54px;
       text-decoration: none;
-      &:hover {
+      &:hover, &:active, &:focus {
         text-decoration: underline;
       }
     }
