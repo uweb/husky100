@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title> <?php wp_title(' | ',TRUE,'right'); bloginfo('name'); ?> </title>
@@ -8,15 +8,10 @@
         <meta name="description" content="<?php bloginfo('description', 'display'); ?>">
         <meta name="viewport" content="width=device-width">
         <meta property="og:image" content="http://www.washington.edu/husky100/files/2017/04/husky100badge.png">
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-KQ6QQBT');</script>
-        <!-- End Google Tag Manager -->
+       
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.9.0/lazyload.min.js"></script>
+        <script src="https://kit.fontawesome.com/cd54b7bbd3.js" crossorigin="anonymous"></script>
 
         <?php wp_head(); ?>
 
@@ -27,8 +22,8 @@
         <![endif]-->
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
-      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/thinstrip.css' ?>' type='text/css' media='all' />
-      <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . '../uw-template-hierarchy/module-hero-image.css' ?>' type='text/css' media='all' />
+
+      <!-- <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . 'husky100.css' ?>' type='text/css' media='all' /> -->
 
       <!--[if IE 9]>
           <style>
@@ -40,20 +35,17 @@
 
     </head>
     <body <?php body_class(); ?> id="husky100">
-      <!-- Google Tag Manager (noscript) -->
-      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQ6QQBT"
-      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-      <!-- End Google Tag Manager (noscript) -->
+  
     <a href="#main_content" class="screen-reader-shortcut">Skip to main content</a>
 
     <div role="banner">
       <div id="thin-strip">
           <a class="wordmark" href="http://uw.edu" tabindex="-1" title="University of Washington Home">Home</a>
           <ul>
-              <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a></li>
-              <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a></li>
-              <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a></li>
-              <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a></li>
+               <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a><i class="fa-brands fa-facebook-f"></i></li>
+              <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a><i class="fa-brands fa-twitter"></i></li>
+              <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a> <i class="fa-brands fa-instagram"></i></li>
+              <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a><i class="fa-brands fa-youtube"></i></li>
               <li><a href="http://uw.edu/students" class="slash" title="Students">Students</a></li>
               <li><a href="http://uw.edu/parents" class="slash" title="Parents">Parents</a></li>
               <li><a href="http://uw.edu/facultystaff" class="slash" title="Faculty &amp; Staff">Faculty &amp; Staff</a></li>
@@ -66,16 +58,21 @@
     <div class="module-hero-image" style="background-image:url('<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>')">
       <div class="container">
         <div class="row">
-          <h1><?php the_title(); ?></h1>
-          <div class="udub-slant"><span></span></div>
+          <h1>
+            <?php the_title(); ?>
+            <div class="udub-slant"><span></span></div>
+          </h1>
+          
           <?php the_content(); ?>
+         
         </div>
       </div>
     </div>
     <?php wp_reset_query(); ?>
     <!-- FEATURE: dynamically load the filters - Now a dropdown structure -->
 
-    <div role="form" aria-label="Filter Results">
+    <!-- <div role="form" aria-label="Filter Results"> -->
+    <div id="husky100-filter-form" role="form" aria-label="Filter Results">
 
         <ul id="filter">
         <li class="sort_by">
@@ -97,10 +94,10 @@
                 'parent' => 0
             ));
             foreach ($filter_parent_terms as $parent) {
+                $parentNameID = strToLower(str_replace(' ','-',$parent->name));
                  echo '<li class="select' . (($parent->name == 'Year Awarded')?' labelToggle':' filtered') . '">' .
-                        '<label>' . $parent->name . '</label>' .
-                         '<select' . (($parent->name == 'Year Awarded')? ' id="year-awarded"': '' ) . '><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
-                         // '<select' . (($parent->name == 'Year Awarded')? ' id="year-awarded"': '' ) . '><option disabled>' . 'Select a ' . $parent->name . '</option><option class="viewall" value="">View all</option>';
+                         '<label for="' .   $parentNameID .'" >' . $parent->name . '</label>' .
+                         '<select' .  (($parent->name == 'Year Awarded')?' aria-label="Year Awarded"':'') . '   id="'.    $parentNameID    . '"><option disabled selected>' . 'Select a ' . $parent->name . '</option>';
 
                  foreach ( get_terms( 'filters', array( 'hide_empty' => false, 'parent' => $parent->term_id ) ) as $child ) {
                     if ($child->slug == 'arts-sci-all-divisions') {
@@ -140,7 +137,8 @@
         </div>
 
     </div>
-
+ 
+   
 
     <!-- Add this to  ontouchstart="this.classList.toggle('hover');" -->
     <?php
@@ -239,18 +237,19 @@
            }
 
            if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
-            $fact = $fastfacts[$peoplecount / $featureOffset];
+            $fact = $fastfacts[$peoplecount / $featureOffset];    
             $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , array(200,300) );
-            $factimageurl = isset($factimageurl) ? $factimageurl[0] : '';
+          //  $factimageurl = isset($factimageurl) ? $factimageurl[0] : '';
             $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' );
-            $factimageurlhigh = isset($factimageurlhigh) ? $factimageurlhigh[0] : '';
-              if ( $fact && $fact->post_name ) :
+           // $factimageurlhigh = isset($factimageurlhigh) ? $factimageurlhigh[0] : '';
+            
+             // if ( $fact && $fact->post_name ) :
               ?>
                   <li tabindex="0" data-name="<?php echo $fact->post_name; ?>" class="flip-container grid-item special infographic">
                         <h3><?php echo $fact->post_title; ?></h3>
                   </li>
               <?php
-              endif;
+            //  endif;
            }
 
            //spit out html
@@ -309,7 +308,5 @@
 
     </div>
 <?php wp_footer(); ?>
-
-
 </body>
 </html>

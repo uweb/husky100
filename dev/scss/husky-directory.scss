@@ -1,0 +1,178 @@
+div.span8 {
+  position: relative;
+}
+
+body {
+  #filter {
+  //  position: absolute;
+    top: 15px;
+    right: 0;
+    height: 35px;
+   // width: 150px;
+
+    input {
+      border: 1px solid #DFDFDF;
+      border-radius: 20px;
+      width: 115px;
+      padding-left: 15px;
+      color: #949494;
+    }
+  }
+}
+
+div.profile-list {
+  display: block;
+  overflow: hidden;
+  margin: 30px 0 40px;
+
+  img {
+    display: block;
+    float: left;
+    margin-right: 20px;
+    margin-top: -5px;
+    width: 80px !important;
+
+    &.no-pic {
+      opacity: 0;
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  h3.name {
+    font-weight: bold;
+    margin: 0 0 2px;
+    font-size: 19px;
+  }
+  
+  div.info {
+    float: left;
+    clear: right;
+  } 
+
+  .title {
+    font-family: 'Droid Serif', serif;
+    font-style: italic;
+    color: #6B6B6B;
+    font-size: 14px;
+    text-rendering: optimizeLegibility;
+    position: relative;
+  }
+}
+
+.site-marketing {
+  div.profile-list img {
+    display: none;
+  }
+
+  .entry-content img.husky-image {
+    display: none;
+  }
+
+  &.single-husky div.husky-contact {
+    margin-top: 10px;
+  }
+}
+
+div.husky-contact {
+  margin-top: 30px;
+  display: inline-block;
+  max-width: 300px;
+  margin-left: 0;
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 1em;
+  }
+
+  .contact {
+    padding-top: 20px;
+  }
+
+  div.big-contact {
+    padding-top: 10px;
+  }
+}
+
+div.big-husky-contact {
+  margin-top: 20px;
+}
+
+div.wide-husky-contact {
+  display: block;
+  margin-top: 40px;
+  margin-left: 20px;
+  max-width: 100%;
+}
+
+img.husky-image {
+  display: inline-block;
+  width: 240px;
+  margin-right: 70px;
+  margin-top: 10px;
+  float: left;
+}
+
+div.husky-info {
+  padding-top: 30px;
+  clear: both;
+}
+
+// Single page
+.single-husky {
+  .contact p {
+    margin-bottom: 5px;
+  }
+
+  p.team {
+    margin-bottom: 0;
+  }
+
+  div.husky-contact {
+    margin-top: 50px;
+  }
+
+  div.husky-info {
+    padding-top: 40px;
+  }
+}
+
+// Media queries
+@media (max-width: 979px) {
+  div.husky-contact {
+    max-width: 100%;
+  }
+
+  img.husky-image {
+    float: none;
+    display: block;
+    margin: 10px auto 0 auto;
+  }
+
+  .single-husky div.husky-contact {
+    margin-left: 0;
+  }
+
+  .single-husky h1 {
+    margin-left: -25px;
+  }
+}
+
+@media (max-width: 767px) {
+  div.profile-list {
+    div.info {
+      max-width: 185px;
+    }
+  }
+
+  article > div {
+    padding: 0 20px;
+  }
+
+  body #filter {
+    position: static;
+    margin: 0 0 0 -5px;
+  }
+}

@@ -122,7 +122,7 @@ if ( ! post_type_exists( 'husky100' ) ):
         global $post;
         $custom = get_post_custom($post->ID);
         $tenet = $custom['tenet'][0];
-        ?><select name="tenet"/>
+        ?><select name="tenet">
             <option>Tenet</option>
             <option value="Undaunted" <?php echo ($tenet == "Undaunted") ? "selected" : ""; ?> >Undaunted</option>
             <option value="We > Me" <?php echo ($tenet == "We > Me") ? "selected" : ""; ?> >We > Me</option>
@@ -572,16 +572,20 @@ add_action('init', 'load_other_resources');
 
 function load_other_resources() {
   if ( !is_admin () ) {
-    
-    wp_enqueue_script('jquery');
-    // wp_register_script('tiles-js', plugins_url('js/tiles.dev.js', __FILE__), 'jquery', '1.5', true);
-    wp_register_script('tiles-js', plugins_url('js/tiles.js', __FILE__), 'jquery', '2.0', true);
-    wp_enqueue_script('tiles-js');
-    wp_register_style('tiles-style', plugins_url('css/tiles.css', __FILE__));
-    wp_enqueue_style('tiles-style');
+    $script_path = plugin_dir_path( __FILE__ ) . 'js/husky100.js';
+    $script_url  = plugin_dir_url( __FILE__ ) . 'js/husky100.js';
+    $script_version = filemtime( $script_path );
+
+    wp_register_script('husky100-js', $script_url, array('jquery'), $script_version, true);
+    wp_enqueue_script('husky100-js');
+
+    wp_register_style('husky100-style', plugins_url('css/husky100.css', __FILE__));
+    wp_enqueue_style('husky100-style');
+    // wp_register_style('husky100-style', plugins_url('css/husky100.css', __FILE__));
+    // wp_enqueue_style('husky100-style');
 
     //ajax stuff
-    wp_localize_script( 'tiles-js', 'ajaxpagination', array(
+    wp_localize_script( 'husky100-js', 'ajaxpagination', array(
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
         //'query_vars' => json_encode( $wp_query->query )
     ));
