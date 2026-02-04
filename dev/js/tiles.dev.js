@@ -1,5 +1,5 @@
-$(window).load(function(){
-
+$(window).on("load", function() {
+  
       var personTemplate = '<li tabindex="0" id="<%= slug %>" data-name="<%= slug %>" data-img="<%= img_highres %>" class="flip-container grid-item <%= classes %>">' +
         '<div class="flipper" role="button" aria-expanded="false">' +
           '<div class="front lazy" data-src="<%= img %>">' +
@@ -131,7 +131,6 @@ $(window).load(function(){
         var $this = $(this),
             dataCheck = $this.data('name'),
             dataName = dataCheck && '#name=' + dataCheck;
-
         if( !$this.hasClass('open') && !$this.hasClass('special') ) {
           $('.grid-item').removeClass('open')
           $this.addClass('open');
@@ -146,6 +145,14 @@ $(window).load(function(){
 
           // Switch ARIA tags
           aria($this)
+           // close bio on escape key
+          $this.on('keyup', function(e) {
+            if (e.key === "Escape") {
+              $('.grid-item').removeClass('open');
+              history.replaceState(null, document.title, location.pathname + location.search);
+              $('.grid').isotope('layout');
+            }
+          });
 
         } else {
           $this.removeClass('open')
@@ -154,6 +161,9 @@ $(window).load(function(){
         }
         $grid.isotope();
       });
+
+     
+
 
       // Clear select menus and re-isotope
       $('#clear').on('click', function(el){
