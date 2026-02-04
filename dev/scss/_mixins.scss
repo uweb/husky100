@@ -1,0 +1,23 @@
+@mixin the-width($num, $col) {
+  width: calc(#{var(--wide)} * (#{$num} / #{$col}));
+}
+@mixin box-shadow($shadow...) {
+  box-shadow: $shadow;
+}
+
+@mixin transition($transition...) {
+  transition: $transition;
+}
+
+@mixin perspective($value) {
+  perspective: $value;
+}
+
+@mixin rotateY($deg) {
+  transform: rotateY($deg);
+}
+
+@mixin backface-visibility($value) {
+  backface-visibility: $value;
+}
+
