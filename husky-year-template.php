@@ -11,7 +11,7 @@
        
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.9.0/lazyload.min.js"></script>
-        <script src="https://kit.fontawesome.com/cd54b7bbd3.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://kit.fontawesome.com/cd54b7bbd3.js" crossorigin="anonymous"></script> -->
 
         <?php wp_head(); ?>
 
@@ -21,8 +21,10 @@
             <link rel='stylesheet' href='<?php bloginfo("template_directory"); ?>/assets/ie/css/ie.css' type='text/css' media='all' />
         <![endif]-->
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
-
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script> -->
+      <?php wp_enqueue_script('isotope-js'); ?>
+      <?php wp_enqueue_script('fontawesome-js'); ?>
+    
       <!-- <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . 'husky100.css' ?>' type='text/css' media='all' /> -->
 
       <!--[if IE 9]>
