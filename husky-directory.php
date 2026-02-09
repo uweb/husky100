@@ -584,8 +584,27 @@ function load_other_resources() {
 
     wp_register_script('isotope-js','https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js', array('jquery'),null,false );
 
-    wp_register_script('fontawesome-js','https://kit.fontawesome.com/cd54b7bbd3.js', array('jquery'),null,false );
+    //wp_register_script('fontawesome-js','https://kit.fontawesome.com/cd54b7bbd3.js', array('jquery'),null,false );
 
+    /**
+     * Font Awesome Kit Setup
+     *
+     * This will add your Font Awesome Kit to the front-end, the admin back-end,
+     * and the login screen area.
+     */
+    if (! function_exists('fa_custom_setup_kit') ) {
+      function fa_custom_setup_kit($kit_url = '') {
+        foreach ( [ 'wp_enqueue_scripts', 'admin_enqueue_scripts'] as $action ) {
+          add_action(
+            $action,
+            function () use ( $kit_url ) {
+              wp_enqueue_script( 'font-awesome-kit', $kit_url, [], null );
+            }
+          );
+        }
+      }
+    }
+  fa_custom_setup_kit('https://kit.fontawesome.com/cd54b7bbd3.js');
     //ajax stuff
     wp_localize_script( 'husky100-js', 'ajaxpagination', array(
         'ajaxurl' => admin_url( 'admin-ajax.php' ),

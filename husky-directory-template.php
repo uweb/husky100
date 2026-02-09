@@ -21,7 +21,6 @@
         <![endif]-->
 
         <?php wp_enqueue_script('isotope-js'); ?>
-        <?php wp_enqueue_script('fontawesome-js'); ?>
         <link rel='stylesheet' href='<?php //echo plugin_dir_url( __FILE__ ) . 'css/husky100.css' ?>' type='text/css' media='all' />
       
 

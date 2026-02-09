@@ -23,7 +23,6 @@
 
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script> -->
       <?php wp_enqueue_script('isotope-js'); ?>
-      <?php wp_enqueue_script('fontawesome-js'); ?>
     
       <!-- <link rel='stylesheet' href='<?php echo plugin_dir_url( __FILE__ ) . 'husky100.css' ?>' type='text/css' media='all' /> -->
 
