@@ -1,5 +1,4 @@
 jQuery(function($) {
-  console.log(typeof $.fn.isotope);
       var personTemplate = '<li tabindex="0" id="<%= slug %>" data-name="<%= slug %>" data-img="<%= img_highres %>" class="flip-container grid-item <%= classes %>">' +
         '<div class="flipper" role="button" aria-expanded="false">' +
           '<div class="front lazy" data-src="<%= img %>">' +
