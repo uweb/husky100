@@ -589,31 +589,31 @@ function load_other_resources() {
     /**
 * Frontend scripts & styles
 */
-function wd_global_enqueues() {
+function uw_fa_global_enqueues() {
 
      // font awesome
      wp_enqueue_script(
-          'wd-fontawesome',
+          'uw-fontawesome',
           'https://kit.fontawesome.com/cd54b7bbd3.js', // kit is URL restricted
           [],
           null
      );
 }
-add_action( 'wp_enqueue_scripts', 'wd_global_enqueues' );
+add_action( 'wp_enqueue_scripts', 'uw_fa_global_enqueues' );
 
 /**
 * Add additional script attributes
 */
-function wd_script_attributes( $tag, $handle ) {
+function uw_fa_script_attributes( $tag, $handle ) {
 
      // add crossorigin to fontawesome
-     if ( 'wd-fontawesome' == $handle ) {
+     if ( 'uw-fontawesome' == $handle ) {
           return str_replace( ' src', ' crossorigin="anonymous" src', $tag );
      }
 
      return $tag;
 }
-add_filter( 'script_loader_tag', 'wd_script_attributes', 10, 2 );
+add_filter( 'script_loader_tag', 'uw_fa_script_attributes', 10, 2 );
 
 
     /**
