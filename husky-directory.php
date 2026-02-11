@@ -584,46 +584,7 @@ function load_other_resources() {
 
     wp_register_script('isotope-js','https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js', array('jquery'),null,false );
 
-    //wp_register_script('fontawesome-js','https://kit.fontawesome.com/cd54b7bbd3.js', array('jquery'),null,false );
-
-    /**
-     * Font Awesome Kit Setup
-     *
-     * This will add your Font Awesome Kit to the front-end, the admin back-end,
-     * and the login screen area.
-     */
-    // if (! function_exists('fa_custom_setup_kit') ) {
-    //   function fa_custom_setup_kit($kit_url = '') {
-    //     foreach ( [ 'wp_enqueue_scripts', 'admin_enqueue_scripts'] as $action ) {
-    //       add_action(
-    //         $action,
-    //         function () use ( $kit_url ) {
-    //           error_log('kit ' .  print_r($kit_url, true));
-    //           $kit_url = str_replace( )
-    //           wp_enqueue_script( 'font-awesome-kit', $kit_url, [], null );
-    //         }
-    //       );
-    //     }
-    //   }
-    // }
-    // fa_custom_setup_kit('https://kit.fontawesome.com/cd54b7bbd3.js');
-
-function theme_enqueue_fontawesome() {
-    wp_enqueue_script( 'theme-fontawesome', 'https://kit.fontawesome.com/cd54b7bbd3.js', [], null, true );
-}
-add_action( 'wp_enqueue_scripts', 'theme_enqueue_fontawesome' );
-function add_fontawesome_crossorigin_attr( $tag, $handle ) {
-    // Check if the script handle is 'theme-fontawesome'
-    if ( 'theme-fontawesome' === $handle ) {
-        // Add the crossorigin attribute
-        return str_replace( ' src', ' crossorigin="anonymous" src', $tag );
-    }
-    return $tag;
-}
-add_filter( 'script_loader_tag', 'add_fontawesome_crossorigin_attr', 10, 2 );
-
-
-
+    wp_register_script('fontawesome-js','https://kit.fontawesome.com/528b9d8a9b.js', array('jquery'),null,false );
 
     //ajax stuff
     wp_localize_script( 'husky100-js', 'ajaxpagination', array(
