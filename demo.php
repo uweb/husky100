@@ -13,11 +13,9 @@
             <script src="<?php bloginfo("template_directory"); ?>/assets/ie/js/html5shiv.js" type="text/javascript"></script>
             <script src="<?php bloginfo("template_directory"); ?>/assets/ie/js/respond.js" type="text/javascript"></script>
             <link rel='stylesheet' href='<?php bloginfo("template_directory"); ?>/assets/ie/css/ie.css' type='text/css' media='all' />
-        <![endif]--> 
-        
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
-        <script src="https://kit.fontawesome.com/cd54b7bbd3.js" crossorigin="anonymous"></script>
+        <![endif]-->
 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
       <!-- Tiles specific JS and CSS -->
       <script src="<?php plugins_url('js/husky100.js', __FILE__) ?>"></script>
       <link rel='stylesheet' href='<?php plugins_url('css/husky100.css') ?>' type='text/css' media='all' />
@@ -41,10 +39,10 @@
             <li><a href="http://uw.edu/alumni" class="slash" title="Alumi">Alumni</a>
         </ul>
     </div>
- 
+
 
     <div class="module-hero-image" style="background-image:url('<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>')">
-      <div class="container">     
+      <div class="container">
         <div class="row">
           <h1><?php the_title(); ?></h1>
           <div class="udub-slant"><span></span></div>
@@ -54,41 +52,41 @@
         </div>
       </div>
     </div>
-    
+
     <ul id="filter">
       <li>
-        <button autofocus>Show all <div class="udub-slant"><span></span></div></button>        
+        <button autofocus>Show all <div class="udub-slant"><span></span></div></button>
       </li>
       <li>
-        <button data-filter=".junior">Juniors <div class="udub-slant"><span></span></div></button>        
+        <button data-filter=".junior">Juniors <div class="udub-slant"><span></span></div></button>
       </li>
       <li>
-        <button data-filter=".senior">Seniors <div class="udub-slant"><span></span></div></button>     
+        <button data-filter=".senior">Seniors <div class="udub-slant"><span></span></div></button>
       </li>
       <li>
-        <button data-filter=".graduate">Graduate <div class="udub-slant"><span></span></div></button>        
+        <button data-filter=".graduate">Graduate <div class="udub-slant"><span></span></div></button>
       </li>
       <li>
-        <button>Location <div class="udub-slant"><span></span></div></button>       
+        <button>Location <div class="udub-slant"><span></span></div></button>
       </li>
       <li class="search_slash">
-        <button>Major <div class="udub-slant"><span></span></div></button>        
+        <button>Major <div class="udub-slant"><span></span></div></button>
       </li>
       <li>
-        <a title="Search button" id="searcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="26.396" height="55.35" viewBox="0 0 26.396 55.35" aria-hidden="true"><path fill="#4B2E83" d="M2.146 20.753l5.372-5.365c1.378.973 3.054 1.55 4.866 1.55h.002c4.672 0 8.473-3.8 8.473-8.47C20.857 3.798 17.057 0 12.385 0c-4.67 0-8.47 3.8-8.47 8.468 0 1.763.543 3.4 1.468 4.758L0 18.603l2.146 2.15zm10.24-17.917c3.11 0 5.64 2.526 5.64 5.632 0 3.107-2.53 5.635-5.64 5.635-3.106 0-5.634-2.528-5.634-5.635 0-3.104 2.527-5.63 5.634-5.632zm6.22 32.162c0-.414-.162-.804-.455-1.095-.585-.59-1.605-.59-2.193 0l-5.588 5.583-5.585-5.584c-.588-.588-1.612-.587-2.195 0-.294.292-.456.682-.456 1.096s.162.804.455 1.098l5.585 5.586-5.587 5.586c-.294.295-.456.687-.455 1.102 0 .413.163.8.45 1.087.58.593 1.614.597 2.2.004l5.585-5.584 5.584 5.582c.29.297.683.46 1.1.46s.81-.163 1.097-.455c.292-.292.454-.68.455-1.093.002-.415-.16-.807-.455-1.102l-5.586-5.586 5.587-5.586c.294-.294.455-.684.455-1.098z"/></svg></a>        
+        <a title="Search button" id="searcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="26.396" height="55.35" viewBox="0 0 26.396 55.35" aria-hidden="true"><path fill="#4B2E83" d="M2.146 20.753l5.372-5.365c1.378.973 3.054 1.55 4.866 1.55h.002c4.672 0 8.473-3.8 8.473-8.47C20.857 3.798 17.057 0 12.385 0c-4.67 0-8.47 3.8-8.47 8.468 0 1.763.543 3.4 1.468 4.758L0 18.603l2.146 2.15zm10.24-17.917c3.11 0 5.64 2.526 5.64 5.632 0 3.107-2.53 5.635-5.64 5.635-3.106 0-5.634-2.528-5.634-5.635 0-3.104 2.527-5.63 5.634-5.632zm6.22 32.162c0-.414-.162-.804-.455-1.095-.585-.59-1.605-.59-2.193 0l-5.588 5.583-5.585-5.584c-.588-.588-1.612-.587-2.195 0-.294.292-.456.682-.456 1.096s.162.804.455 1.098l5.585 5.586-5.587 5.586c-.294.295-.456.687-.455 1.102 0 .413.163.8.45 1.087.58.593 1.614.597 2.2.004l5.585-5.584 5.584 5.582c.29.297.683.46 1.1.46s.81-.163 1.097-.455c.292-.292.454-.68.455-1.093.002-.415-.16-.807-.455-1.102l-5.586-5.586 5.587-5.586c.294-.294.455-.684.455-1.098z"/></svg></a>
       </li>
     </ul>
 
     <div id="searcher_wrap">
       <input type="text" class="quicksearch" placeholder="Start typing" />
     </div>
-  
+
 
     <!-- Add this to  ontouchstart="this.classList.toggle('hover');" -->
 
 
     <div id="main-content">
-         
+
          <div class="grid">
 
          <div class="grid-sizer"></div>
@@ -132,7 +130,7 @@
              </div>
            </div>
 
-           
+
 
 
           <div data-name="sue" data-img="<?php echo plugins_url( 'template-hierarchy/assets/husky100/2-high.jpg' )?>" class="flip-container grid-item junior">
@@ -1918,12 +1916,12 @@
               </div>
             </div>
           </div>
-  
 
-         </div>   
+
+         </div>
 
     </div>
-    
+
 
 
 
