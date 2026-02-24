@@ -582,7 +582,16 @@ function load_other_resources() {
     wp_register_style('husky100-style', plugins_url('css/husky100.css', __FILE__));
     wp_enqueue_style('husky100-style');
 
+     wp_register_style(
+        "font-awesome",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css",
+        [],
+        "6.0.0"
+    );
+    wp_enqueue_style( "font-awesome" );
+
     wp_register_script('isotope-js','https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js', array('jquery'),null,false );
+
 
     //ajax stuff
     wp_localize_script( 'husky100-js', 'ajaxpagination', array(

@@ -11,7 +11,6 @@
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.9.0/lazyload.min.js"></script>
-        <!-- <script src="https://kit.fontawesome.com/cd54b7bbd3.js" crossorigin="anonymous"></script> -->
         <?php wp_head(); ?>
 
         <!--[if lt IE 9]>
@@ -21,7 +20,6 @@
         <![endif]-->
 
         <?php wp_enqueue_script('isotope-js'); ?>
-        <?php //wp_enqueue_script('font-awesome-kit'); ?>
 
         <link rel='stylesheet' href='<?php //echo plugin_dir_url( __FILE__ ) . 'css/husky100.css' ?>' type='text/css' media='all' />
 

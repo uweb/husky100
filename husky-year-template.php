@@ -11,7 +11,6 @@
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.9.0/lazyload.min.js"></script>
-        <!-- <script src="https://kit.fontawesome.com/cd54b7bbd3.js" crossorigin="anonymous"></script> -->
 
         <?php wp_head(); ?>
 
