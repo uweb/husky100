@@ -46,9 +46,9 @@
           <a class="wordmark" href="http://uw.edu" tabindex="-1" title="University of Washington Home">Home</a>
           <ul>
                <li class="facebook"><a href="https://www.facebook.com/UofWA" title="Facebook">Facebook</a><i class="fab fa-facebook"></i></li>
-              <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a><i class="fa-brands fa-twitter"></i></li>
-              <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a> <i class="fa-brands fa-instagram"></i></li>
-              <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a><i class="fa-brands fa-youtube"></i></li>
+              <li class="twitter"><a href="https://twitter.com/uw" title="Twitter">Twitter</a><i class="fab fa-twitter"></i></li>
+              <li class="instagram"><a href="http://instagram.com/uofwa" title="Instagram">Instagram</a> <i class="fab fa-instagram"></i></li>
+              <li class="youtube"><a href="http://www.youtube.com/uwhuskies" title="YouTube">YouTube</a><i class="fab fa-youtube"></i></li>
               <li><a href="http://uw.edu/students" class="slash" title="Students">Students</a></li>
               <li><a href="http://uw.edu/parents" class="slash" title="Parents">Parents</a></li>
               <li><a href="http://uw.edu/facultystaff" class="slash" title="Faculty &amp; Staff">Faculty &amp; Staff</a></li>
