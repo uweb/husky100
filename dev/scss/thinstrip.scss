@@ -42,7 +42,7 @@ div#thin-strip {
       list-style: none;
       float: left;
       display: inline-block;
-      margin: 0;
+      margin: 14px 0 0;
 
       &.facebook,
       &.twitter,
@@ -50,7 +50,7 @@ div#thin-strip {
       &.youtube {
         margin-right: 10px;
         a {
-            margin: 0 0 -3px 0;
+            margin: 0 0 -31px;
             text-indent: -10000px;
             display: block;
             position: relative;
