@@ -50,7 +50,7 @@ div#thin-strip {
       &.youtube {
         margin-right: 10px;
         a {
-            margin: 0 0 -31px;
+            margin: 0 0 -3px;
             text-indent: -10000px;
             display: block;
             position: relative;
@@ -58,12 +58,12 @@ div#thin-strip {
             z-index: 1;
         }
         &:hover{
-            i.fa-brands {
+            i.fab {
               color: #4b2e83;
               transform: scale(110%);
             }
         }
-        i.fa-brands {
+        i.fab {
             position: relative;
             top: -25px;
 
