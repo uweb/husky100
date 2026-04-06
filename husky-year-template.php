@@ -239,7 +239,10 @@
            }
 
            if( $peoplecount % $featureOffset == 9 ) { //determines where fast facts are
+           if( isset($fastfacts[$peoplecount / $featureOffset]) ){
             $fact = $fastfacts[$peoplecount / $featureOffset];
+           }
+
             $factimageurl = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , array(200,300) );
           //  $factimageurl = isset($factimageurl) ? $factimageurl[0] : '';
             $factimageurlhigh = wp_get_attachment_image_src( get_post_thumbnail_id($fact->ID) , $size = 'large' );
