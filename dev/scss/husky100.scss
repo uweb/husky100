@@ -228,10 +228,13 @@
     &.open {
       @include mixins.the-width(6, 10);
       height: 630px;
-      height: max-content !important;
-      overflow: visible;
-      position: relative !important;
-      z-index: 9999;
+
+      @media only screen and (max-width: 768px) {
+        height: max-content !important;
+        overflow: visible;
+        position: relative !important;
+        z-index: 9999;
+      }
 
       .front {
         width: 49.8%;
