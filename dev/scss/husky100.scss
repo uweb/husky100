@@ -5,7 +5,7 @@
 .site-husky100{
   thead tr, td {
     border: 1px solid #ababab !important;
-    padding: 5px; 
+    padding: 5px;
   }
   tbody>tr:nth-child(odd)>td, tbody>tr:nth-child(odd)>th {
     background-color: #e2e2e2;
@@ -15,7 +15,7 @@
   div#thin-strip {
     top: 0;
   }
-  
+
 
   .grid-item,
   .grid-sizer {
@@ -228,6 +228,13 @@
     &.open {
       @include mixins.the-width(6, 10);
       height: 630px;
+
+      @media only screen and (max-width: 768px) {
+        height: max-content !important;
+        overflow: visible;
+        position: relative !important;
+        z-index: 9999;
+      }
 
       .front {
         width: 49.8%;
@@ -923,6 +930,7 @@
     .grid-item {
       &.featured.open {
         height: 900px;
+        height: max-content;
       }
 
       &.open {
