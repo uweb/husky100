@@ -959,7 +959,8 @@
           padding: 40px 45px 50px;
 
           .bio-text {
-            max-height: 325px;
+            //max-height: 325px;
+            max-height: 100vh;;
           }
 
           .linkedin {
